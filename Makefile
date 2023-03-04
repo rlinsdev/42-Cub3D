@@ -13,15 +13,13 @@ PATH_OBJS 		= ./objs/
 INC_PATH 		= ./include/
 
 # maps
-#MAP = maps/map_3x5.ber
+#MAP = maps/map_3x5.ber TODO: Colocar mapa do Cub3D
 
 # Libft files and directories
 LIBFT_PATH 		= ./lib/libft/
 LIBFT 			= ./lib/libft.a
 
 # Minilibx
-# MINILIBX_PATH	=	./lib/minilibx-linux
-# MINILIBX		=	$(MINILIBX_PATH)/libmlx.a
 MLX_PATH	= ./lib/minilibx-linux/
 MLX_NAME	= libmlx.a
 MLX			= $(MLX_PATH)$(MLX_NAME)
