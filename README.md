@@ -1,19 +1,28 @@
-<h1 align="center">Cube 3D</h1>
 
+<div align="center">
 
-<!-- <p align="center"><img src="https://game.42sp.org.br/static/assets/achievements/xxxxx.png" alt="xxxxxx"> </p> -->
 <p align="center">
+
+<!-- <img src="https://game.42sp.org.br/static/assets/achievements/philosophersn.png" alt="Philosophers" /> -->
 <img src="https://i2.wp.com/www.aponia-dental-center.com/fachzahnarztliche-praxis/wp-content/uploads/2014/01/work-in-progress.png?fit=286%2C253" alt="Working Progress" />
 </p>
 
+</div>
 
-# What is Cub 3D?
+# Cub 3D
+xxxxxx
+
+
+## Definitions / Infos:
 
 xxxx
 
-<br />
+## Parameters:
 
-# More information
+xxxxx
+
+
+## More information
 
 • Libft allowed.
 
@@ -42,10 +51,6 @@ make norma
 
 ```
 
-# Last note
+## Commands samples
 
-• To evaluation, you must be in VNC connection
-
-
-# Guides
-
+## Links
