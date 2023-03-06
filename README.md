@@ -31,6 +31,10 @@ Distance to wall:
 
 ![Distance to wall](https://permadi.com/tutorial/raycast/images/figure17.gif)
 
+Calculating heading:
+
+![Calculating heading](http://gamecodeschool.com/wp-content/uploads/2015/06/simple_game_graphics_movement_without_trigonometric_functions.png)
+
 
 
 ## More information:
