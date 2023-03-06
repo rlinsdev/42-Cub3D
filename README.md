@@ -20,17 +20,12 @@ xxxx
 
 ## More information:
 
-• Libft allowed.
+* Libft allowed.
+* GetNextLine allowed.
+* Folder structure apply (managed by Makefile).
+* No leaks are allowed.
+* Norma must be run.
 
-• GetNextLine allowed.
-
-• Folder structure apply (managed by Makefile).
-
-• No leaks are allowed.
-
-• Norma must be run.
-
-<br/>
 
 # To Run
 
@@ -43,8 +38,6 @@ xxxx
 
 ## Links:
 
-[Game Wolfenstein 3D](http://users.atw.hu/wolf3d/)
-
-[MinilibX](https://harm-smits.github.io/42docs/libs/minilibx)
-
-[Ray casting tutorial demos](https://github.com/permadi-com/ray-cast/tree/master/)
+* [Game Wolfenstein 3D](http://users.atw.hu/wolf3d/)
+* [MinilibX](https://harm-smits.github.io/42docs/libs/minilibx)
+* [Ray casting tutorial demos](https://github.com/permadi-com/ray-cast/tree/master/)
