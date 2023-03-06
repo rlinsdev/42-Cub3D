@@ -10,19 +10,15 @@
 </div>
 
 # Cub 3D
-xxxxxx
+Maze project using raycasting, with minilibx.
+Emulating FPS Wolfenstein game (1992)
 
 
 ## Definitions / Infos:
-
 xxxx
 
-## Parameters:
 
-xxxxx
-
-
-## More information
+## More information:
 
 • Libft allowed.
 
@@ -39,15 +35,7 @@ xxxxx
 # To Run
 
 ```
-# Will generate a executable in bin folder
-# You can change between different maps
-make run
-
-# Execute valgrind. Will check memory leaks
-make leak
-
-# will run norminette inside de .c files (src folder)
-make norma
+ # TODO
 
 ```
 
