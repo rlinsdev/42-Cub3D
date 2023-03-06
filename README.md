@@ -15,7 +15,15 @@ Emulating FPS Wolfenstein game (1992)
 
 
 ## Definitions / Infos:
-xxxx
+* **Raycasting** is a rendering technique to create a 3D perspective in a 2D map.
+* **Raycasting** is not the same as *raytracing*!
+	- **Raycasting** is a fast semi-3D technique that works in realtime even on 4MHz graphical calculators.
+	- while *raytracing* is a realistic rendering technique that supports reflections and shadows in true 3D scenes, and only recently computers became fast enough to do it in realtime for reasonably high resolutions and complex scenes.
+* DDA - The **D**igital **D**ifference **A**nalyzer(DDA) algorithm is used to draw lines on a screen in an incrementally. The algorithm is called the Digital Difference Analyzer because it interpolates based on the difference between the start and end points. The algorithm itself is very easy to understand and implement.
+* **Ray Casting**:
+	1. Walls are always at 90° angle with the floor.
+	2. Walls are made of cubes that have the same size.
+	3. Floor is always flat.
 
 
 ## More information:
