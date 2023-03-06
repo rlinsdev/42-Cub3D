@@ -44,5 +44,7 @@ xxxx
 ## Links:
 
 [Game Wolfenstein 3D](http://users.atw.hu/wolf3d/)
+
 [MinilibX](https://harm-smits.github.io/42docs/libs/minilibx)
+
 [Ray casting tutorial demos](https://github.com/permadi-com/ray-cast/tree/master/)
