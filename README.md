@@ -24,6 +24,13 @@ Emulating FPS Wolfenstein game (1992)
 	1. Walls are always at 90° angle with the floor.
 	2. Walls are made of cubes that have the same size.
 	3. Floor is always flat.
+* **FOV** The player should be able to see what is in front of him/her. For this, we will need to define a field of view (FOV)
+
+## Images:
+Distance to wall:
+
+![Distance to wall](https://permadi.com/tutorial/raycast/images/figure17.gif)
+
 
 
 ## More information:
@@ -50,6 +57,10 @@ Emulating FPS Wolfenstein game (1992)
 
 ## Links:
 
+
 * [Game Wolfenstein 3D](http://users.atw.hu/wolf3d/)
 * [MinilibX](https://harm-smits.github.io/42docs/libs/minilibx)
 * [Ray casting tutorial demos](https://github.com/permadi-com/ray-cast/tree/master/)
+* [Ray Casting tutor](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/)
+* [Samples in js/HTML](https://github.com/permadi-com/ray-cast/tree/master/)
+
