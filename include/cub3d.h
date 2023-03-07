@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/07 08:17:29 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/07 08:48:28 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define S_KEY_CONST	's'
 # define D_KEY_CONST	'd'
 # define W_KEY_CONST	'w'
+
+# define ERR_ARGS "Invalid call. Must be: ./cub3D <map_path/map.cub>"
 
 
 /**
