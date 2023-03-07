@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/07 08:10:04 by rlins            ###   ########.fr       */
+/*   Created: 2023/03/07 07:54:35 by rlins             #+#    #+#             */
+/*   Updated: 2023/03/07 07:59:51 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	main(int argc, char **argv)
+int	error_msg(char *msg, int status_code)
 {
-	if (argc != 2)
-		return (error_msg("Invalid Args",1));
-	start(argc, argv);
-	return (0);
+	ft_putendl_fd(msg, STDERR_FILENO);
+	return (status_code);
 }

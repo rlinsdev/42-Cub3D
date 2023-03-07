@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/04 15:40:39 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/07 08:17:29 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,14 @@
  * @return int
  */
 int	start(int argc, char **argv);
+
+
+/**
+ * @brief Handle error message in program
+ * @param msg Message to be exposed
+ * @param status_code Status code to be returned
+ * @return int
+ */
+int	error_msg(char *msg, int status_code);
 
 #endif
