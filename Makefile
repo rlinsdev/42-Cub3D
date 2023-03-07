@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 
 # Collors
 RESET 	= \033[0m
@@ -93,9 +93,9 @@ bonus: all
 rebonus: fclean all
 
 run:
-	make re && ./cub3d ./maps/xxxx
+	make re && ./cub3D ./maps/xxxx
 
 valgrind:
-	$(LEAK) ./cub3d ./maps/xxxx
+	$(LEAK) ./cub3D ./maps/xxxx
 
 .PHONY: all run re clean fclean
