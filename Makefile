@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 
 # Collors
 RESET 	= \033[0m
@@ -9,6 +9,8 @@ RED 	= \033[0;31m
 PATH_SRC 		= ./src/
 PATH_MAIN 		= $(PATH_SRC)main/
 PATH_INIT 		= $(PATH_SRC)init/
+PATH_VALI 		= $(PATH_SRC)validation/
+PATH_UTIL 		= $(PATH_SRC)util/
 PATH_OBJS 		= ./objs/
 INC_PATH 		= ./include/
 
@@ -42,8 +44,9 @@ READ_LN		= -l readline
 INCLUDE = -I $(INC_PATH) -I $(LIBFT_PATH)
 
 SRCS =	$(PATH_MAIN)main.c \
-		$(PATH_INIT)init.c
-
+		$(PATH_INIT)init.c \
+		$(PATH_VALI)val_args.c \
+		$(PATH_UTIL)error_handler.c
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJS)%.o, $(SRCS))
 
@@ -57,6 +60,8 @@ $(PATH_OBJS)%.o: $(PATH_SRC)%.c
 	@mkdir -p $(PATH_OBJS)
 	@mkdir -p $(PATH_OBJS)main/
 	@mkdir -p $(PATH_OBJS)init/
+	@mkdir -p $(PATH_OBJS)validation/
+	@mkdir -p $(PATH_OBJS)util/
 	@$(CC) $(CFLAGS) $(INCLUDE) -I. -c $< -o $@ $(MLXFLAGS)
 
 # Libft rule
@@ -87,10 +92,14 @@ bonus: all
 
 rebonus: fclean all
 
+norma:
+	norminette $(PATH_SRC)
+	norminette $(LIBFT_PATH)
+
 run:
-	make re && ./cub3d ./maps/xxxx
+	make re && ./cub3D ./maps/xxxx
 
 valgrind:
-	$(LEAK) ./cub3d ./maps/xxxx
+	$(LEAK) ./cub3D ./maps/xxxx
 
 .PHONY: all run re clean fclean

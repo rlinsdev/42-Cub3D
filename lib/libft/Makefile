@@ -38,6 +38,9 @@ SRC_FILES =	ft_free.c \
 			ft_substr.c \
 			ft_strdup.c \
 			ft_strjoin.c \
+			ft_putendl_fd.c \
+			ft_putstr_fd.c \
+			ft_putchar_fd.c \
 			ft_memcmp.c
 
 SOURCES = $(addprefix $(SRCS_PATH), $(SRC_FILES))

@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 18:36:17 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/04 16:11:51 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/07 08:15:45 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ int		ft_print_hexa(unsigned int nbr, char spec);
 void	ft_putchar(char c);
 int		ft_putstr(char* str);
 char*	ft_itoa_base(unsigned long long nbr, char* base);
+
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
 
 /**
 * @brief Searches for the first occurrence of the character c
