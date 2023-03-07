@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:33:53 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/07 14:03:35 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/07 14:38:33 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void init_map_handler(t_data *data, char *path)
 	data->map_det.file = malloc(data->map_det.lines_count + 1 * sizeof(char *));
 	if (!data->map_det.file)
 	{
-		error_msg(ERR_MALL, 2);
+		error_msg(ERR_MALC, 2);
 		return ;
 	}
 	data->map_det.fd = open(path, O_RDONLY);
@@ -31,4 +31,38 @@ void init_map_handler(t_data *data, char *path)
 		// TODO: LoadMap
 		close(data->map_det.fd);
 	}
+}
+
+/**
+ * @brief Responsible to read the path, by GNL, and populate the map matrix
+ * @param data Data Structure by ref
+ */
+static void load_map(t_data *data)
+{
+	int		row;
+	int		i;
+	int		coll;
+	char	*line;
+
+	row = 0;
+	i = 0;
+	coll = 0;
+	line = get_next_line(data->map_det.fd);
+	if (!line)
+	{
+		data->map_det.file[row] = malloc(ft_strlen(line) + 1 * sizeof(char));
+		if (!data->map_det.file[row])
+		{
+			error_msg(ERR_MALC, 2);
+			return ;// TODO: Aqui tem que dar free nas alocações anteriores
+		}
+		while (line[i] != '\0')
+			data->map_det.file[row][coll++] = line[i++];
+		data->map_det.file[row++][coll] = '\0';
+		coll = 0;
+		i = 0;
+		free(line);
+		line = get_next_line(data->map_det.fd);
+	}
+	data->map_det.file[row] = NULL;
 }
