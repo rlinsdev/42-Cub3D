@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/07 14:40:46 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/07 14:49:27 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ typedef struct s_map_detail
 
 typedef struct s_data
 {
-	void			*mlx;
-	void			*win;
-	char			**map;
+	void		*mlx;
+	void		*win;
+	char		**map;
 	t_map_det	map_det;
 }	t_data;
 
@@ -54,17 +54,17 @@ typedef struct s_data
  * @param status_code Status code to be returned
  * @return int
  */
-int	error_msg(char *msg, int status_code);
+int		error_msg(char *msg, int status_code);
 
 /**
  * @brief Initialize all variables in data structure
  * @param data Data structure passed by param
  */
-void init_data(t_data *data);
+void	init_data(t_data *data);
 
 /**
  * @brief Initialize map Detail structure
  */
-void init_map_handler(t_data *data, char *path);
+void	init_map_handler(t_data *data, char *path);
 
 #endif

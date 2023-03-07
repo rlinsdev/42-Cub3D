@@ -6,15 +6,15 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:21:54 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/07 14:39:58 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/07 14:51:39 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static void init_map_det(t_map_det *map_det);
+static void	init_map_det(t_map_det *map_det);
 
-void init_data(t_data *data)
+void	init_data(t_data *data)
 {
 	data->mlx = NULL;
 	data->win = NULL;
@@ -27,7 +27,7 @@ void init_data(t_data *data)
  * @brief Initialize the map detail structure.
  * @param map_det Map Detail Structure by ref
  */
-static void init_map_det(t_map_det *map_det)
+static void	init_map_det(t_map_det *map_det)
 {
 	map_det->fd = 0;
 	map_det->lines_count = 0;

@@ -6,13 +6,15 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:33:53 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/07 14:38:33 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/07 14:50:16 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void init_map_handler(t_data *data, char *path)
+static void	init_load_map_var(int *row, int *i, int *coll);
+
+void	init_map_handler(t_data *data, char *path)
 {
 	data->map_det.lines_count = 10; // TODO Calcular isso depois
 	data->map_det.path = path;
@@ -34,19 +36,31 @@ void init_map_handler(t_data *data, char *path)
 }
 
 /**
+ * @brief Initialize variables passed by ref. Just to avoid norminette:
+ * functions huge
+ * @param row 'row' variable
+ * @param i 'i' variable
+ * @param coll 'coll' variable
+ */
+static void	init_load_map_var(int *row, int *i, int *coll)
+{
+	row = 0;
+	i = 0;
+	coll = 0;
+}
+
+/**
  * @brief Responsible to read the path, by GNL, and populate the map matrix
  * @param data Data Structure by ref
  */
-static void load_map(t_data *data)
+static void	load_map(t_data *data)
 {
 	int		row;
 	int		i;
 	int		coll;
 	char	*line;
 
-	row = 0;
-	i = 0;
-	coll = 0;
+	init_load_map_var(&row, &i, &coll);
 	line = get_next_line(data->map_det.fd);
 	if (!line)
 	{
@@ -54,7 +68,7 @@ static void load_map(t_data *data)
 		if (!data->map_det.file[row])
 		{
 			error_msg(ERR_MALC, 2);
-			return ;// TODO: Aqui tem que dar free nas alocações anteriores
+			return ; // TODO: Aqui tem que dar free nas alocações anteriores
 		}
 		while (line[i] != '\0')
 			data->map_det.file[row][coll++] = line[i++];
