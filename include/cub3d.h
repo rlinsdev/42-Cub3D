@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/07 08:48:28 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/07 11:52:11 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,25 @@
 
 # define ERR_ARGS "Invalid call. Must be: ./cub3D <map_path/map.cub>"
 
+typedef struct s_map_detail
+{
+	int			fd;
+	int			line_count;
+	char		*path;
+	char		**file;
+	int			height;
+	int			width;
+}	t_map_det;
+
+typedef struct s_data
+{
+	void			*mlx;
+	void			*win;
+	char			**map;
+	t_map_det	map_det;
+}	t_data;
+
+
 
 /**
  * @brief First method in game.
@@ -45,5 +64,11 @@ int	start(int argc, char **argv);
  * @return int
  */
 int	error_msg(char *msg, int status_code);
+
+/**
+ * @brief Initialize all variables in data structure
+ * @param data Data structure passed by param
+ */
+void init_data(t_data *data);
 
 #endif
