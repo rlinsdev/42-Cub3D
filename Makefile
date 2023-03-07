@@ -46,7 +46,8 @@ INCLUDE = -I $(INC_PATH) -I $(LIBFT_PATH)
 SRCS =	$(PATH_MAIN)main.c \
 		$(PATH_INIT)init.c \
 		$(PATH_VALI)val_args.c \
-		$(PATH_UTIL)error_handler.c
+		$(PATH_UTIL)error_handler.c \
+		$(PATH_INIT)init_map.c \
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJS)%.o, $(SRCS))
 

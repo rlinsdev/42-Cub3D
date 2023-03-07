@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/07 11:52:11 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/07 13:58:34 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <X11/keysym.h> // Type key code pressed
 # include <X11/X.h> // Type event em mask that hooks call
 # include <stdio.h>
+# include <errno.h> // errno
+# include <math.h> // math lib
 
 # define A_KEY_CONST	'a'
 # define S_KEY_CONST	's'
@@ -26,11 +28,12 @@
 # define W_KEY_CONST	'w'
 
 # define ERR_ARGS "Invalid call. Must be: ./cub3D <map_path/map.cub>"
+# define ERR_MALL "Problems in memory allocation!"
 
 typedef struct s_map_detail
 {
 	int			fd;
-	int			line_count;
+	int			lines_count;
 	char		*path;
 	char		**file;
 	int			height;
@@ -70,5 +73,10 @@ int	error_msg(char *msg, int status_code);
  * @param data Data structure passed by param
  */
 void init_data(t_data *data);
+
+/**
+ * @brief Initialize map Detail structure
+ */
+void init_map_handler(t_data *data, char *path);
 
 #endif
