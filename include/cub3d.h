@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/07 13:58:34 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/07 14:40:46 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define W_KEY_CONST	'w'
 
 # define ERR_ARGS "Invalid call. Must be: ./cub3D <map_path/map.cub>"
-# define ERR_MALL "Problems in memory allocation!"
+# define ERR_MALC "Problems in memory allocation!"
 
 typedef struct s_map_detail
 {
@@ -47,18 +47,6 @@ typedef struct s_data
 	char			**map;
 	t_map_det	map_det;
 }	t_data;
-
-
-
-/**
- * @brief First method in game.
- * It'll be called by main / app.cs
- * @param argc Arguments count
- * @param argv Arguments Vector
- * @return int
- */
-int	start(int argc, char **argv);
-
 
 /**
  * @brief Handle error message in program
