@@ -46,6 +46,7 @@ INCLUDE = -I $(INC_PATH) -I $(LIBFT_PATH)
 SRCS =	$(PATH_MAIN)main.c \
 		$(PATH_INIT)init.c \
 		$(PATH_VALI)val_args.c \
+		$(PATH_VALI)val_files.c \
 		$(PATH_UTIL)error_handler.c \
 		$(PATH_UTIL)sanitization.c \
 		$(PATH_INIT)init_map.c \

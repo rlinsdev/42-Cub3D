@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/08 10:01:52 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/08 12:41:43 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <errno.h> // errno
 # include <math.h> // math lib
+# include <stdbool.h> // boolean
 
 # define A_KEY_CONST	'a'
 # define S_KEY_CONST	's'
@@ -29,6 +30,7 @@
 
 # define ERR_ARGS "Invalid call. Must be: ./cub3D <map_path/map.cub>"
 # define ERR_MALC "Problems in memory allocation!"
+# define ERR_CUB "Error File. Expected .cub extension!"
 
 typedef struct s_map_detail
 {
@@ -83,5 +85,19 @@ void	free_array_str(char **arr_str);
  * @brief Will clean up all Data structure.
  */
 void	free_data(t_data *data);
+
+/**
+ * @brief Validation extension of file. .xpm files
+ * @param file file name
+ * @return boolean
+ */
+bool	val_xpm_file(char *file);
+
+/**
+ * @brief Validation extension of file. .cub files / map file
+ * @param file file name
+ * @return boolean
+ */
+bool	val_cub_file(char *file);
 
 #endif
