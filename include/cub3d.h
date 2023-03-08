@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/07 14:49:27 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/08 09:31:04 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,17 @@ void	init_data(t_data *data);
  * @brief Initialize map Detail structure
  */
 void	init_map_handler(t_data *data, char *path);
+
+/**
+ * @brief Responsible to free a pointer and refer to null the original variable
+ * @param ptr Pointer to be freed
+ */
+void	free_ptr(void *ptr);
+
+/**
+ * @brief Release a memory from a Array of char (String)
+ * @param arr_str string to be freed
+ */
+void	free_array_str(char **arr_str);
 
 #endif

@@ -47,6 +47,7 @@ SRCS =	$(PATH_MAIN)main.c \
 		$(PATH_INIT)init.c \
 		$(PATH_VALI)val_args.c \
 		$(PATH_UTIL)error_handler.c \
+		$(PATH_UTIL)sanitization.c \
 		$(PATH_INIT)init_map.c \
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJS)%.o, $(SRCS))
@@ -98,7 +99,8 @@ norma:
 	norminette $(LIBFT_PATH)
 
 run:
-	make re && ./cub3D ./maps/3.cub
+#	make re && ./cub3D ./maps/4.cub
+	./cub3D ./maps/4.cub
 
 valgrind:
 	$(LEAK) ./cub3D ./maps/2-pdf-map.cub
