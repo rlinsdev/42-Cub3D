@@ -6,21 +6,22 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:33:53 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/08 07:38:02 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/08 09:47:40 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
 static void	init_load_map_var(int *row, int *i, int *coll);
-static void lines_count(t_data *data, char *path);
+static int	lines_count(char *path);
+static void	load_map(t_data *data);
 
 void	init_map_handler(t_data *data, char *path)
 {
-	lines_count(data, path);
+	data->map_det.lines_count = lines_count(path);
 	data->map_det.path = path;
 	// TODO: Dar free neste cara depois
-	data->map_det.file = malloc(data->map_det.lines_count + 1 * sizeof(char *));
+	data->map_det.file = ft_calloc(data->map_det.lines_count + 1, sizeof(char *));
 	if (!data->map_det.file)
 	{
 		error_msg(ERR_MALC, 2);
@@ -31,24 +32,23 @@ void	init_map_handler(t_data *data, char *path)
 		error_msg(strerror(errno), 3);
 	else
 	{
-		// TODO: LoadMap
+		load_map(data);
 		close(data->map_det.fd);
 	}
 }
 
 /**
- * @brief Handle the number of lines of the map files. Will update the property
- * passed by ref
- * @param data Data Structure
- * @param path Path of file
+ * @brief Handle the number of lines of the map files.
+ * @param path Path of the map
+ * @return int Number of lines of the map
  */
-static void lines_count(t_data *data, char *path)
+static int lines_count(char *path)
 {
 	int		fd;
-	int		count;
 	char	*line;
+	int		line_count;
 
-	count = 0;
+	line_count = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		error_msg(strerror(errno), 3);
@@ -57,13 +57,13 @@ static void lines_count(t_data *data, char *path)
 		line = get_next_line(fd);
 		while (line != NULL)
 		{
-			count++;
-			free(line);
+			line_count++;
+			free_ptr(line);
 			line = get_next_line(fd);
 		}
 		close(fd);
 	}
-	data->map_det.lines_count = count;
+	return (line_count);
 }
 
 /**
@@ -75,9 +75,9 @@ static void lines_count(t_data *data, char *path)
  */
 static void	init_load_map_var(int *row, int *i, int *coll)
 {
-	row = 0;
-	i = 0;
-	coll = 0;
+	*row = 0;
+	*i = 0;
+	*coll = 0;
 }
 
 /**
@@ -86,27 +86,27 @@ static void	init_load_map_var(int *row, int *i, int *coll)
  */
 static void	load_map(t_data *data)
 {
-	int		row;
-	int		i;
-	int		coll;
-	char	*line;
+	int coll;
+	int i;
+	int row;
+	char *line;
 
 	init_load_map_var(&row, &i, &coll);
 	line = get_next_line(data->map_det.fd);
-	if (!line)
+	while (line != NULL)
 	{
-		data->map_det.file[row] = malloc(ft_strlen(line) + 1 * sizeof(char));
+		data->map_det.file[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
 		if (!data->map_det.file[row])
 		{
 			error_msg(ERR_MALC, 2);
-			return ; // TODO: Aqui tem que dar free nas alocações anteriores
+			return (free_array_str(data->map_det.file));
 		}
 		while (line[i] != '\0')
 			data->map_det.file[row][coll++] = line[i++];
 		data->map_det.file[row++][coll] = '\0';
 		coll = 0;
 		i = 0;
-		free(line);
+		free_ptr(line);
 		line = get_next_line(data->map_det.fd);
 	}
 	data->map_det.file[row] = NULL;
