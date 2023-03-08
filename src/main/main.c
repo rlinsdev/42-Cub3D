@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/07 14:42:06 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/08 09:52:40 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	args_handler(t_data *data, char **argv);
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	
+
 	if (argc != 2)
 		return (error_msg(ERR_ARGS, 1));
 	init_data(&data);

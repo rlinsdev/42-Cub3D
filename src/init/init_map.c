@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:33:53 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/08 09:47:40 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/08 09:53:53 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	init_map_handler(t_data *data, char *path)
 	data->map_det.lines_count = lines_count(path);
 	data->map_det.path = path;
 	// TODO: Dar free neste cara depois
-	data->map_det.file = ft_calloc(data->map_det.lines_count + 1, sizeof(char *));
+	data->map_det.file = ft_calloc(data->map_det.lines_count + 1,
+			sizeof(char *));
 	if (!data->map_det.file)
 	{
 		error_msg(ERR_MALC, 2);
@@ -42,7 +43,7 @@ void	init_map_handler(t_data *data, char *path)
  * @param path Path of the map
  * @return int Number of lines of the map
  */
-static int lines_count(char *path)
+static int	lines_count(char *path)
 {
 	int		fd;
 	char	*line;
@@ -86,10 +87,10 @@ static void	init_load_map_var(int *row, int *i, int *coll)
  */
 static void	load_map(t_data *data)
 {
-	int coll;
-	int i;
-	int row;
-	char *line;
+	int		coll;
+	int		i;
+	int		row;
+	char	*line;
 
 	init_load_map_var(&row, &i, &coll);
 	line = get_next_line(data->map_det.fd);
