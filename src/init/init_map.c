@@ -6,17 +6,18 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:33:53 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/07 14:50:16 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/08 07:38:02 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
 static void	init_load_map_var(int *row, int *i, int *coll);
+static void lines_count(t_data *data, char *path);
 
 void	init_map_handler(t_data *data, char *path)
 {
-	data->map_det.lines_count = 10; // TODO Calcular isso depois
+	lines_count(data, path);
 	data->map_det.path = path;
 	// TODO: Dar free neste cara depois
 	data->map_det.file = malloc(data->map_det.lines_count + 1 * sizeof(char *));
@@ -33,6 +34,36 @@ void	init_map_handler(t_data *data, char *path)
 		// TODO: LoadMap
 		close(data->map_det.fd);
 	}
+}
+
+/**
+ * @brief Handle the number of lines of the map files. Will update the property
+ * passed by ref
+ * @param data Data Structure
+ * @param path Path of file
+ */
+static void lines_count(t_data *data, char *path)
+{
+	int		fd;
+	int		count;
+	char	*line;
+
+	count = 0;
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		error_msg(strerror(errno), 3);
+	else
+	{
+		line = get_next_line(fd);
+		while (line != NULL)
+		{
+			count++;
+			free(line);
+			line = get_next_line(fd);
+		}
+		close(fd);
+	}
+	data->map_det.lines_count = count;
 }
 
 /**
