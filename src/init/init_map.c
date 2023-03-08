@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:33:53 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/08 09:53:53 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/08 09:59:26 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	init_map_handler(t_data *data, char *path)
 {
 	data->map_det.lines_count = lines_count(path);
 	data->map_det.path = path;
-	// TODO: Dar free neste cara depois
 	data->map_det.file = ft_calloc(data->map_det.lines_count + 1,
 			sizeof(char *));
 	if (!data->map_det.file)

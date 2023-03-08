@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/08 09:52:40 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/08 10:02:18 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int argc, char **argv)
 		return (error_msg(ERR_ARGS, 1));
 	init_data(&data);
 	args_handler(&data, argv);
+	free_data(&data);
 	return (0);
 }
 

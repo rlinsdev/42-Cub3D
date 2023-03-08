@@ -6,11 +6,13 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 09:27:20 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/08 09:28:35 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/08 10:02:42 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+static void	free_map(t_data *data);
 
 void	free_ptr(void *ptr)
 {
@@ -40,4 +42,21 @@ void	free_array_str(char **arr_str)
 		free(arr_str);
 		arr_str = NULL;
 	}
+}
+
+void	free_data(t_data *data)
+{
+	free_map(data);
+}
+
+/**
+ * @brief Garbage collector to handle map detail variables
+ * @param data Data structure (passed by ref)
+ */
+static void	free_map(t_data *data)
+{
+	if (data->map_det.fd > 0)
+		close(data->map_det.fd);
+	if (data->map_det.file)
+		free_array_str(data->map_det.file);
 }

@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/08 09:31:04 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/08 10:01:52 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,10 @@ void	free_ptr(void *ptr);
  * @param arr_str string to be freed
  */
 void	free_array_str(char **arr_str);
+
+/**
+ * @brief Will clean up all Data structure.
+ */
+void	free_data(t_data *data);
 
 #endif
