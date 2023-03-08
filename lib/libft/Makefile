@@ -11,7 +11,7 @@ OBJS_PATH = ./obj/
 LIBS_PATH = ../
 
 # Compilation
-CC = gcc
+CC = gcc -g
 FLAGS = -Wall -Wextra -Werror
 
 # Bash commands
@@ -41,7 +41,9 @@ SRC_FILES =	ft_free.c \
 			ft_putendl_fd.c \
 			ft_putstr_fd.c \
 			ft_putchar_fd.c \
-			ft_memcmp.c
+			ft_memcmp.c \
+			ft_calloc.c \
+			ft_bzero.c
 
 SOURCES = $(addprefix $(SRCS_PATH), $(SRC_FILES))
 OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))

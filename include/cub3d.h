@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/07 08:48:28 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/08 10:01:52 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <X11/keysym.h> // Type key code pressed
 # include <X11/X.h> // Type event em mask that hooks call
 # include <stdio.h>
+# include <errno.h> // errno
+# include <math.h> // math lib
 
 # define A_KEY_CONST	'a'
 # define S_KEY_CONST	's'
@@ -26,17 +28,25 @@
 # define W_KEY_CONST	'w'
 
 # define ERR_ARGS "Invalid call. Must be: ./cub3D <map_path/map.cub>"
+# define ERR_MALC "Problems in memory allocation!"
 
+typedef struct s_map_detail
+{
+	int			fd;
+	int			lines_count;
+	char		*path;
+	char		**file;
+	int			height;
+	int			width;
+}	t_map_det;
 
-/**
- * @brief First method in game.
- * It'll be called by main / app.cs
- * @param argc Arguments count
- * @param argv Arguments Vector
- * @return int
- */
-int	start(int argc, char **argv);
-
+typedef struct s_data
+{
+	void		*mlx;
+	void		*win;
+	char		**map;
+	t_map_det	map_det;
+}	t_data;
 
 /**
  * @brief Handle error message in program
@@ -44,6 +54,34 @@ int	start(int argc, char **argv);
  * @param status_code Status code to be returned
  * @return int
  */
-int	error_msg(char *msg, int status_code);
+int		error_msg(char *msg, int status_code);
+
+/**
+ * @brief Initialize all variables in data structure
+ * @param data Data structure passed by param
+ */
+void	init_data(t_data *data);
+
+/**
+ * @brief Initialize map Detail structure
+ */
+void	init_map_handler(t_data *data, char *path);
+
+/**
+ * @brief Responsible to free a pointer and refer to null the original variable
+ * @param ptr Pointer to be freed
+ */
+void	free_ptr(void *ptr);
+
+/**
+ * @brief Release a memory from a Array of char (String)
+ * @param arr_str string to be freed
+ */
+void	free_array_str(char **arr_str);
+
+/**
+ * @brief Will clean up all Data structure.
+ */
+void	free_data(t_data *data);
 
 #endif

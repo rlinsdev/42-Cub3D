@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 18:36:17 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/07 08:15:45 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/08 08:05:53 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,8 @@ int		ft_isascii(int argument);
 *if Return value = 0 then it indicates str1 is equal to str2.
 */
 int		ft_memcmp(const void *str1, const void *str2, size_t len);
+
+void	*ft_calloc(size_t count, size_t size);
+void	ft_bzero(void *s, size_t n);
 
 #endif
