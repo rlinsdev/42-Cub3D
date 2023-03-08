@@ -11,7 +11,7 @@ OBJS_PATH = ./obj/
 LIBS_PATH = ../
 
 # Compilation
-CC = gcc
+CC = gcc -g
 FLAGS = -Wall -Wextra -Werror
 
 # Bash commands

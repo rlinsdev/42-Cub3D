@@ -98,9 +98,9 @@ norma:
 	norminette $(LIBFT_PATH)
 
 run:
-	make re && ./cub3D ./maps/2-pdf-map.cub
+	make re && ./cub3D ./maps/3.cub
 
 valgrind:
-	$(LEAK) ./cub3D ./maps/xxxx
+	$(LEAK) ./cub3D ./maps/2-pdf-map.cub
 
 .PHONY: all run re clean fclean
