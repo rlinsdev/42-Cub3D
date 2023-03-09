@@ -11,6 +11,7 @@ PATH_MAIN 		= $(PATH_SRC)main/
 PATH_INIT 		= $(PATH_SRC)init/
 PATH_VALI 		= $(PATH_SRC)validation/
 PATH_UTIL 		= $(PATH_SRC)util/
+PATH_PARS 		= $(PATH_SRC)parse/
 PATH_OBJS 		= ./objs/
 INC_PATH 		= ./include/
 
@@ -49,6 +50,8 @@ SRCS =	$(PATH_MAIN)main.c \
 		$(PATH_VALI)val_files.c \
 		$(PATH_UTIL)error_handler.c \
 		$(PATH_UTIL)sanitization.c \
+		$(PATH_PARS)parse_file.c \
+		$(PATH_PARS)parse_map.c \
 		$(PATH_INIT)init_map.c \
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJS)%.o, $(SRCS))
@@ -65,6 +68,7 @@ $(PATH_OBJS)%.o: $(PATH_SRC)%.c
 	@mkdir -p $(PATH_OBJS)init/
 	@mkdir -p $(PATH_OBJS)validation/
 	@mkdir -p $(PATH_OBJS)util/
+	@mkdir -p $(PATH_OBJS)parse/
 	@$(CC) $(CFLAGS) $(INCLUDE) -I. -c $< -o $@ $(MLXFLAGS)
 
 # Libft rule
