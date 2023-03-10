@@ -6,14 +6,14 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:46:34 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/09 21:00:56 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/09 21:14:06 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static void get_map_height(t_data *data);
-static bool get_map_info(t_data *data);
+static void	get_map_height(t_data *data);
+static bool	get_map_info(t_data *data);
 static int	get_map_width(t_map_det *map_det);
 static bool	fill_map_tab(t_map_det *map_det, char **map_tab);
 
@@ -103,12 +103,12 @@ static int	get_map_width(t_map_det *map_det)
  * @param data Data structure
  * @return int
  */
-static void get_map_height(t_data *data) // TODO: Eu acho que aqui preciso validar se é cercado de 1
+static void	get_map_height(t_data *data) // TODO: Eu acho que aqui preciso validar se é cercado de 1
 {
 	int	i;
 
 	i = data->map_det.start_i_map;
- 	while(data->map_det.file[i])
+ 	while (data->map_det.file[i])
 		i++;
 	data->map_det.end_i_map = i;
 	data->map_det.height = i - data->map_det.start_i_map;

@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/09 21:05:11 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/09 21:13:16 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static bool	is_white_space(char c);
 static int	ignore_whitespaces_get_info(t_data *data, int i, int j);
 
-int file_to_variable(t_data *data)
+int	file_to_variable(t_data *data)
 {
 	int	i;
 	int	j;
@@ -64,8 +64,10 @@ static int	ignore_whitespaces_get_info(t_data *data, int i, int j)
 	}
 	else if (ft_isdigit(data->map_det.file[i][j]))
 	{
+		bool	result;
+
 		data->map_det.start_i_map = i;
-		bool result = create_map(data);
+		result = create_map(data);
 		if (result == false)
 			return (error_msg(ERR_MAP, 6));
 		return (SUCCESS); // TODO: Ver se isso não vai dar merda qdo o mapa estiver fora de ordem.
