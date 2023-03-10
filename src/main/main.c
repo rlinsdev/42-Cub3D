@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/10 11:37:52 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/10 11:51:56 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static int	args_handler(t_data *data, char **argv)
 	if (val_cub_file(argv[1]) == false)
 		return (error_msg(ERR_CUB, 4));
 	init_map_handler(data, argv[1]);
-	if (file_to_variable(data) == EXIT_FAILURE)
+	if (file_to_variable(data) != 0)
 		return (free_data(data));
-	if (valid_map(data) == false)
+	if (valid_map(data) != 0)
 		return (free_data(data));
 
 }

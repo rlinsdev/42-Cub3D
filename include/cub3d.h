@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/10 11:40:09 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/10 12:47:45 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # define ERR_MALC "Problems in memory allocation!"
 # define ERR_CUB "Error File. Expected .cub extension!"
 # define ERR_MAP "Invalid map!"
+# define ERR_MAP7 "Invalid map! Verify the specification in PDF Subject"
+# define ERR_MAP8 "Map not surrounded by walls"
+
 
 typedef struct s_map_detail
 {
@@ -131,8 +134,8 @@ bool	create_map(t_data *data);
  * @brief Will handle all possibles errors in map. This method jus call others
  * to do this management.
  * @param data structure
- * @return boolean with success or not
+ * @return int. 0 Success. Otherwise error
  */
-bool	valid_map(t_data *data);
+int	valid_map(t_data *data);
 
 #endif
