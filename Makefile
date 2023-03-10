@@ -48,6 +48,7 @@ SRCS =	$(PATH_MAIN)main.c \
 		$(PATH_INIT)init.c \
 		$(PATH_VALI)val_args.c \
 		$(PATH_VALI)val_files.c \
+		$(PATH_VALI)val_map.c \
 		$(PATH_UTIL)error_handler.c \
 		$(PATH_UTIL)sanitization.c \
 		$(PATH_PARS)parse_file.c \

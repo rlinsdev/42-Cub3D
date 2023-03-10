@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/09 21:08:45 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/10 11:40:09 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,13 @@ int	file_to_variable(t_data *data);
  * @return boolean
  */
 bool	create_map(t_data *data);
+
+/**
+ * @brief Will handle all possibles errors in map. This method jus call others
+ * to do this management.
+ * @param data structure
+ * @return boolean with success or not
+ */
+bool	valid_map(t_data *data);
 
 #endif
