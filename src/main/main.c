@@ -6,13 +6,13 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/08 10:02:18 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/09 11:23:16 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static void	args_handler(t_data *data, char **argv);
+static int	args_handler(t_data *data, char **argv);
 
 int	main(int argc, char **argv)
 {
@@ -21,17 +21,24 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (error_msg(ERR_ARGS, 1));
 	init_data(&data);
-	args_handler(&data, argv);
+	if (args_handler(&data, argv) != 0)
+		return (EXIT_FAILURE);
 	free_data(&data);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 /**
- * @brief Will populate structures by params / handler arguments
+ * @brief Will validate the inputs of program.
+ * Then, will populate structures by params / handler arguments
  * @param data Data structure
  * @param argv Argument vector
+ * @return int value of validations
  */
-static void	args_handler(t_data *data, char **argv)
+static int	args_handler(t_data *data, char **argv)
 {
+	if (val_cub_file(argv[1]) == false)
+		return (error_msg(ERR_CUB, 4));
 	init_map_handler(data, argv[1]);
+	if (file_to_variable(data) == EXIT_FAILURE)
+		return (free_data(data));
 }

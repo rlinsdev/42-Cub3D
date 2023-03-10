@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 09:27:20 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/08 10:02:42 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/09 15:59:07 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ void	free_array_str(char **arr_str)
 	}
 }
 
-void	free_data(t_data *data)
+int	free_data(t_data *data)
 {
 	free_map(data);
+	return (EXIT_FAILURE);
 }
 
 /**
@@ -59,4 +60,6 @@ static void	free_map(t_data *data)
 		close(data->map_det.fd);
 	if (data->map_det.file)
 		free_array_str(data->map_det.file);
+	if (data->map)
+		free_array_str(data->map);
 }

@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/08 10:01:52 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/09 21:08:45 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <errno.h> // errno
 # include <math.h> // math lib
+# include <stdbool.h> // boolean
 
 # define A_KEY_CONST	'a'
 # define S_KEY_CONST	's'
@@ -29,6 +30,8 @@
 
 # define ERR_ARGS "Invalid call. Must be: ./cub3D <map_path/map.cub>"
 # define ERR_MALC "Problems in memory allocation!"
+# define ERR_CUB "Error File. Expected .cub extension!"
+# define ERR_MAP "Invalid map!"
 
 typedef struct s_map_detail
 {
@@ -38,6 +41,8 @@ typedef struct s_map_detail
 	char		**file;
 	int			height;
 	int			width;
+	int			start_i_map;
+	int			end_i_map;
 }	t_map_det;
 
 typedef struct s_data
@@ -47,6 +52,15 @@ typedef struct s_data
 	char		**map;
 	t_map_det	map_det;
 }	t_data;
+
+enum e_output
+{
+	SUCCESS = 0,
+	FAILURE = 1,
+	// ERROR = 2,
+	BREAK = 3,
+	CONTINUE = 4
+};
 
 /**
  * @brief Handle error message in program
@@ -81,7 +95,36 @@ void	free_array_str(char **arr_str);
 
 /**
  * @brief Will clean up all Data structure.
+ * @return ExitFailure (1)
  */
-void	free_data(t_data *data);
+int	free_data(t_data *data);
+
+/**
+ * @brief Validation extension of file. .xpm files
+ * @param file file name
+ * @return boolean
+ */
+bool	val_xpm_file(char *file);
+
+/**
+ * @brief Validation extension of file. .cub files / map file
+ * @param file file name
+ * @return boolean
+ */
+bool	val_cub_file(char *file);
+
+/**
+ * @brief Handle the data passed by file to program. Will handle with enum
+ * to handle if will necessary to keep going through map, or we must stop BREAK
+ * @param data Data structure
+ */
+int	file_to_variable(t_data *data);
+
+/**
+ * @brief Parse the map in the file to variable
+ * @param data Data structure
+ * @return boolean
+ */
+bool	create_map(t_data *data);
 
 #endif

@@ -43,6 +43,7 @@ SRC_FILES =	ft_free.c \
 			ft_putchar_fd.c \
 			ft_memcmp.c \
 			ft_calloc.c \
+			ft_isdigit.c \
 			ft_bzero.c
 
 SOURCES = $(addprefix $(SRCS_PATH), $(SRC_FILES))

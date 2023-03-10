@@ -11,6 +11,7 @@ PATH_MAIN 		= $(PATH_SRC)main/
 PATH_INIT 		= $(PATH_SRC)init/
 PATH_VALI 		= $(PATH_SRC)validation/
 PATH_UTIL 		= $(PATH_SRC)util/
+PATH_PARS 		= $(PATH_SRC)parse/
 PATH_OBJS 		= ./objs/
 INC_PATH 		= ./include/
 
@@ -46,8 +47,11 @@ INCLUDE = -I $(INC_PATH) -I $(LIBFT_PATH)
 SRCS =	$(PATH_MAIN)main.c \
 		$(PATH_INIT)init.c \
 		$(PATH_VALI)val_args.c \
+		$(PATH_VALI)val_files.c \
 		$(PATH_UTIL)error_handler.c \
 		$(PATH_UTIL)sanitization.c \
+		$(PATH_PARS)parse_file.c \
+		$(PATH_PARS)parse_map.c \
 		$(PATH_INIT)init_map.c \
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJS)%.o, $(SRCS))
@@ -64,6 +68,7 @@ $(PATH_OBJS)%.o: $(PATH_SRC)%.c
 	@mkdir -p $(PATH_OBJS)init/
 	@mkdir -p $(PATH_OBJS)validation/
 	@mkdir -p $(PATH_OBJS)util/
+	@mkdir -p $(PATH_OBJS)parse/
 	@$(CC) $(CFLAGS) $(INCLUDE) -I. -c $< -o $@ $(MLXFLAGS)
 
 # Libft rule
@@ -99,10 +104,10 @@ norma:
 	norminette $(LIBFT_PATH)
 
 run:
-#	make re && ./cub3D ./maps/4.cub
-	./cub3D ./maps/4.cub
+	make re && ./cub3D ./maps/4.cub
+#	./cub3D ./maps/4.cub
 
 valgrind:
-	$(LEAK) ./cub3D ./maps/2-pdf-map.cub
+	$(LEAK) ./cub3D ./maps/4.cub
 
 .PHONY: all run re clean fclean
