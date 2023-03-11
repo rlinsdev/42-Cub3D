@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_dec_int.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 04:03:10 by rlins             #+#    #+#             */
-/*   Updated: 2022/08/20 17:10:10 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/11 00:55:55 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/libft.h"
+#include "libft.h"
 
 int	ft_print_dec_int(long nbr)
 {

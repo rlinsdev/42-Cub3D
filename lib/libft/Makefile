@@ -5,7 +5,7 @@ BLUE = \033[0;34m
 RESET = \033[0m
 
 # Paths
-HEADERS_PATH = ../../include/
+HEADERS_PATH = ./include/
 SRCS_PATH = ./src/
 OBJS_PATH = ./obj/
 LIBS_PATH = ../

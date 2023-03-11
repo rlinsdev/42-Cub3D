@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 20:50:01 by rlins             #+#    #+#             */
-/*   Updated: 2022/08/20 17:03:11 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/11 00:56:16 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/libft.h"
+#include "libft.h"
 
 void	ft_free(char *ptr)
 {

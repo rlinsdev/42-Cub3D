@@ -7,9 +7,9 @@ RED 	= \033[0;31m
 
 # Paths
 PATH_SRC 		= ./src/
-VPATH 			= $(shell find $(PATH_SRC) -type d)
 PATH_OBJS 		= ./objs/
 INC_PATH 		= ./include/
+VPATH 			= $(shell find $(PATH_SRC) -type d)
 
 # maps
 #MAP = maps/map_3x5.ber TODO: Colocar mapa do Cub3D
@@ -25,7 +25,7 @@ MLX			= $(MLX_PATH)$(MLX_NAME)
 MLXFLAGS 		= -lmlx -lXext -lX11
 
 # Compilation
-CC = gcc -g
+CC = cc -g
 FLAGS = -Wall -Wextra -Werror
 
 #Chedk Leak memory
@@ -39,11 +39,11 @@ NO_PRINT	= --no-print-directory
 INCLUDE = -I $(INC_PATH) -I $(LIBFT_PATH)
 
 SRCS +=		main.c \
-			val_args.c	val_files.c \
+			val_args.c val_files.c \
 			parse_file.c parse_map.c \
-			init_map.c init_graph.c \
-			error_handler.c \
-			sanitization.c \
+			init_map.c init_data.c \
+			mlx_img.c mlx_init.c mlx_hooks.c \
+			error_handler.c sanitization.c \
 
 OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.c=.o))
 
@@ -55,7 +55,7 @@ $(NAME): $(OBJS) $(INC_PATH)cub3d.h
 
 $(PATH_OBJS)%.o: %.c
 	@mkdir -p $(PATH_OBJS)
-	@$(CC) $(CFLAGS) $(INCLUDE) -I. -c $< -o $@ $(MLXFLAGS)
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 # Libft rule
 $(LIBFT):
@@ -89,11 +89,11 @@ norma:
 	norminette $(PATH_SRC)
 	norminette $(LIBFT_PATH)
 
-run:
+run: all
 	./cub3D ./maps/4.cub
 #	./cub3D ./maps/4.cub
 
-valgrind:
+valgrind: all
 	$(LEAK) ./cub3D ./maps/4.cub
 
 .PHONY: all run re clean fclean
