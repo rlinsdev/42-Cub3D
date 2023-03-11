@@ -7,11 +7,7 @@ RED 	= \033[0;31m
 
 # Paths
 PATH_SRC 		= ./src/
-PATH_MAIN 		= $(PATH_SRC)main/
-PATH_INIT 		= $(PATH_SRC)init/
-PATH_VALI 		= $(PATH_SRC)validation/
-PATH_UTIL 		= $(PATH_SRC)util/
-PATH_PARS 		= $(PATH_SRC)parse/
+VPATH 			= $(shell find $(PATH_SRC) -type d)
 PATH_OBJS 		= ./objs/
 INC_PATH 		= ./include/
 
@@ -30,8 +26,7 @@ MLXFLAGS 		= -lmlx -lXext -lX11
 
 # Compilation
 CC = gcc -g
-# FLAGS = -Wall -Wextra -Werror TODO: Descomentar
-FLAGS =
+FLAGS = -Wall -Wextra -Werror
 
 #Chedk Leak memory
 LEAK = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s
@@ -40,35 +35,26 @@ LEAK = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s
 # Bash commands
 RM			= rm -rf
 NO_PRINT	= --no-print-directory
-READ_LN		= -l readline
 
 INCLUDE = -I $(INC_PATH) -I $(LIBFT_PATH)
 
-SRCS =	$(PATH_MAIN)main.c \
-		$(PATH_INIT)init.c \
-		$(PATH_VALI)val_args.c \
-		$(PATH_VALI)val_files.c \
-		$(PATH_UTIL)error_handler.c \
-		$(PATH_UTIL)sanitization.c \
-		$(PATH_PARS)parse_file.c \
-		$(PATH_PARS)parse_map.c \
-		$(PATH_INIT)init_map.c \
+SRCS +=		main.c \
+			val_args.c	val_files.c \
+			parse_file.c parse_map.c \
+			init_map.c init_graph.c \
+			error_handler.c \
+			sanitization.c \
 
-OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJS)%.o, $(SRCS))
+OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.c=.o))
 
 all: $(MLX) $(LIBFT) $(NAME)
 
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $@ $(INCLUDE) $(LIBFT) $(MLX) $(MLXFLAGS) $(READ_LN)
+$(NAME): $(OBJS) $(INC_PATH)cub3d.h
+	@$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(LIBFT) $(MLXFLAGS) -o $(NAME)
 	@echo "$(GREEN)Build Successful$(RESET)"
 
-$(PATH_OBJS)%.o: $(PATH_SRC)%.c
+$(PATH_OBJS)%.o: %.c
 	@mkdir -p $(PATH_OBJS)
-	@mkdir -p $(PATH_OBJS)main/
-	@mkdir -p $(PATH_OBJS)init/
-	@mkdir -p $(PATH_OBJS)validation/
-	@mkdir -p $(PATH_OBJS)util/
-	@mkdir -p $(PATH_OBJS)parse/
 	@$(CC) $(CFLAGS) $(INCLUDE) -I. -c $< -o $@ $(MLXFLAGS)
 
 # Libft rule
@@ -104,7 +90,7 @@ norma:
 	norminette $(LIBFT_PATH)
 
 run:
-	make re && ./cub3D ./maps/4.cub
+	./cub3D ./maps/4.cub
 #	./cub3D ./maps/4.cub
 
 valgrind:
