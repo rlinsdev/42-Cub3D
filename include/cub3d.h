@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/11 09:07:50 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/11 09:57:18 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,15 @@
 # define ERR_MAP7 "Invalid map! Verify the specification in PDF Subject"
 # define ERR_MAP8 "Map not surrounded by walls"
 
+typedef struct s_texture
+{
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	int		*floor;
+	int		*ceiling;
+}	t_texture_det;
 
 typedef struct s_map_detail
 {
@@ -54,10 +63,11 @@ typedef struct s_map_detail
 
 typedef struct s_data
 {
-	void		*mlx;
-	void		*win;
-	char		**map;
-	t_map_det	map_det;
+	void			*mlx;
+	void			*win;
+	char			**map;
+	t_map_det		map_det;
+	t_texture_det	texture_det;
 }	t_data;
 
 enum e_output

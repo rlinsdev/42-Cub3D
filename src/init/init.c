@@ -6,13 +6,14 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:21:54 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/11 08:56:29 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/11 10:03:12 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
 static void	init_map_det(t_map_det *map_det);
+static void	init_texture_det(t_texture_det  *texture_det);
 
 void	init_data(t_data *data)
 {
@@ -21,6 +22,22 @@ void	init_data(t_data *data)
 	data->map = NULL;
 	init_map_det(&data->map_det);
 	// TODO: Provavelmente haverá um initialize person too
+	init_texture(&data->texture_det);
+}
+
+/**
+ * @brief Initialize Texture Details structure
+ * TODO: Futuramente será substituído pela auto-inicialização de estrutrura.
+ * @param texture_det
+ */
+static void	init_texture_det(t_texture_det  *text_det)
+{
+	text_det->north = NULL;
+	text_det->south = NULL;
+	text_det->west = NULL;
+	text_det->east = NULL;
+	text_det->floor = 0;
+	text_det->ceiling = 0;
 }
 
 /**
