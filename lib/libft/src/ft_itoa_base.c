@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 03:44:52 by rlins             #+#    #+#             */
-/*   Updated: 2022/08/20 17:12:32 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/11 00:56:19 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/libft.h"
+#include "libft.h"
 
-static	size_t	ft_inttobaselen(unsigned long long nbr, char *base)
+static size_t	ft_inttobaselen(unsigned long long nbr, char *base)
 {
 	size_t				len;
 	unsigned long long	baselen;

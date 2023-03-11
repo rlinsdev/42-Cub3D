@@ -1,39 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_dec_int.c                                 :+:      :+:    :+:   */
+/*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 04:03:10 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/11 00:55:55 by lucas            ###   ########.fr       */
+/*   Created: 2023/03/04 15:21:54 by rlins             #+#    #+#             */
+/*   Updated: 2023/03/11 02:15:33 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <cub3d.h>
 
-int	ft_print_dec_int(long nbr)
+void	init_data(t_data *data)
 {
-	int			bytes;
-	char		*result;
-	int			neg;
-	long long	aux;
-
-	aux = nbr;
-	neg = 0;
-	if (aux < 0)
-	{
-		aux = aux * -1;
-		neg = 1;
-	}
-	result = ft_itoa_base(aux, DEC_BASE);
-	if (neg == 0)
-		bytes = ft_print_string(result);
-	else
-	{
-		bytes = ft_print_char('-');
-		bytes += ft_print_string(result);
-	}
-	ft_free(result);
-	return (bytes);
+	ft_bzero(data, sizeof(t_data));
+	data->player.pos_x = 22;
+	data->player.pos_y = 12;
+	data->player.dir_x = -1;
+	data->player.plane_y = 0.66;
 }

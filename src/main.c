@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/09 11:23:16 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/11 01:47:14 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
 static int	args_handler(t_data *data, char **argv);
+
 
 int	main(int argc, char **argv)
 {
@@ -21,9 +22,10 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (error_msg(ERR_ARGS, 1));
 	init_data(&data);
+	ft_mlx_init(&data);
 	if (args_handler(&data, argv) != 0)
 		return (EXIT_FAILURE);
-	free_data(&data);
+	mlx_loop(data.view.mlx);
 	return (EXIT_SUCCESS);
 }
 
