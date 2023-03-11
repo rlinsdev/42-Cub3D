@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:33:53 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/08 09:59:26 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/11 08:42:53 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_map_handler(t_data *data, char *path)
 	}
 	data->map_det.fd = open(path, O_RDONLY);
 	if (data->map_det.fd < 0)
-		error_msg(strerror(errno), 3);
+		exit_cube(data, error_msg(strerror(errno), 3));
 	else
 	{
 		load_map(data);
@@ -51,7 +51,7 @@ static int	lines_count(char *path)
 	line_count = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		error_msg(strerror(errno), 3);
+		exit_cube(NULL, error_msg(strerror(errno), 3));
 	else
 	{
 		line = get_next_line(fd);

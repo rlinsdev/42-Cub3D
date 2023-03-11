@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/10 12:47:45 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/11 08:38:33 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,13 @@ bool	create_map(t_data *data);
  * @return int. 0 Success. Otherwise error
  */
 int	valid_map(t_data *data);
+
+/**
+ * @brief Exit program.
+ *TODO: Depois receberá comandos do MLX para limpeza das imgs e destroy
+ * @param data Sta structure to be cleaned
+ * @param exit_code Status code to exit
+ */
+void	exit_cube(t_data *data, int exit_code);
 
 #endif

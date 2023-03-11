@@ -50,6 +50,7 @@ SRCS =	$(PATH_MAIN)main.c \
 		$(PATH_VALI)val_files.c \
 		$(PATH_VALI)val_map.c \
 		$(PATH_UTIL)error_handler.c \
+		$(PATH_UTIL)exit.c \
 		$(PATH_UTIL)sanitization.c \
 		$(PATH_PARS)parse_file.c \
 		$(PATH_PARS)parse_map.c \
@@ -105,7 +106,7 @@ norma:
 	norminette $(LIBFT_PATH)
 
 run:
-	make re && ./cub3D ./maps/4.cub
+	make re && ./cub3D ./maps/2-pdf-map.cub
 #	./cub3D ./maps/4.cub
 
 valgrind:
