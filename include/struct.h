@@ -1,10 +1,20 @@
 #ifndef STRUCT_H
 #define STRUCT_H
 
+typedef struct s_texture
+{
+	char	*north;
+	char	*south;
+	char	*west;
+	char	*east;
+	int		*floor;
+	int		*ceiling;
+}	t_texture_det;
+
 typedef struct s_map_detail
 {
 	int			fd;
-	int			lines_count;
+	int			lines_file;
 	char		*path;
 	char		**file;
 	int			height;
@@ -49,6 +59,7 @@ typedef struct s_data
 	t_view		view;
 	t_player	player;
 	t_map_det	map_det;
+	t_texture_det	texture_det;
 }				t_data;
 
 #endif

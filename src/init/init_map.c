@@ -6,21 +6,21 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:33:53 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/08 09:59:26 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/11 08:57:07 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
 static void	init_load_map_var(int *row, int *i, int *coll);
-static int	lines_count(char *path);
+static int	lines_file(char *path);
 static void	load_map(t_data *data);
 
 void	init_map_handler(t_data *data, char *path)
 {
-	data->map_det.lines_count = lines_count(path);
+	data->map_det.lines_file = lines_file(path);
 	data->map_det.path = path;
-	data->map_det.file = ft_calloc(data->map_det.lines_count + 1,
+	data->map_det.file = ft_calloc(data->map_det.lines_file + 1,
 			sizeof(char *));
 	if (!data->map_det.file)
 	{
@@ -29,7 +29,7 @@ void	init_map_handler(t_data *data, char *path)
 	}
 	data->map_det.fd = open(path, O_RDONLY);
 	if (data->map_det.fd < 0)
-		error_msg(strerror(errno), 3);
+		exit_cube(data, error_msg(strerror(errno), 3));
 	else
 	{
 		load_map(data);
@@ -38,11 +38,11 @@ void	init_map_handler(t_data *data, char *path)
 }
 
 /**
- * @brief Handle the number of lines of the map files.
- * @param path Path of the map
- * @return int Number of lines of the map
+ * @brief Handle the number of lines of the file.
+ * @param path Path of the file
+ * @return int Number of lines of the file
  */
-static int	lines_count(char *path)
+static int	lines_file(char *path)
 {
 	int		fd;
 	char	*line;
@@ -51,7 +51,7 @@ static int	lines_count(char *path)
 	line_count = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		error_msg(strerror(errno), 3);
+		exit_cube(NULL, error_msg(strerror(errno), 3));
 	else
 	{
 		line = get_next_line(fd);

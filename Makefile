@@ -44,6 +44,7 @@ SRCS +=		main.c \
 			init_map.c init_data.c \
 			mlx_img.c mlx_init.c mlx_hooks.c \
 			error_handler.c sanitization.c \
+			val_map.c parse_texture.c exit.c
 
 OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.c=.o))
 
@@ -89,11 +90,11 @@ norma:
 	norminette $(PATH_SRC)
 	norminette $(LIBFT_PATH)
 
-run: all
-	./cub3D ./maps/4.cub
+run:
+	make re && ./cub3D ./maps/2-pdf-map.cub
 #	./cub3D ./maps/4.cub
 
-valgrind: all
-	$(LEAK) ./cub3D ./maps/4.cub
+valgrind:
+	$(LEAK) ./cub3D ./maps/2-pdf-map.cub
 
 .PHONY: all run re clean fclean
