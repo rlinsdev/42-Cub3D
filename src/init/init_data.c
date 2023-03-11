@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 08:12:02 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/11 00:56:20 by lucas            ###   ########.fr       */
+/*   Created: 2023/03/04 15:21:54 by rlins             #+#    #+#             */
+/*   Updated: 2023/03/11 12:58:34 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <cub3d.h>
 
-void	ft_putstr_fd(char *s, int fd)
+void	init_data(t_data *data)
 {
-	int	i;
-
-	if (!s || !fd)
-		return ;
-	i = 0;
-	while (s[i])
-	{
-		ft_putchar_fd(s[i], fd);
-		i++;
-	}
+	ft_bzero(data, sizeof(t_data));
+	data->player.pos_x = 22;
+	data->player.pos_y = 12;
+	data->player.dir_x = -1;
+	data->player.plane_y = 0.66;
 }
