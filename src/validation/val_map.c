@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/10 12:56:04 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/11 09:08:07 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ static bool	is_map_sur_walls(t_data *data)
 		col_size = ft_strlen(data->map[i]);
 		while (data->map[i][j])
 		{
-			if (i == 0 && data->map[i][j] != '1')
+			if (i == 0 && data->map[i][j] != C_WALL)
 				return (false);
-			else if (i == data->map_det.height -1 && data->map[i][j] != '1')
+			else if (i == data->map_det.height -1 && data->map[i][j] != C_WALL)
 				return (false);
-			else if (j == 0 && data->map[i][j] != '1')
+			else if (j == 0 && data->map[i][j] != C_WALL)
 				return (false);
-			else if (j == (col_size - 1) && data->map[i][j] != '1')
+			else if (j == (col_size - 1) && data->map[i][j] != C_WALL)
 				return (false);
 			j++;
 		}

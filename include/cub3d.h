@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/11 08:55:48 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/11 09:07:50 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 # define D_KEY_CONST	'd'
 # define W_KEY_CONST	'w'
 
+# define C_WALL		'1'
+# define C_BACK_G 	'0'
+// # define C_NSEW 	'X'
+
 # define ERR_ARGS "Invalid call. Must be: ./cub3D <map_path/map.cub>"
 # define ERR_MALC "Problems in memory allocation!"
 # define ERR_CUB "Error File. Expected .cub extension!"
@@ -41,7 +45,7 @@ typedef struct s_map_detail
 	int			fd;
 	int			lines_file;
 	char		*path;
-	char		**file;
+	char		**file; // Matrix of all file in this variable
 	int			height;
 	int			width;
 	int			start_i_map;
