@@ -54,6 +54,7 @@ SRCS =	$(PATH_MAIN)main.c \
 		$(PATH_UTIL)sanitization.c \
 		$(PATH_PARS)parse_file.c \
 		$(PATH_PARS)parse_map.c \
+		$(PATH_PARS)parse_texture.c \
 		$(PATH_INIT)init_map.c \
 
 OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJS)%.o, $(SRCS))

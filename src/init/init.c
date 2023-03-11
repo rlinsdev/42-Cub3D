@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:21:54 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/11 10:03:12 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/11 10:37:36 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_data(t_data *data)
 	data->map = NULL;
 	init_map_det(&data->map_det);
 	// TODO: Provavelmente haverá um initialize person too
-	init_texture(&data->texture_det);
+	init_texture_det(&data->texture_det);
 }
 
 /**

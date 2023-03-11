@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/11 09:57:18 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/11 11:51:04 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define ERR_MAP "Invalid map!"
 # define ERR_MAP7 "Invalid map! Verify the specification in PDF Subject"
 # define ERR_MAP8 "Map not surrounded by walls"
+# define ERR_TEXT "Texture out of pattern. Check Subject for more details."
 
 typedef struct s_texture
 {
@@ -159,5 +160,21 @@ int	valid_map(t_data *data);
  * @param exit_code Status code to exit
  */
 void	exit_cube(t_data *data, int exit_code);
+
+/**
+ * @brief Responsible to parse the Texture in file to a respective variable,
+ * with the path of texture.
+ * Row is a current row to be handle.
+ * i is the column / index in this row (avoiding white space)
+ * @return bool - Parse with success
+ */
+bool parse_tex_dir(t_texture_det *text_det, char *row, int i);
+
+/**
+ * @brief Verify if the current char is a white space or similar
+ * @param c Char to verify
+ * @return boolean
+ */
+bool	is_white_space(char c);
 
 #endif
