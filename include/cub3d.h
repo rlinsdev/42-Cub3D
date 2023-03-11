@@ -6,7 +6,7 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/10 22:02:30 by lucas            ###   ########.fr       */
+/*   Updated: 2023/03/10 22:47:10 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,41 @@ typedef struct s_map_detail
 	int			end_i_map;
 }				t_map_det;
 
-typedef struct s_data
+typedef struct s_player
+{
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+}				t_player;
+
+typedef struct s_img
+{
+	void		*img;
+	int			bpp;
+	int			len_line;
+	int			endian;
+	char		*addr;
+}				t_img;
+
+typedef struct s_view
 {
 	void		*mlx;
 	void		*win;
+	t_img		map;
+	t_img		screen;
+
+}				t_view;
+
+typedef struct s_data
+{
 	void		*img_map;
 	void		*img_screen;
 	char		**map;
+	t_view		view;
+	t_player	player;
 	t_map_det	map_det;
 }				t_data;
 
@@ -133,5 +161,6 @@ int				file_to_variable(t_data *data);
  * @return boolean
  */
 bool			create_map(t_data *data);
+void			create_graphic(t_data *data);
 
 #endif
