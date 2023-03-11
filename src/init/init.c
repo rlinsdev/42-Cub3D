@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:21:54 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/07 14:51:39 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/11 08:56:29 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	init_data(t_data *data)
 static void	init_map_det(t_map_det *map_det)
 {
 	map_det->fd = 0;
-	map_det->lines_count = 0;
+	map_det->lines_file = 0;
 	map_det->path = NULL;
 	map_det->file = NULL;
 	map_det->width = 0;

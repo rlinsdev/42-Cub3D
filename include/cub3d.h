@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/11 08:38:33 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/11 08:55:48 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 typedef struct s_map_detail
 {
 	int			fd;
-	int			lines_count;
+	int			lines_file;
 	char		*path;
 	char		**file;
 	int			height;
