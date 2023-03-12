@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/11 11:52:12 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/12 18:35:36 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	ignore_whitespaces_get_info(t_data *data, int i, int j)
 		j++ ;
 	if (!ft_isdigit(data->map_det.file[i][j]))
 	{
-		if (data->map_det.file[i][j + 1])
+		if (data->map_det.file[i][j + 1] != ' ' && data->map_det.file[i][j + 1])
 		{
 			if (parse_tex_dir(&data->texture_det, data->map_det.file[i], j) == false)
 				return (error_msg(ERR_TEXT, 9));
@@ -64,7 +64,8 @@ static int	ignore_whitespaces_get_info(t_data *data, int i, int j)
 		}
 		else
 		{
-			// ISCollorTextureCellFloor
+			if (parse_tex_color(&data->texture_det, data->map_det.file[i], j) == false)
+				return (FAILURE);
 			return (BREAK);
 		}
 	}
