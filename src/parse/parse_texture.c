@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 09:36:11 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/12 18:25:58 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/12 18:55:30 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	*parse_text_path(char *row, int i);
 static int	*parse_rgb_color(char *row);
 static int	*parse_arr_color(char **str_rgb, int *rgb);
 
-bool parse_tex_dir(t_texture_det *text_det, char *row, int i)
+bool	parse_tex_dir(t_texture_det *text_det, char *row, int i)
 {
 	if (row[2] != ' ')
 		return (false);
@@ -33,7 +33,7 @@ bool parse_tex_dir(t_texture_det *text_det, char *row, int i)
 	return (true);
 }
 
-bool parse_tex_color(t_texture_det *text_det, char *row, int i)
+bool	parse_tex_color(t_texture_det *text_det, char *row, int i)
 {
 	if (row[i + 1] != ' ')
 	{
@@ -49,8 +49,8 @@ bool parse_tex_color(t_texture_det *text_det, char *row, int i)
 	else if (row[i] == 'F' && text_det->floor == NULL)
 	{
 		text_det->floor = parse_rgb_color(row + i + 1);
-			if (text_det->floor == 0)
-				error_msg(ERR_RGB, 10);
+		if (text_det->floor == 0)
+			error_msg(ERR_RGB, 10);
 	}
 	else
 	{
@@ -86,9 +86,9 @@ static int	*parse_rgb_color(char *row)
 	if (!rgb)
 	{
 		error_msg(ERR_MALC, 0);
-		return(0);
+		return (0);
 	}
-	return(parse_arr_color(str_rgb, rgb));
+	return (parse_arr_color(str_rgb, rgb));
 }
 
 /**

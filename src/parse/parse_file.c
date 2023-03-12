@@ -6,13 +6,13 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/12 18:35:36 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/12 18:51:02 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static int	ignore_whitespaces_get_info(t_data *data, int i, int j);
+static int	handle_file_infos(t_data *data, char **file, int i, int j);
 
 int	file_to_variable(t_data *data)
 {
@@ -26,7 +26,7 @@ int	file_to_variable(t_data *data)
 		j = 0;
 		while (data->map_det.file[i][j])
 		{
-			ret = ignore_whitespaces_get_info(data, i, j);
+			ret = handle_file_infos(data, data->map_det.file, i, j);
 			if (ret == BREAK)
 				break ;
 			else if (ret == FAILURE)
@@ -45,37 +45,35 @@ int	file_to_variable(t_data *data)
  * map. Check if the value is Player position. Check if is the value color to
  * floor or ceiling. Check if is a map data.
  * @param data Data structure
+ * @param file File passed by param in program
  * @param i Index of line
  * @param j Index of next value in line
  * @return int Integer to handle if we must continue in loop, exit, go to next
  * line.
  */
-static int	ignore_whitespaces_get_info(t_data *data, int i, int j)
+static int	handle_file_infos(t_data *data, char **file, int i, int j)
 {
-	if (is_white_space(data->map_det.file[i][j]) == true)
+	if (is_white_space(file[i][j]) == true)
 		j++ ;
-	if (!ft_isdigit(data->map_det.file[i][j]))
+	if (!ft_isdigit(file[i][j]))
 	{
-		if (data->map_det.file[i][j + 1] != ' ' && data->map_det.file[i][j + 1])
+		if (file[i][j + 1] != ' ' && file[i][j + 1])
 		{
-			if (parse_tex_dir(&data->texture_det, data->map_det.file[i], j) == false)
+			if (parse_tex_dir(&data->texture_det, file[i], j) == false)
 				return (error_msg(ERR_TEXT, 9));
 			return (BREAK);
 		}
 		else
 		{
-			if (parse_tex_color(&data->texture_det, data->map_det.file[i], j) == false)
+			if (parse_tex_color(&data->texture_det, file[i], j) == false)
 				return (FAILURE);
 			return (BREAK);
 		}
 	}
-	else if (ft_isdigit(data->map_det.file[i][j]))
+	else if (ft_isdigit(file[i][j]))
 	{
-		bool	result;
-
 		data->map_det.start_i_map = i;
-		result = create_map(data);
-		if (result == false)
+		if (create_map(data) == false)
 			return (error_msg(ERR_MAP, 6));
 		return (SUCCESS); // TODO: Ver se isso não vai dar merda qdo o mapa estiver fora de ordem.
 	}
