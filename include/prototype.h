@@ -138,13 +138,12 @@ bool parse_tex_dir(t_texture_det *text_det, char *row, int i);
 bool	is_white_space(char c);
 
 /**
- * @brief
- *
- * @param text_det
- * @param row
- * @param i
- * @return true
- * @return false
+ * @brief Will parse the file information: Celling and floor values into
+ * variables
+ * @param text_det Texture Details structure
+ * @param row row in file
+ * @param i index to check; verify the information
+ * @return boolean - True or false
  */
 bool parse_tex_color(t_texture_det *text_det, char *row, int i);
 
