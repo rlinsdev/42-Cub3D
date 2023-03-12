@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:46:34 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/09 21:14:06 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/12 18:53:23 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ static bool	fill_map_tab(t_map_det *map_det, char **map_tab);
 
 bool	create_map(t_data *data)
 {
-	bool result = get_map_info(data);
+	bool	result;
+
+	result = get_map_info(data);
 	// TODO: Add aqui a mudança de espaço em branco em muro
 	return (result);
 }
@@ -30,7 +32,7 @@ bool	create_map(t_data *data)
  * @param data Data info
  * @return boolean - Success or not
  */
-static bool get_map_info(t_data *data)
+static bool	get_map_info(t_data *data)
 {
 	get_map_height(data);
 	data->map = ft_calloc(data->map_det.height + 1, sizeof(char *));
@@ -102,13 +104,14 @@ static int	get_map_width(t_map_det *map_det)
  * @brief [OK] Get the map height. Update the variable Start/end Index Map too
  * @param data Data structure
  * @return int
+ * // TODO: Eu acho que aqui preciso validar se é cercado de 1
  */
-static void	get_map_height(t_data *data) // TODO: Eu acho que aqui preciso validar se é cercado de 1
+static void	get_map_height(t_data *data)
 {
 	int	i;
 
 	i = data->map_det.start_i_map;
- 	while (data->map_det.file[i])
+	while (data->map_det.file[i])
 		i++;
 	data->map_det.end_i_map = i;
 	data->map_det.height = i - data->map_det.start_i_map;

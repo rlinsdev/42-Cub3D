@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 18:36:17 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/09 09:22:55 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/12 18:05:45 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ int		ft_memcmp(const void *str1, const void *str2, size_t len);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
 int		ft_isdigit(int c);
+int		ft_atoi(const char *str);
 
 #endif
