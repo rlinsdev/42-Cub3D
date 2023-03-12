@@ -46,8 +46,13 @@ Calculating heading:
 * Norma must be run.
 
 
-# To Run
-
+## Git sync main
+```
+$ git checkout main
+$ git pull
+$ git checkout validator
+$ git merge main
+$ git push
 ```
  # TODO
 
