@@ -18,6 +18,7 @@
 # define ERR_MAP7 "Invalid map! Verify the specification in PDF Subject"
 # define ERR_MAP8 "Map not surrounded by walls"
 # define ERR_TEXT "Texture out of pattern. Check Subject for more details."
+# define ERR_RGB  "Invalid RGB color format to Floor/Ceiling"
 
 # define HEIGHT 600
 # define WIDTH 800
