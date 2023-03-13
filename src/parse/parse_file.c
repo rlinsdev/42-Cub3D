@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/12 18:51:02 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/13 08:16:58 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	handle_file_infos(t_data *data, char **file, int i, int j)
 		j++ ;
 	if (!ft_isdigit(file[i][j]))
 	{
-		if (file[i][j + 1] != ' ' && file[i][j + 1])
+		if (file[i][j + 1] != C_WHITE_S && file[i][j + 1])
 		{
 			if (parse_tex_dir(&data->texture_det, file[i], j) == false)
 				return (error_msg(ERR_TEXT, 9));
@@ -82,7 +82,7 @@ static int	handle_file_infos(t_data *data, char **file, int i, int j)
 
 bool	is_white_space(char c)
 {
-	if (c == ' ' || c == '\t' || c == '\n')
+	if (c == C_WHITE_S || c == '\t' || c == '\n')
 		return (true);
 	return (false);
 }
