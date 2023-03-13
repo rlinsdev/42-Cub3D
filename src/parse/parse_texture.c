@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 09:36:11 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/12 18:55:30 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/13 08:16:38 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	*parse_arr_color(char **str_rgb, int *rgb);
 
 bool	parse_tex_dir(t_texture_det *text_det, char *row, int i)
 {
-	if (row[2] != ' ')
+	if (row[2] != C_WHITE_S)
 		return (false);
 	if (row[i] == 'N' && row[i + 1] == 'O' && text_det->north == NULL)
 		text_det->north = parse_text_path(row, (i + 3));
@@ -35,7 +35,7 @@ bool	parse_tex_dir(t_texture_det *text_det, char *row, int i)
 
 bool	parse_tex_color(t_texture_det *text_det, char *row, int i)
 {
-	if (row[i + 1] != ' ')
+	if (row[i + 1] != C_WHITE_S)
 	{
 		error_msg(ERR_RGB, 10);
 		return (false);

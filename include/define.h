@@ -9,6 +9,7 @@
 
 # define C_WALL		'1'
 # define C_BACK_G 	'0'
+# define C_WHITE_S	' '
 // # define C_NSEW 	'X'
 
 # define ERR_ARGS "Invalid call. Must be: ./cub3D <map_path/map.cub>"
