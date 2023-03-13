@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/13 08:16:58 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/13 10:16:02 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	handle_file_infos(t_data *data, char **file, int i, int j)
 {
 	if (is_white_space(file[i][j]) == true)
 		j++ ;
-	if (!ft_isdigit(file[i][j]))
+	if (ft_isdigit(file[i][j]) == false)
 	{
 		if (file[i][j + 1] != C_WHITE_S && file[i][j + 1])
 		{
@@ -70,12 +70,12 @@ static int	handle_file_infos(t_data *data, char **file, int i, int j)
 			return (BREAK);
 		}
 	}
-	else if (ft_isdigit(file[i][j]))
+	else if (ft_isdigit(file[i][j]) == true)
 	{
 		data->map_det.start_i_map = i;
 		if (create_map(data) == false)
 			return (error_msg(ERR_MAP, 6));
-		return (SUCCESS); // TODO: Ver se isso não vai dar merda qdo o mapa estiver fora de ordem.
+		return (SUCCESS);
 	}
 	return (CONTINUE);
 }
