@@ -45,7 +45,7 @@ SRCS +=		main.c \
 			mlx_img.c mlx_init.c mlx_hooks.c \
 			error_handler.c sanitization.c \
 			val_map.c parse_texture.c exit.c \
-			parse_map_partial.c
+			parse_map_partial.c parse_texture_partial.c
 
 OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.c=.o))
 
