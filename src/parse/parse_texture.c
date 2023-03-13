@@ -6,36 +6,19 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 09:36:11 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/12 18:55:30 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/13 11:05:35 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static char	*parse_text_path(char *row, int i);
 static int	*parse_rgb_color(char *row);
 static int	*parse_arr_color(char **str_rgb, int *rgb);
-
-bool	parse_tex_dir(t_texture_det *text_det, char *row, int i)
-{
-	if (row[2] != ' ')
-		return (false);
-	if (row[i] == 'N' && row[i + 1] == 'O' && text_det->north == NULL)
-		text_det->north = parse_text_path(row, (i + 3));
-	else if (row[i] == 'S' && row[i + 1] == 'O' && text_det->south == NULL)
-		text_det->south = parse_text_path(row, (i + 3));
-	else if (row[i] == 'W' && row[i + 1] == 'E' && text_det->west == NULL)
-		text_det->west = parse_text_path(row, (i + 3));
-	else if (row[i] == 'E' && row[i + 1] == 'A' && text_det->east == NULL)
-		text_det->east = parse_text_path(row, (i + 3));
-	else
-		return (false); // TODO: Testar dando erro aqui, como que se comportará
-	return (true);
-}
+static bool	is_digit(char *str);
 
 bool	parse_tex_color(t_texture_det *text_det, char *row, int i)
 {
-	if (row[i + 1] != ' ')
+	if (row[i + 1] != C_WHITE_S)
 	{
 		error_msg(ERR_RGB, 10);
 		return (false);
@@ -104,7 +87,13 @@ static int	*parse_arr_color(char **str_rgb, int *rgb)
 	i = 0;
 	while (str_rgb[i])
 	{
-		rgb[i] = ft_atoi(str_rgb[i]); // TODO: Testar passando letra aqui pra ver o q acontece / tratar exception
+		rgb[i] = ft_atoi(str_rgb[i]);
+		if (is_digit(str_rgb[i]) == false)
+		{
+			free_array_str(str_rgb);
+			free_ptr(rgb);
+			return (0);
+		}
 		i++;
 	}
 	free_array_str(str_rgb);
@@ -112,26 +101,21 @@ static int	*parse_arr_color(char **str_rgb, int *rgb)
 }
 
 /**
- * @brief Extract the path of the Texture to be used. Calloc of -3 (2 char and
- * white space, but +1 to end string)
- * @param string
- * @param i Start index in a row with the value of texture
- * @return char* = Row with a value of texture
+ * @brief Verify each char if all is a valid digit.
+ * @param str string to be verified
+ * @return boolean - Is Valid or not
  */
-static char	*parse_text_path(char *row, int i)
+static bool	is_digit(char *str)
 {
-	int		len;
-	char	*path;
-	int		j;
+	int	i;
 
-	j = 0;
-	// TODO: Pensar se tem que tratar espaço,q uebra de linha do usuário
-	len = ft_strlen(row);
-	path = ft_calloc(len - 2, sizeof(char));
-	if (!path)
-		return (NULL);
-	while (row[i] && (is_white_space(row[i]) == false))
-		path[j++] = row[i++];
-	path[j] = '\0';
-	return (path);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != C_WHITE_S && str[i] != '\n')
+			if (ft_isdigit(str[i]) == false)
+				return (false);
+		i++;
+	}
+	return (true);
 }

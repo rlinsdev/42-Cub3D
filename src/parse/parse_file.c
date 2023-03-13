@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/12 18:51:02 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/13 10:57:18 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ static int	handle_file_infos(t_data *data, char **file, int i, int j)
 {
 	if (is_white_space(file[i][j]) == true)
 		j++ ;
-	if (!ft_isdigit(file[i][j]))
+	if (ft_isdigit(file[i][j]) == false)
 	{
-		if (file[i][j + 1] != ' ' && file[i][j + 1])
+		if (file[i][j + 1] != C_WHITE_S && file[i][j + 1])
 		{
 			if (parse_tex_dir(&data->texture_det, file[i], j) == false)
-				return (error_msg(ERR_TEXT, 9));
+				return (error_msg(ERR_TEXT, FAILURE));
 			return (BREAK);
 		}
 		else
@@ -70,19 +70,19 @@ static int	handle_file_infos(t_data *data, char **file, int i, int j)
 			return (BREAK);
 		}
 	}
-	else if (ft_isdigit(file[i][j]))
+	else if (ft_isdigit(file[i][j]) == true)
 	{
 		data->map_det.start_i_map = i;
 		if (create_map(data) == false)
 			return (error_msg(ERR_MAP, 6));
-		return (SUCCESS); // TODO: Ver se isso não vai dar merda qdo o mapa estiver fora de ordem.
+		return (SUCCESS);
 	}
 	return (CONTINUE);
 }
 
 bool	is_white_space(char c)
 {
-	if (c == ' ' || c == '\t' || c == '\n')
+	if (c == C_WHITE_S || c == '\t' || c == '\n')
 		return (true);
 	return (false);
 }
