@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 09:36:11 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/13 10:47:45 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/13 10:58:03 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ bool	parse_tex_dir(t_texture_det *text_det, char *row, int i)
 	else if (row[i] == 'E' && row[i + 1] == 'A' && text_det->east == NULL)
 		text_det->east = parse_text_path(row, (i + 3));
 	else
-		return (false); // TODO: Testar dando erro aqui, como que se comportará
+		return (false);
 	return (true);
 }
 

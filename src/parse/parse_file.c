@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/13 10:16:02 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/13 10:57:18 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	handle_file_infos(t_data *data, char **file, int i, int j)
 		if (file[i][j + 1] != C_WHITE_S && file[i][j + 1])
 		{
 			if (parse_tex_dir(&data->texture_det, file[i], j) == false)
-				return (error_msg(ERR_TEXT, 9));
+				return (error_msg(ERR_TEXT, FAILURE));
 			return (BREAK);
 		}
 		else
