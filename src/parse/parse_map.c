@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:46:34 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/13 08:37:45 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/13 08:40:49 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ static int	get_map_width(t_map_det *map_det)
  * @brief Get the map height. Update the variable Start/end Index Map too
  * @param data Data structure
  * @return int
- * // TODO: Eu acho que aqui preciso validar se é cercado de 1
  */
 static void	get_map_height(t_data *data)
 {
