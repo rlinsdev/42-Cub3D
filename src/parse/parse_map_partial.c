@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 07:59:46 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/13 08:28:41 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/13 08:44:46 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	spaces_to_wall(t_data *data)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	while (data->map[i])

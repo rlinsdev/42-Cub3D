@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 09:36:11 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/13 08:16:38 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/13 10:47:45 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static char	*parse_text_path(char *row, int i);
 static int	*parse_rgb_color(char *row);
 static int	*parse_arr_color(char **str_rgb, int *rgb);
+static bool	is_digit(char *str);
 
 bool	parse_tex_dir(t_texture_det *text_det, char *row, int i)
 {
@@ -104,11 +105,37 @@ static int	*parse_arr_color(char **str_rgb, int *rgb)
 	i = 0;
 	while (str_rgb[i])
 	{
-		rgb[i] = ft_atoi(str_rgb[i]); // TODO: Testar passando letra aqui pra ver o q acontece / tratar exception
+		rgb[i] = ft_atoi(str_rgb[i]);
+		if (is_digit(str_rgb[i]) == false)
+		{
+			free_array_str(str_rgb);
+			free_ptr(rgb);
+			return(0);
+		}
 		i++;
 	}
 	free_array_str(str_rgb);
 	return (rgb);
+}
+
+/**
+ * @brief Verify each char if all is a valid digit.
+ * @param str string to be verified
+ * @return boolean - Is Valid or not
+ */
+static bool	is_digit(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != C_WHITE_S && str[i] != '\n')
+			if (ft_isdigit(str[i]) == false)
+				return (false);
+		i++;
+	}
+	return (true);
 }
 
 /**
