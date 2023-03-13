@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/13 08:39:30 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/13 11:05:48 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static bool	is_map_sur_walls(t_data *data)
 {
 	int	i;
 	int	j;
-	int col_size;
+	int	col_size;
 
 	i = 0;
 	while (data->map[i])

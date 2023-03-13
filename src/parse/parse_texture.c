@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 09:36:11 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/13 11:03:03 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/13 11:05:35 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static int	*parse_arr_color(char **str_rgb, int *rgb)
 		{
 			free_array_str(str_rgb);
 			free_ptr(rgb);
-			return(0);
+			return (0);
 		}
 		i++;
 	}
@@ -119,5 +119,3 @@ static bool	is_digit(char *str)
 	}
 	return (true);
 }
-
-
