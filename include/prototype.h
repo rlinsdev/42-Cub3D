@@ -147,4 +147,12 @@ bool	is_white_space(char c);
  */
 bool parse_tex_color(t_texture_det *text_det, char *row, int i);
 
+/**
+ * @brief Change white space into wall in map. First, PDF tell us that just
+ * some type of char is valid in map. Then, 'spaces are valid, but must be
+ * handle'.
+ * @param data data structure
+ */
+void	spaces_to_wall(t_data *data);
+
 #endif

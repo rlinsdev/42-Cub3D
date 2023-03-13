@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:46:34 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/12 18:53:23 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/13 08:37:45 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,10 @@ static bool	fill_map_tab(t_map_det *map_det, char **map_tab);
 
 bool	create_map(t_data *data)
 {
-	bool	result;
-
-	result = get_map_info(data);
-	// TODO: Add aqui a mudança de espaço em branco em muro
-	return (result);
+	if (get_map_info(data) == false)
+		return (false);
+	spaces_to_wall(data);
+	return (true);
 }
 
 /**
@@ -79,7 +78,7 @@ static bool	fill_map_tab(t_map_det *map_det, char **map_tab)
 }
 
 /**
- * @brief [OK] Get the map width. Some times, the map is not a rectangle, for
+ * @brief Get the map width. Some times, the map is not a rectangle, for
  * this, we will look for the highest size here
  * @param map_det Map details structure
  * @return int - Width/size of map
@@ -101,7 +100,7 @@ static int	get_map_width(t_map_det *map_det)
 }
 
 /**
- * @brief [OK] Get the map height. Update the variable Start/end Index Map too
+ * @brief Get the map height. Update the variable Start/end Index Map too
  * @param data Data structure
  * @return int
  * // TODO: Eu acho que aqui preciso validar se é cercado de 1
