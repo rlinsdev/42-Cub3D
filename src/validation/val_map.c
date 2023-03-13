@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/11 12:44:14 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/13 07:42:05 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@ static bool	is_map_sur_walls(t_data *data)
 	int	i;
 	int	j;
 	int col_size;
-
-	printf("Path do mapa: %s\n", data->map_det.path); // TODO: Remover depois
-
+	
 	i = 0;
 	while (data->map[i])
 	{
