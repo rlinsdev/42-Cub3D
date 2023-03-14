@@ -45,7 +45,9 @@ SRCS +=		main.c \
 			mlx_img.c mlx_init.c mlx_hooks.c \
 			error_handler.c sanitization.c \
 			val_map.c parse_texture.c exit.c \
-			parse_map_partial.c parse_texture_partial.c
+			parse_map_partial.c parse_texture_partial.c \
+			val_texture.c
+
 
 OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.c=.o))
 
@@ -92,7 +94,7 @@ norma:
 	norminette $(LIBFT_PATH)
 
 run:
-	make re && ./cub3D ./maps/2-pdf-map.cub
+	make re && ./cub3D ./maps/fail/6-Invalid_path_text.cub
 #	./cub3D ./maps/4.cub
 
 valgrind:

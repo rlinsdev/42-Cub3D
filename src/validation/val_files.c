@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:04:23 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/09 21:17:30 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/14 10:11:15 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,16 @@ static bool	val_file_ext(char *file, char c1, char c2, char c3)
 	if (file[len - 4] != '.' || file[len - 3] != c1 || file[len - 2] != c2
 		|| file[len - 1] != c3)
 		return (false);
+	return (true);
+}
+
+bool	val_file_path(char *path)
+{
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (false);
+	close(fd);
 	return (true);
 }
