@@ -12,6 +12,9 @@
 # define C_WHITE_S	' '
 // # define C_NSEW 	'X'
 
+# define VALID_CHAR_MAP "01NSEW"
+# define VALID_PLAYER_POS "NSEW"
+
 # define ERR_ARGS "Invalid call. Must be: ./cub3D <map_path/map.cub>"
 # define ERR_MALC "Problems in memory allocation!"
 # define ERR_CUB "Error File. Expected .cub extension!"
@@ -20,6 +23,10 @@
 # define ERR_MAP8 "Map not surrounded by walls"
 # define ERR_TEXT "Texture out of pattern. Check Subject for more details."
 # define ERR_RGB  "Invalid RGB color format to Floor/Ceiling"
+# define ERR_MAP9 "Map with invalid character. Check Subject for more details."
+
+# define ERR_MAP_CHAR "Character invalid in map."
+# define ERR_SING_PLAYER "Map error. Just one player allowed"
 
 # define HEIGHT 600
 # define WIDTH 800
