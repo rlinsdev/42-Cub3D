@@ -6,14 +6,13 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/11 12:58:54 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/14 08:52:06 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
 static int	args_handler(t_data *data, char **argv);
-
 
 int	main(int argc, char **argv)
 {
