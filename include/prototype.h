@@ -72,7 +72,6 @@ bool	create_map(t_data *data);
  */
 void	ft_mlx_init(t_data *data);
 
-
 /**
  * @brief Put a pixel on the screen
  *
@@ -162,5 +161,13 @@ void	spaces_to_wall(t_data *data);
  * @return int. 0 if It's OK. Otherwise: Error
  */
 int	valid_texture(t_data *data, t_texture_det *text);
+
+/**
+ * @brief Validate path of program. Initially, will validate the path of
+ * texture in file.
+ * @param path Path to be validate
+ * @return boolean.
+ */
+bool	val_file_path(char *path);
 
 #endif

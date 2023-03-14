@@ -26,6 +26,7 @@
 # define ERR_TEXT "Texture out of pattern. Check Subject for more details."
 # define ERR_TEXT_MAP "Texture not found in file."
 # define ERR_TEXT_COL "Color not found in file."
+# define ERR_TEXT_PATH "Texture invalid. Invalid path."
 
 # define ERR_MAP_CHAR "Character invalid in map."
 # define ERR_SING_PLAYER "Map error. Just one player allowed"
