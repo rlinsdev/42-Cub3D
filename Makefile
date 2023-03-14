@@ -16,7 +16,7 @@ VPATH 			= $(shell find $(PATH_SRC) -type d)
 
 # Libft files and directories
 LIBFT_PATH 		= ./lib/libft/
-LIBFT 			= ./lib/libft.a
+LIBFT 			= $(LIBFT_PATH)/libft.a
 
 # Minilibx
 MLX_PATH	= ./lib/minilibx-linux/
@@ -42,10 +42,11 @@ SRCS +=		main.c \
 			val_args.c val_files.c \
 			parse_file.c parse_map.c \
 			init_map.c init_data.c \
-			mlx_img.c mlx_init.c mlx_hooks.c \
+			mlx_img.c mlx_init.c mlx_hooks.c mlx_color.c \
 			error_handler.c sanitization.c \
 			val_map.c parse_texture.c exit.c \
-			parse_map_partial.c parse_texture_partial.c
+			parse_map_partial.c parse_texture_partial.c \
+			ray_calculation.c \
 
 OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.c=.o))
 
@@ -91,8 +92,8 @@ norma:
 	norminette $(PATH_SRC)
 	norminette $(LIBFT_PATH)
 
-run:
-	make re && ./cub3D ./maps/2-pdf-map.cub
+run: all
+	./cub3D ./maps/2-pdf-map.cub
 #	./cub3D ./maps/4.cub
 
 valgrind:

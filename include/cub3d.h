@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:02:27 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/12 17:36:40 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/14 02:00:23 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdio.h>
 
 // includes local
-# include "../lib/libft/include/libft.h"
+# include "../lib/libft/libft.h"
 # include "../lib/minilibx-linux/mlx.h"
 # include "./enum.h"
 # include "./define.h"

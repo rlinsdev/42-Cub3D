@@ -6,7 +6,7 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:17 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/11 12:28:25 by lucas            ###   ########.fr       */
+/*   Updated: 2023/03/14 02:57:22 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ char	*ft_mlx_get_addr(t_img *img)
 	}
 	return (mlx_get_data_addr(img->img, &img->bpp, &img->len_line,
 			&img->endian));
+}
+
+void	ft_mlx_put_img(t_view *view, t_img *img, int x, int y)
+{
+	mlx_put_image_to_window(view->mlx, view->win, img->img, x, y);
 }
 
 void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)

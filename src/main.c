@@ -3,31 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/11 12:58:54 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/14 02:04:21 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
 static int	args_handler(t_data *data, char **argv);
-
-
-int	main(int argc, char **argv)
-{
-	t_data	data;
-
-	if (argc != 2)
-		return (error_msg(ERR_ARGS, 1));
-	init_data(&data);
-	ft_mlx_init(&data);
-	if (args_handler(&data, argv) != 0)
-		return (EXIT_FAILURE);
-	mlx_loop(data.view.mlx);
-	return (EXIT_SUCCESS);
-}
 
 /**
  * @brief Will validate the inputs of program.
@@ -38,6 +23,7 @@ int	main(int argc, char **argv)
  */
 static int	args_handler(t_data *data, char **argv)
 {
+
 	if (val_cub_file(argv[1]) == false)
 		return (error_msg(ERR_CUB, 4));
 	init_map_handler(data, argv[1]);
@@ -47,3 +33,18 @@ static int	args_handler(t_data *data, char **argv)
 		return (free_data(data));
 	// if (validTextureHere Too!)
 }
+
+int	main(int argc, char **argv)
+{
+	t_data	data;
+
+	if (argc != 2)
+		return (error_msg(ERR_ARGS, 1));
+	init_data(&data);
+	if (args_handler(&data, argv) != 0)
+		return (EXIT_FAILURE);
+	ft_mlx_init(&data);
+	mlx_loop(data.view.mlx);
+	return (EXIT_SUCCESS);
+}
+

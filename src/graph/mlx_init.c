@@ -6,7 +6,7 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:23 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/11 12:24:24 by lucas            ###   ########.fr       */
+/*   Updated: 2023/03/14 03:40:36 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	handles_all_hooks(t_data *data)
 {
+	// não é necessário, mas depois quero tentar fazer o resize funcionar
+	// mlx_expose_hook(data->view.win, handle_hook_resize, data);
+
+
+	mlx_loop_hook(data->view.mlx, ray_loop, data);
 	mlx_hook(data->view.win, 17, 1L << 17, handle_hook_close, data);
 	mlx_key_hook(data->view.win, handle_hook_key, data);
 }
@@ -42,9 +47,8 @@ void	ft_mlx_init(t_data *data)
 
 	view = &data->view;
 	view->mlx = mlx_init();
-	view->win = mlx_new_window(view->mlx, WIDTH, HEIGHT, TITLE);
+	view->win = mlx_new_window(view->mlx, view->screen_width, view->screen_height, "Cub3D");
 	ft_mlx_init_img(view);
-	mlx_put_image_to_window(view->mlx, view->win, view->screen.img, 0, 0);
-	mlx_put_image_to_window(view->mlx, view->win, view->minimap.img, 0, 0);
+
 	handles_all_hooks(data);
 }

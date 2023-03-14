@@ -72,7 +72,6 @@ bool	create_map(t_data *data);
  */
 void	ft_mlx_init(t_data *data);
 
-
 /**
  * @brief Put a pixel on the screen
  *
@@ -92,10 +91,29 @@ void	ft_mlx_pixel_put(t_img *img, int x, int y, int color);
 char	*ft_mlx_get_addr(t_img *img);
 
 /**
+ * @brief Alias to mlx_put_image_to_window
+ *
+ * @param view The structure containing the window and the image
+ * @param img The image to draw on the window
+ * @param x The x coordinate of the image
+ * @param y The y coordinate of the image
+ */
+void	ft_mlx_put_img(t_view *view, t_img *img, int x, int y);
+
+/**
+ * @brief transform a rgb color to an int
+ * @param r red
+ * @param g green
+ * @param b blue
+ * @return color in int
+*/
+int		ft_mlx_rgb_to_int(int r, int g, int b);
+
+/**
  * @brief Close the window and free all memory
  * @param data Data structure
  */
-int	handle_hook_close(t_data *data);
+int		handle_hook_close(t_data *data);
 
 /**
  * @brief Handle the key pressed
@@ -103,7 +121,7 @@ int	handle_hook_close(t_data *data);
  * @param data Data structure
  * @return int
  */
-int handle_hook_key(int keycode, t_data *data);
+int		handle_hook_key(int keycode, t_data *data);
 
 /**
  * @brief Will handle all possibles errors in map. This method jus call others
@@ -111,7 +129,10 @@ int handle_hook_key(int keycode, t_data *data);
  * @param data structure
  * @return int. 0 Success. Otherwise error
  */
-int	valid_map(t_data *data);
+
+int		handle_hook_resize(t_data *data);
+
+int		valid_map(t_data *data);
 
 /**
  * @brief Exit program.
@@ -128,7 +149,7 @@ void	exit_cube(t_data *data, int exit_code);
  * i is the column / index in this row (avoiding white space)
  * @return bool - Parse with success
  */
-bool parse_tex_dir(t_texture_det *text_det, char *row, int i);
+bool	parse_tex_dir(t_texture_det *text_det, char *row, int i);
 
 /**
  * @brief Verify if the current char is a white space or similar
@@ -145,7 +166,7 @@ bool	is_white_space(char c);
  * @param i index to check; verify the information
  * @return boolean - True or false
  */
-bool parse_tex_color(t_texture_det *text_det, char *row, int i);
+bool	parse_tex_color(t_texture_det *text_det, char *row, int i);
 
 /**
  * @brief Change white space into wall in map. First, PDF tell us that just
@@ -154,5 +175,7 @@ bool parse_tex_color(t_texture_det *text_det, char *row, int i);
  * @param data data structure
  */
 void	spaces_to_wall(t_data *data);
+
+int		ray_loop(t_data *data);
 
 #endif
