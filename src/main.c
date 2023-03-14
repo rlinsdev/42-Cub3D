@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/14 08:52:06 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/14 09:36:10 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ static int	args_handler(t_data *data, char **argv)
 		return (free_data(data));
 	if (valid_map(data) != 0)
 		return (free_data(data));
-	// if (validTextureHere Too!)
+	if (valid_texture(data, &data->texture_det) != 0)
+		return (free_data(data));
 }

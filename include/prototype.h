@@ -155,4 +155,12 @@ bool parse_tex_color(t_texture_det *text_det, char *row, int i);
  */
 void	spaces_to_wall(t_data *data);
 
+/**
+ * @brief Validate Textures. Check if it is following the pattern
+ * @param data Data Structure
+ * @param text Texture Structure
+ * @return int. 0 if It's OK. Otherwise: Error
+ */
+int	valid_texture(t_data *data, t_texture_det *text);
+
 #endif
