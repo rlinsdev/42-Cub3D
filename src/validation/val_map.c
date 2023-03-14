@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/14 08:51:35 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/14 18:40:50 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static bool	is_map_sur_walls(t_data *data);
 static int	is_valid_char_in_map(t_data *data, char **map);
+static bool	is_map_last_element(t_map_det *map_det);
 
 int	valid_map(t_data *data)
 {
@@ -27,7 +28,36 @@ int	valid_map(t_data *data)
 	valid_char_map = is_valid_char_in_map(data, data->map);
 	if (valid_char_map != 0)
 		return (valid_char_map);
+	if (is_map_last_element(&data->map_det) == false)
+		return (error_msg(ERR_MAP_LAST, 16));
+
 	return (0);
+}
+
+/**
+ * @brief Map must be the last element in file. Verify if it is
+ * @param map_det Map Detail Structure
+ * @return boolean
+ */
+static bool	is_map_last_element(t_map_det *map_det)
+{
+	int	i;
+	int	j;
+
+	i = map_det->end_i_map;
+	while (map_det->file[i])
+	{
+		j = 0;
+		while (map_det->file[i][j])
+		{
+			if (map_det->file[i][j] != ' ' && map_det->file[i][j] != '\t' &&
+				map_det->file[i][j] != '\n' && map_det->file[i][j] != '\r')
+				return (false);
+			j++;
+		}
+		i++;
+	}
+	return (true);
 }
 
 /**
