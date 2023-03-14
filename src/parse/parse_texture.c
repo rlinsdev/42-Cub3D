@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 09:36:11 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/13 11:05:35 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/14 16:14:25 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,25 @@ static int	*parse_rgb_color(char *row);
 static int	*parse_arr_color(char **str_rgb, int *rgb);
 static bool	is_digit(char *str);
 
-bool	parse_tex_color(t_texture_det *text_det, char *row, int i)
+int	parse_tex_color(t_texture_det *text_det, char *row, int i)
 {
 	if (row[i + 1] != C_WHITE_S)
-	{
-		error_msg(ERR_RGB, 10);
-		return (false);
-	}
+		return (error_msg(ERR_RGB, 10));
 	if (row[i] == 'C' && text_det->ceiling == NULL)
 	{
 		text_det->ceiling = parse_rgb_color(row + i + 1);
 		if (text_det->ceiling == 0)
-			error_msg(ERR_RGB, 10);
+			return (error_msg(ERR_RGB, 10));
 	}
 	else if (row[i] == 'F' && text_det->floor == NULL)
 	{
 		text_det->floor = parse_rgb_color(row + i + 1);
 		if (text_det->floor == 0)
-			error_msg(ERR_RGB, 10);
+			return (error_msg(ERR_RGB, 10));
 	}
 	else
-	{
-		error_msg(ERR_RGB, 10);
-		return (false);
-	}
-	return (true);
+		return (error_msg(ERR_RGB, 10));
+	return (0);
 }
 
 /**

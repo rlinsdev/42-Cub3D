@@ -142,9 +142,9 @@ bool	is_white_space(char c);
  * @param text_det Texture Details structure
  * @param row row in file
  * @param i index to check; verify the information
- * @return boolean - True or false
+ * @return int - 0 OK. Otherwise error
  */
-bool parse_tex_color(t_texture_det *text_det, char *row, int i);
+int parse_tex_color(t_texture_det *text_det, char *row, int i);
 
 /**
  * @brief Change white space into wall in map. First, PDF tell us that just
