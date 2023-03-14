@@ -6,20 +6,61 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/13 11:05:48 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/14 08:43:52 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
 static bool	is_map_sur_walls(t_data *data);
+static int	is_valid_char_in_map(t_data *data, char **map);
 
 int	valid_map(t_data *data)
 {
+	int	valid_char_map;
 	if (!data->map)
 		return (error_msg(ERR_MAP7, 7));
 	if (is_map_sur_walls(data) == false)
 		return (error_msg(ERR_MAP8, 8));
+	valid_char_map = is_valid_char_in_map(data, data->map);
+	if (valid_char_map != 0)
+		return (valid_char_map);
+
+	return (0);
+}
+
+/**
+ * @brief Handle the character in map. 6 possible characters: 0 for an empty
+ * space, 1 for a wall, and N,S,E or W for the player’s start position
+ * @param data Data structure
+ * @param map Matrix representing map
+ * @return int 0 OK. other wise: error
+ */
+static int	is_valid_char_in_map(t_data *data, char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	data->player.direction = '0';
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			while (is_white_space(map[i][j]))
+				j++;
+			if ((ft_strchr(VALID_CHAR_MAP, map[i][j])) == NULL)
+				return (error_msg(ERR_MAP_CHAR, 10));
+			if ((ft_strchr(VALID_PLAYER_POS, map[i][j])) != NULL)
+				if (data->player.direction != '0')
+					return (error_msg(ERR_SING_PLAYER, 11));
+				else
+					data->player.direction = map[i][j];
+			j++;
+		}
+		i++;
+	}
 	return (0);
 }
 
