@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/14 08:43:52 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/14 08:51:35 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static int	is_valid_char_in_map(t_data *data, char **map);
 int	valid_map(t_data *data)
 {
 	int	valid_char_map;
+
+	data->player.direction = '0';
 	if (!data->map)
 		return (error_msg(ERR_MAP7, 7));
 	if (is_map_sur_walls(data) == false)
@@ -25,7 +27,6 @@ int	valid_map(t_data *data)
 	valid_char_map = is_valid_char_in_map(data, data->map);
 	if (valid_char_map != 0)
 		return (valid_char_map);
-
 	return (0);
 }
 
@@ -42,7 +43,6 @@ static int	is_valid_char_in_map(t_data *data, char **map)
 	int	j;
 
 	i = 0;
-	data->player.direction = '0';
 	while (map[i])
 	{
 		j = 0;
@@ -53,10 +53,12 @@ static int	is_valid_char_in_map(t_data *data, char **map)
 			if ((ft_strchr(VALID_CHAR_MAP, map[i][j])) == NULL)
 				return (error_msg(ERR_MAP_CHAR, 10));
 			if ((ft_strchr(VALID_PLAYER_POS, map[i][j])) != NULL)
+			{
 				if (data->player.direction != '0')
 					return (error_msg(ERR_SING_PLAYER, 11));
 				else
 					data->player.direction = map[i][j];
+			}
 			j++;
 		}
 		i++;
