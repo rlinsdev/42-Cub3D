@@ -92,7 +92,7 @@ norma:
 	norminette $(LIBFT_PATH)
 
 run:
-	make re && ./cub3D ./maps/2-pdf-map.cub
+	make re && ./cub3D ./maps/1-simple-map.cub
 #	./cub3D ./maps/4.cub
 
 valgrind:
