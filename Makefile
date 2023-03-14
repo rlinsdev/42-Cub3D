@@ -94,7 +94,7 @@ norma:
 	norminette $(LIBFT_PATH)
 
 run:
-	make re && ./cub3D ./maps/fail/8-Invalid-RGB2.cub
+	make re && ./cub3D ./maps/3-simple-map_new_line.cub
 #	./cub3D ./maps/4.cub
 
 valgrind:

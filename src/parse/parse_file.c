@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/14 16:07:27 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/14 16:39:18 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	file_to_variable(t_data *data)
 		j = 0;
 		while (data->map_det.file[i][j])
 		{
+			while (data->map_det.file[i][j] == '\n')
+				i++;
 			ret = handle_file_infos(data, data->map_det.file, i, j);
 			if (ret == BREAK)
 				break ;
