@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:01:13 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/13 11:02:58 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/15 09:13:05 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ static char	*parse_text_path(char *row, int i)
 	int		j;
 
 	j = 0;
-	// TODO: Pensar se tem que tratar espaço,q uebra de linha do usuário
+	while (row[i] && is_white_space(row[i]) == true)
+		i++;
 	len = ft_strlen(row);
 	path = ft_calloc(len - 2, sizeof(char));
 	if (!path)

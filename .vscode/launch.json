@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/cub3D", //path to your programs exe and exe name
-			"args": ["maps/fail/12-map-last-element.cub"],
+			"args": ["maps/11.cub"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
@@ -29,7 +29,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceRoot}/cub3D",
-			"args": ["maps/fail/12-map-last-element.cub"],
+			"args": ["maps/11.cub"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceRoot}",
 			"environment": [],
