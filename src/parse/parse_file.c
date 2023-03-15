@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/14 16:39:18 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/15 08:46:55 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	file_to_variable(t_data *data)
  */
 static int	handle_file_infos(t_data *data, char **file, int i, int j)
 {
-	if (is_white_space(file[i][j]) == true)
+	while (is_white_space(file[i][j]) == true)
 		j++ ;
 	if (ft_isdigit(file[i][j]) == false)
 	{
