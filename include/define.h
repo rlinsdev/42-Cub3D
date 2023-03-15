@@ -21,6 +21,8 @@
 # define ERR_MAP "Invalid map!"
 # define ERR_MAP7 "Invalid map! Verify the specification in PDF Subject"
 # define ERR_MAP8 "Map not surrounded by walls"
+# define ERR_MAP_LAST "Map must to be the last element in file."
+# define ERR_MAP_DIR "Map with no player direction set."
 # define ERR_RGB  "Invalid RGB color format to Floor/Ceiling"
 # define ERR_MAP9 "Map with invalid character. Check Subject for more details."
 # define ERR_TEXT "Texture out of pattern. Check Subject for more details."
@@ -30,7 +32,7 @@
 # define ERR_RGB_VAL "Invalid RGB Value. Check the file passed by param."
 
 # define ERR_MAP_CHAR "Character invalid in map."
-# define ERR_SING_PLAYER "Map error. Just one player allowed"
+# define ERR_SING_PLAYER "Map error. Just one player allowed."
 
 # define HEIGHT 600
 # define WIDTH 800
