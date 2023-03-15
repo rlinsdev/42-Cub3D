@@ -11,8 +11,6 @@ PATH_OBJS 		= ./objs/
 INC_PATH 		= ./include/
 VPATH 			= $(shell find $(PATH_SRC) -type d)
 
-# maps
-#MAP = maps/map_3x5.ber TODO: Colocar mapa do Cub3D
 
 # Libft files and directories
 LIBFT_PATH 		= ./lib/libft/
@@ -22,7 +20,7 @@ LIBFT 			= ./lib/libft.a
 MLX_PATH	= ./lib/minilibx-linux/
 MLX_NAME	= libmlx.a
 MLX			= $(MLX_PATH)$(MLX_NAME)
-MLXFLAGS 		= -lmlx -lXext -lX11
+MLXFLAGS 	= -lmlx -lXext -lX11
 
 # Compilation
 CC = cc -g
@@ -54,7 +52,7 @@ OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.c=.o))
 all: $(MLX) $(LIBFT) $(NAME)
 
 $(NAME): $(OBJS) $(INC_PATH)cub3d.h
-	@$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(LIBFT) $(MLXFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(LIBFT) $(MLX) $(MLXFLAGS) -o $(NAME)
 	@echo "$(GREEN)Build Successful$(RESET)"
 
 $(PATH_OBJS)%.o: %.c
