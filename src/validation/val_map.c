@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/14 18:40:50 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/14 21:12:05 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	valid_map(t_data *data)
 		return (valid_char_map);
 	if (is_map_last_element(&data->map_det) == false)
 		return (error_msg(ERR_MAP_LAST, 16));
+	if (data->player.direction == '0')
+		return (error_msg(ERR_MAP_DIR, 17));
 
 	return (0);
 }
