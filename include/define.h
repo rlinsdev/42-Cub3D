@@ -25,5 +25,8 @@
 # define WIDTH 800
 # define TITLE "Cub3D"
 
+# define X 0
+# define Y 1
+
 
 # endif

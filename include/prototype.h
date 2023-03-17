@@ -178,4 +178,7 @@ void	spaces_to_wall(t_data *data);
 
 int		ray_loop(t_data *data);
 
+void	draw_backgound(t_data *data);
+void	draw_ground(t_data *data);
+void	draw_wall(t_data *data, int pixel);
 #endif

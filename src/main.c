@@ -6,7 +6,7 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/14 02:04:21 by lucas            ###   ########.fr       */
+/*   Updated: 2023/03/17 00:08:32 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static int	args_handler(t_data *data, char **argv)
 int	main(int argc, char **argv)
 {
 	t_data	data;
+
+
 
 	if (argc != 2)
 		return (error_msg(ERR_ARGS, 1));

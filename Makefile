@@ -46,7 +46,7 @@ SRCS +=		main.c \
 			error_handler.c sanitization.c \
 			val_map.c parse_texture.c exit.c \
 			parse_map_partial.c parse_texture_partial.c \
-			ray_calculation.c \
+			ray_calculation.c ray_draw.c \
 
 OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.c=.o))
 

@@ -23,35 +23,41 @@ typedef struct s_map_detail
 	int				end_i_map;
 }					t_map_det;
 
-typedef struct s_player
+typedef struct s_ray
 {
-	double			pos_x;
-	double			pos_y;
-	double			dir_x;
-	double			dir_y;
-	double			plane_x;
-	double			plane_y;
-	double			camera_x;
-	double			ray_dir_x;
-	double			ray_dir_y;
-}					t_player;
+	double			pos[2];
+	double			dir[2];
+	double			plane[2];
+	double			ray_dir[2];
+	double			delta_dist[2];
+	int				wall_map_pos[2];
+	double			dist_to_side[2];
+	double			step[2];
+	double 			dda_line_size[2];
+	double 			wall_dist[2];
+	int			perpendicular_dist;
+	int			wall_line_height;
+	double			line_start;
+	double			line_end;
+	bool			hit_side;
+	bool			hit;
+
+}					t_ray;
 
 typedef struct s_img
 {
 	void			*img;
-	int				bpp;
-	int				len_line;
-	int				endian;
 	char			*addr;
+	int				data[3];
 }					t_img;
 
 typedef struct s_view
 {
 	void			*mlx;
 	void			*win;
-	int				screen_width;
-	int				screen_height;
 	int				**map_test;
+	int				color;
+	int				map[24][24];
 	t_img			minimap;
 	t_img			screen;
 
@@ -63,7 +69,7 @@ typedef struct s_data
 	void			*img_screen;
 	char			**map;
 	t_view			view;
-	t_player		player;
+	t_ray			ray;
 	t_map_det		map_det;
 	t_texture_det	texture_det;
 }					t_data;

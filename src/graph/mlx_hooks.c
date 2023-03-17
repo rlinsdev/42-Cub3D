@@ -6,7 +6,7 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:14 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/14 03:39:33 by lucas            ###   ########.fr       */
+/*   Updated: 2023/03/15 00:56:59 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ int handle_hook_key(int keycode, t_data *data)
 	return (SUCCESS);
 }
 
-int handle_hook_resize( t_data *data)
-{
-	int pos_mouse_x;
-	int pos_mouse_y;
+// int handle_hook_resize( t_data *data)
+// {
+// 	int pos_mouse_x;
+// 	int pos_mouse_y;
 
-	printf("Resize\n");
-	mlx_destroy_image(data->view.mlx, data->view.screen.img);
-	mlx_mouse_get_pos(data->view.mlx, data->view.win, &pos_mouse_x, &pos_mouse_y);
-	if (pos_mouse_x > 0 && pos_mouse_y > 0)
-	{
-		data->view.screen_width = pos_mouse_x;
-		data->view.screen_height = pos_mouse_y;
-	}
-	data->view.screen.img = mlx_new_image(data->view.mlx, data->view.screen_width, data->view.screen_height);
-	data->view.screen.addr = ft_mlx_get_addr(&data->view.screen);
-	return (SUCCESS);
-}
+// 	printf("Resize\n");
+// 	mlx_destroy_image(data->view.mlx, data->view.screen.img);
+// 	mlx_mouse_get_pos(data->view.mlx, data->view.win, &pos_mouse_x, &pos_mouse_y);
+// 	if (pos_mouse_x > 0 && pos_mouse_y > 0)
+// 	{
+// 		data->view.screen_width = pos_mouse_x;
+// 		data->view.screen_height = pos_mouse_y;
+// 	}
+// 	data->view.screen.img = mlx_new_image(data->view.mlx, data->view.screen_width, data->view.screen_height);
+// 	data->view.screen.addr = ft_mlx_get_addr(&data->view.screen);
+// 	return (SUCCESS);
+// }

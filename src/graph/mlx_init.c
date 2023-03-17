@@ -6,7 +6,7 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:23 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/14 03:40:36 by lucas            ###   ########.fr       */
+/*   Updated: 2023/03/17 00:18:12 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_mlx_init(t_data *data)
 
 	view = &data->view;
 	view->mlx = mlx_init();
-	view->win = mlx_new_window(view->mlx, view->screen_width, view->screen_height, "Cub3D");
+	view->win = mlx_new_window(view->mlx, WIDTH, HEIGHT, "Cub3D");
 	ft_mlx_init_img(view);
 
 	handles_all_hooks(data);

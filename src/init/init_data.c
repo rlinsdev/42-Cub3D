@@ -6,20 +6,26 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:21:54 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/14 03:42:45 by lucas            ###   ########.fr       */
+/*   Updated: 2023/03/17 03:37:34 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
+
+void init_ray(t_ray *player)
+{
+	player->pos[0] = 5;
+	player->pos[1] = 5;
+	player->dir[0] = -1;
+	player->dir[1] = 0;
+	player->plane[0] = 0;
+	player->plane[1] = 0.66;
+}
+
 void	init_data(t_data *data)
 {
 	ft_bzero(data, sizeof(t_data));
-	data->player.pos_x = 22;
-	data->player.pos_y = 12;
-	data->player.dir_x = -1;
-	data->player.dir_y = 0;
-	data->player.plane_y = 0.66;
-	data->view.screen_height = HEIGHT;
-	data->view.screen_width = WIDTH;
+	init_ray(&data->ray);
+
 }
