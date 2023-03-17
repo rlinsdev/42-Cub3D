@@ -35,10 +35,10 @@ typedef struct s_ray
 	double			step[2];
 	double 			dda_line_size[2];
 	double 			wall_dist[2];
-	int			perpendicular_dist;
-	int			wall_line_height;
-	double			line_start;
-	double			line_end;
+	double			perpendicular_dist;
+	double			wall_line_height;
+	int			line_start;
+	int			line_end;
 	bool			hit_side;
 	bool			hit;
 

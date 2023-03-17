@@ -1,5 +1,18 @@
 #include "cub3d.h"
 
+int		worldMap[10][10] = {
+    {1,1,1,1,1,1,1,1,1,1},
+    {1,1,0,0,1,0,0,0,0,1},
+    {1,0,0,0,0,0,0,1,0,1},
+    {1,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,1},
+    {1,1,0,0,0,0,0,0,1,1},
+    {1,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,1},
+    {1,1,0,0,1,0,0,0,1,1},
+    {1,1,1,1,1,1,1,1,1,1}
+};
+
 void	draw_backgound(t_data *data)
 {
 	int	pixel_x;
@@ -43,7 +56,7 @@ void	draw_ground(t_data *data)
 	}
 }
 
-static void	draw_minimap_square(t_data *data, int x, int y, int color, int size)
+ void	draw_minimap_square(t_img *img, int x, int y, int color, int size)
 {
 	int	pixel_x;
 	int	pixel_y;
@@ -54,7 +67,7 @@ static void	draw_minimap_square(t_data *data, int x, int y, int color, int size)
 		pixel_y = 0;
 		while (pixel_y < size)
 		{
-			ft_mlx_pixel_put(&data->view.minimap, x * size + pixel_x, y * size + pixel_y, color);
+			ft_mlx_pixel_put(img, x * size + pixel_x, y * size + pixel_y, color);
 			pixel_y++;
 		}
 		pixel_x++;
@@ -67,17 +80,17 @@ void	draw_minimap(t_data *data)
 	int	pixel_y;
 
 	pixel_x = 0;
-	while (pixel_x < data->map_det.width)
+	while (pixel_x < 10)
 	{
 		pixel_y = 0;
-		while (pixel_y < data->map_det.height)
+		while (pixel_y < 10)
 		{
-			if (data->map[pixel_y][pixel_x] == '1')
-				draw_minimap_square(data, pixel_x, pixel_y, ft_mlx_rgb_to_int(0,
-							255, 0), 5);
-			else if (data->map[pixel_y][pixel_x] == '2')
-				draw_minimap_square(data, pixel_x, pixel_y,
-						ft_mlx_rgb_to_int(255, 0, 0), 5);
+			if (worldMap[pixel_y][pixel_x])
+				draw_minimap_square(&data->view.screen, pixel_x, pixel_y, ft_mlx_rgb_to_int(0,
+							255, 0), 10);
+			else if (!worldMap[pixel_y][pixel_x])
+				draw_minimap_square(&data->view.screen, pixel_x, pixel_y,
+						ft_mlx_rgb_to_int(255, 255, 255), 10);
 			pixel_y++;
 		}
 		pixel_x++;

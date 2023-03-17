@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int		worldMap[10][10] = {
+int		worldMap2[10][10] = {
     {1,1,1,1,1,1,1,1,1,1},
     {1,1,0,0,1,0,0,0,0,1},
     {1,0,0,0,0,0,0,1,0,1},
@@ -51,26 +51,26 @@ void	calc_side(t_ray *r)
 {
 	if (r->ray_dir[X] < 0)
 	{
-		r->step[X] = -1;
 		r->dist_to_side[X] = (r->pos[X] - r->wall_map_pos[X]) * r->delta_dist[X];
+		r->step[X] = -1;
 	}
 	else
 	{
-		r->step[X] = 1;
 		r->dist_to_side[X] = (r->wall_map_pos[X] + 1.0 - r->pos[X])
 			* r->delta_dist[X];
+		r->step[X] = 1;
 	}
 	if (r->ray_dir[Y] < 0)
 	{
-		r->step[Y] = -1;
 		r->dist_to_side[Y] = (r->pos[Y] - r->wall_map_pos[Y])
 			* r->delta_dist[Y];
+		r->step[Y] = -1;
 	}
 	else
 	{
-		r->step[Y] = 1;
 		r->dist_to_side[Y] = (r->wall_map_pos[Y] + 1.0 - r->pos[Y])
 			* r->delta_dist[Y];
+		r->step[Y] = 1;
 	}
 }
 
@@ -95,16 +95,12 @@ void	calc_perpendicular_dist(t_ray *r)
 		r->perpendicular_dist = abs((r->wall_map_pos[Y] - r->pos[Y]
 					+ (1 - r->step[Y]) / 2) / r->ray_dir[Y]);
 	r->wall_line_height = HEIGHT / r->perpendicular_dist;
-	r->line_start = -r->wall_line_height / 2 + HEIGHT / 2;
-	if (r->line_start < 0)
-		r->line_start = 0;
-	r->line_end = r->wall_line_height / 2 + HEIGHT / 2;
-	if (r->line_end >= HEIGHT)
-		r->line_end = HEIGHT - 1;
+	r->line_start = HEIGHT / 2 - r->wall_line_height / 2;
+	r->line_end = HEIGHT / 2 + r->wall_line_height / 2;
 
 }
 
-void	calc_hit(t_ray *r)
+void	calc_hit(t_ray *r, t_view *v)
 {
 	while (r->hit == false)
 	{
@@ -120,7 +116,7 @@ void	calc_hit(t_ray *r)
 			r->dda_line_size[Y] += r->delta_dist[Y];
 			r->hit_side = true;
 		}
-		if (worldMap[r->wall_map_pos[X]][r->wall_map_pos[Y]] > 0)
+		if (worldMap2[r->wall_map_pos[X]][r->wall_map_pos[Y]] > 0)
 			r->hit = true;
 	}
 }
@@ -128,12 +124,11 @@ void	calc_hit(t_ray *r)
 void	ray_calc(t_data *data)
 {
 	int		pixel;
-	double	multiplier;
 	t_ray	*ray;
 
-	pixel = -1;
+	pixel = 0;
 	ray = &data->ray;
-	while (++pixel < WIDTH)
+	while (pixel < WIDTH)
 	{
 		calc_ray(ray, pixel);
 		calc_wall_map_pos(ray);
@@ -141,9 +136,11 @@ void	ray_calc(t_data *data)
 		calc_side(ray);
 		calc_dda_line_size(ray);
 		calc_wall_dist(ray);
-		calc_hit(ray);
+		calc_hit(ray, &data->view);
 		calc_perpendicular_dist(ray);
 		draw_wall(data, pixel);
+
+		pixel++;
 	}
 }
 
@@ -151,6 +148,7 @@ int	ray_loop(t_data *data)
 {
 	draw_backgound(data);
 	draw_ground(data);
+	draw_minimap(data);
 	ray_calc(data);
 	ft_mlx_put_img(&data->view, &data->view.screen, 0, 0);
 	return (SUCCESS);

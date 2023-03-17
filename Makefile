@@ -22,7 +22,7 @@ LIBFT 			= $(LIBFT_PATH)/libft.a
 MLX_PATH	= ./lib/minilibx-linux/
 MLX_NAME	= libmlx.a
 MLX			= $(MLX_PATH)$(MLX_NAME)
-MLXFLAGS 		= -lmlx -lXext -lX11
+MLXFLAGS 		= -lmlx -lXext -lX11 -lm
 
 # Compilation
 CC = cc -g
