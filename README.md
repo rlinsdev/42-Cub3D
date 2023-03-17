@@ -45,6 +45,13 @@ Calculating heading:
 * No leaks are allowed.
 * Norma must be run.
 
+ # To run:
+```
+$ git clone --recursive https://github.com/rlinsdev/42-Cub3D.git
+# or
+$ git clone https://github.com/rlinsdev/42-Cub3D.git
+$ git submodule update --init --recursive
+```
 
 ## Git sync main
 ```
