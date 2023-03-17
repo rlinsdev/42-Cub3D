@@ -102,7 +102,7 @@ void	calc_perpendicular_dist(t_ray *r)
 
 void	calc_hit(t_ray *r, t_view *v)
 {
-	while (r->hit == false)
+	while (true)
 	{
 		if (r->dda_line_size[X] < r->dda_line_size[Y])
 		{
@@ -116,8 +116,12 @@ void	calc_hit(t_ray *r, t_view *v)
 			r->dda_line_size[Y] += r->delta_dist[Y];
 			r->hit_side = true;
 		}
+		printf("wall_map_pos = %d, %d \n", r->wall_map_pos[X], r->wall_map_pos[Y]);
 		if (worldMap2[r->wall_map_pos[X]][r->wall_map_pos[Y]] > 0)
+		{
 			r->hit = true;
+			break ;
+		}
 	}
 }
 
@@ -139,7 +143,6 @@ void	ray_calc(t_data *data)
 		calc_hit(ray, &data->view);
 		calc_perpendicular_dist(ray);
 		draw_wall(data, pixel);
-
 		pixel++;
 	}
 }
