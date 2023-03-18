@@ -1,17 +1,18 @@
 #include "cub3d.h"
 
+// remove esse map e use o map do data
+// documentar o codigo!!!
 int		worldMap2[10][10] = {
-    {1,1,1,1,1,1,1,1,1,1},
-    {1,1,0,0,1,0,0,0,0,1},
-    {1,0,0,0,0,0,0,1,0,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,1,0,0,0,0,0,0,1,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,0,0,0,0,0,0,0,0,1},
-    {1,1,0,0,1,0,0,0,1,1},
-    {1,1,1,1,1,1,1,1,1,1}
-};
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+	{1, 1, 0, 0, 1, 0, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 1, 0, 0, 0, 0, 0, 0, 1, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 1, 0, 0, 1, 0, 0, 0, 1, 1},
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
 
 void	calc_ray(t_ray *ray, int pixel)
 {
@@ -22,14 +23,10 @@ void	calc_ray(t_ray *ray, int pixel)
 	ray->ray_dir[Y] = ray->dir[Y] + ray->plane[Y] * multiplier;
 }
 
-void	calc_wall_map_pos(t_ray *ray)
-{
-	ray->wall_map_pos[X] = (int)ray->pos[X];
-	ray->wall_map_pos[Y] = (int)ray->pos[Y];
-}
-
 void	calc_delta_dist(t_ray *r)
 {
+	r->wall_map_pos[X] = (int)r->pos[X];
+	r->wall_map_pos[Y] = (int)r->pos[Y];
 	if (r->ray_dir[X] == 0)
 	{
 		r->delta_dist[X] = 1;
@@ -51,7 +48,8 @@ void	calc_side(t_ray *r)
 {
 	if (r->ray_dir[X] < 0)
 	{
-		r->dist_to_side[X] = (r->pos[X] - r->wall_map_pos[X]) * r->delta_dist[X];
+		r->dist_to_side[X] = (r->pos[X] - r->wall_map_pos[X])
+			* r->delta_dist[X];
 		r->step[X] = -1;
 	}
 	else
@@ -74,34 +72,31 @@ void	calc_side(t_ray *r)
 	}
 }
 
-void	calc_dda_line_size(t_ray *r)
+void	calc_perpendicular_dist(t_ray *ray)
 {
-	r->dda_line_size[X] = r->dist_to_side[X];
-	r->dda_line_size[Y] = r->dist_to_side[Y];
-}
+	double	wall_dist_aux;
 
-void	calc_wall_dist(t_ray *r)
-{
-	r->wall_dist[X] = r->wall_map_pos[X];
-	r->wall_dist[Y] = r->wall_map_pos[Y];
-}
-
-void	calc_perpendicular_dist(t_ray *r)
-{
-	if (r->hit_side == false)
-		r->perpendicular_dist = abs((r->wall_map_pos[X] - r->pos[X]
-					+ (1 - r->step[X]) / 2) / r->ray_dir[X]);
+	if (ray->hit_side == false)
+	{
+		wall_dist_aux = ray->wall_map_pos[X] - ray->pos[X];
+		ray->wall_dist[X] = wall_dist_aux + (1 - ray->step[X]) / 2;
+		ray->perpendicular_dist = fabs(ray->wall_dist[X] / ray->ray_dir[X]);
+	}
 	else
-		r->perpendicular_dist = abs((r->wall_map_pos[Y] - r->pos[Y]
-					+ (1 - r->step[Y]) / 2) / r->ray_dir[Y]);
-	r->wall_line_height = HEIGHT / r->perpendicular_dist;
-	r->line_start = HEIGHT / 2 - r->wall_line_height / 2;
-	r->line_end = HEIGHT / 2 + r->wall_line_height / 2;
-
+	{
+		wall_dist_aux = ray->wall_map_pos[Y] - ray->pos[Y];
+		ray->wall_dist[Y] = wall_dist_aux + (1 - ray->step[Y]) / 2;
+		ray->perpendicular_dist = fabs(ray->wall_dist[Y] / ray->ray_dir[Y]);
+	}
+	ray->wall_line_height = HEIGHT / ray->perpendicular_dist;
+	ray->line_size[0] = HEIGHT / 2 - ray->wall_line_height / 2;
+	ray->line_size[1] = HEIGHT / 2 + ray->wall_line_height / 2;
 }
 
 void	calc_hit(t_ray *r, t_view *v)
 {
+	r->dda_line_size[X] = r->dist_to_side[X];
+	r->dda_line_size[Y] = r->dist_to_side[Y];
 	while (true)
 	{
 		if (r->dda_line_size[X] < r->dda_line_size[Y])
@@ -116,12 +111,8 @@ void	calc_hit(t_ray *r, t_view *v)
 			r->dda_line_size[Y] += r->delta_dist[Y];
 			r->hit_side = true;
 		}
-		printf("wall_map_pos = %d, %d \n", r->wall_map_pos[X], r->wall_map_pos[Y]);
 		if (worldMap2[r->wall_map_pos[X]][r->wall_map_pos[Y]] > 0)
-		{
-			r->hit = true;
 			break ;
-		}
 	}
 }
 
@@ -135,11 +126,8 @@ void	ray_calc(t_data *data)
 	while (pixel < WIDTH)
 	{
 		calc_ray(ray, pixel);
-		calc_wall_map_pos(ray);
 		calc_delta_dist(ray);
 		calc_side(ray);
-		calc_dda_line_size(ray);
-		calc_wall_dist(ray);
 		calc_hit(ray, &data->view);
 		calc_perpendicular_dist(ray);
 		draw_wall(data, pixel);
@@ -151,7 +139,6 @@ int	ray_loop(t_data *data)
 {
 	draw_backgound(data);
 	draw_ground(data);
-	draw_minimap(data);
 	ray_calc(data);
 	ft_mlx_put_img(&data->view, &data->view.screen, 0, 0);
 	return (SUCCESS);

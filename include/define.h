@@ -5,6 +5,10 @@
 # define S_KEY_CONST 's'
 # define D_KEY_CONST 'd'
 # define W_KEY_CONST 'w'
+# define LEFT_KEY_CONST 65361
+# define RIGHT_KEY_CONST 65363
+
+
 # define ESC_KEY_CONST 65307
 
 # define C_WALL		'1'
@@ -27,6 +31,11 @@
 
 # define X 0
 # define Y 1
+
+#define COLOR_GROUND 0x738B22
+#define COLOR_SKY 0x87CEEB
+# define COLOR_MINIMAP 0x000000
+# define COLOR_BORDER_MINIMAP 0xFFFFFF
 
 
 # endif

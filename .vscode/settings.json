@@ -17,7 +17,17 @@
     "cub3d.h": "c",
     "prototype.h": "c",
     "struct.h": "c",
-    "errno.h": "c"
+    "errno.h": "c",
+    "cmath": "c",
+    "compare": "c",
+    "concepts": "c",
+    "cstdio": "c",
+    "type_traits": "c",
+    "limits": "c",
+    "new": "c",
+    "*.tcc": "c",
+    "cstdint": "c",
+    "typeinfo": "c"
   },
   "files.exclude": {
     "**/.git": true,

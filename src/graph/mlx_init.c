@@ -6,7 +6,7 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:23 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/17 00:18:12 by lucas            ###   ########.fr       */
+/*   Updated: 2023/03/18 04:56:13 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	handles_all_hooks(t_data *data)
 	// não é necessário, mas depois quero tentar fazer o resize funcionar
 	// mlx_expose_hook(data->view.win, handle_hook_resize, data);
 
-
+		mlx_hook(data->view.win, 17, 1L << 17, handle_hook_close, data);
+	mlx_hook(data->view.win, 2, 1L << 0, handle_hook_key, data);
 	mlx_loop_hook(data->view.mlx, ray_loop, data);
-	mlx_hook(data->view.win, 17, 1L << 17, handle_hook_close, data);
-	mlx_key_hook(data->view.win, handle_hook_key, data);
+
 }
 
 void 	ft_mlx_init_img(t_view	*view)

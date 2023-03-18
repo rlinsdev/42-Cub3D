@@ -182,5 +182,6 @@ void	draw_backgound(t_data *data);
 void	draw_ground(t_data *data);
 void	draw_wall(t_data *data, int pixel);
 void	draw_minimap(t_data *data);
- void	draw_minimap_square(t_img *img, int x, int y, int color, int size);
+int	ray_rotate(t_ray *r, int keycode);
+int	ray_move(t_ray *r, int keycode);
 #endif

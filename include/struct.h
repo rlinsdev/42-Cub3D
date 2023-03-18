@@ -33,15 +33,12 @@ typedef struct s_ray
 	int				wall_map_pos[2];
 	double			dist_to_side[2];
 	double			step[2];
-	double 			dda_line_size[2];
-	double 			wall_dist[2];
+	double			dda_line_size[2];
+	double			wall_dist[2];
 	double			perpendicular_dist;
 	double			wall_line_height;
-	int			line_start;
-	int			line_end;
+	int				line_size[2];
 	bool			hit_side;
-	bool			hit;
-
 }					t_ray;
 
 typedef struct s_img
