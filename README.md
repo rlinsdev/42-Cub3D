@@ -36,6 +36,7 @@ Calculating heading:
 ![Calculating heading](http://gamecodeschool.com/wp-content/uploads/2015/06/simple_game_graphics_movement_without_trigonometric_functions.png)
 
 Pythagoras:
+
 ![pythagoras](https://upload.wikimedia.org/wikipedia/commons/3/39/Animated_gif_version_of_SVG_of_rearrangement_proof_of_Pythagorean_theorem.gif)
 
 
