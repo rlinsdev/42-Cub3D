@@ -24,7 +24,7 @@ Emulating FPS Wolfenstein game (1992)
 	1. Walls are always at 90° angle with the floor.
 	2. Walls are made of cubes that have the same size.
 	3. Floor is always flat.
-* **FOV** The player should be able to see what is in front of him/her. For this, we will need to define a field of view (FOV)
+* **FOV** - **F**ield **o**f **V**iew The player should be able to see what is in front of him/her. For this, we will need to define a field of view (FOV)
 
 ## Images:
 Distance to wall:
