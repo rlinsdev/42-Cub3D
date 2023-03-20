@@ -64,12 +64,9 @@ $ git push
  # TODO
 
 ```
-
 ## Commands samples
 ```
- # TODO
 
-```
 
 ## Links:
 
