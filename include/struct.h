@@ -29,14 +29,14 @@ typedef struct s_ray
 	double			dir[2];
 	double			plane[2];
 	double			ray_dir[2];
-	double			delta_dist[2];
-	int				wall_map_pos[2];
+	double			delta[2];
+	int				wall_pos[2];
 	double			dist_to_side[2];
 	double			step[2];
 	double			dda_line_size[2];
 	double			wall_dist[2];
-	double			perpendicular_dist;
-	double			wall_line_height;
+	double			perpendicular;
+	double			speed;
 	int				line_size[2];
 	bool			hit_side;
 }					t_ray;
@@ -55,15 +55,11 @@ typedef struct s_view
 	int				**map_test;
 	int				color;
 	int				map[24][24];
-	t_img			minimap;
 	t_img			screen;
-
 }					t_view;
 
 typedef struct s_data
 {
-	void			*img_map;
-	void			*img_screen;
 	char			**map;
 	t_view			view;
 	t_ray			ray;

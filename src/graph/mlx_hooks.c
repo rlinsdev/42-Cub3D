@@ -6,7 +6,7 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:14 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/18 05:03:50 by lucas            ###   ########.fr       */
+/*   Updated: 2023/03/21 01:09:04 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	handle_hook_close(t_data *data)
 {
 	mlx_destroy_image(data->view.mlx, data->view.screen.img);
-	mlx_destroy_image(data->view.mlx, data->view.minimap.img);
 	mlx_destroy_window(data->view.mlx, data->view.win);
 	mlx_destroy_display(data->view.mlx); // Todo: Comentado p/ compilar
 	free_data(data);
@@ -23,12 +22,15 @@ int	handle_hook_close(t_data *data)
 	exit(SUCCESS);
 }
 
-
 int	handle_hook_key_press(int keycode, t_data *data)
 {
 	if (keycode == W_KEY_CONST || keycode == S_KEY_CONST
 		|| keycode == A_KEY_CONST || keycode == D_KEY_CONST)
 		ray_move(&data->ray, keycode);
+	if (keycode == LEFT_KEY_CONST || keycode == RIGHT_KEY_CONST)
+		ray_rotate(&data->ray, keycode);
+	if (keycode == R_KEY_CONST)
+		ray_resert(&data->ray);
 	if (keycode == LEFT_KEY_CONST || keycode == RIGHT_KEY_CONST)
 		ray_rotate(&data->ray, keycode);
 	return (0);
@@ -42,4 +44,11 @@ int	handle_hook_key(int keycode, t_data *data)
 	if (keycode == ESC_KEY_CONST)
 		handle_hook_close(data);
 	handle_hook_key_press(keycode, data);
+}
+
+void	handles_all_hooks(t_data *data)
+{
+	mlx_hook(data->view.win, 17, 1L << 17, handle_hook_close, data);
+	mlx_hook(data->view.win, 2, 1L << 0, handle_hook_key, data);
+	mlx_loop_hook(data->view.mlx, ray_loop, data);
 }

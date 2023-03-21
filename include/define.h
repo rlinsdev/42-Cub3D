@@ -1,4 +1,4 @@
-# ifndef DEFINE_H
+#ifndef DEFINE_H
 # define DEFINE_H
 
 # define A_KEY_CONST 'a'
@@ -7,13 +7,13 @@
 # define W_KEY_CONST 'w'
 # define LEFT_KEY_CONST 65361
 # define RIGHT_KEY_CONST 65363
-
+# define R_KEY_CONST 114
 
 # define ESC_KEY_CONST 65307
 
-# define C_WALL		'1'
-# define C_BACK_G 	'0'
-# define C_WHITE_S	' '
+# define C_WALL '1'
+# define C_BACK_G '0'
+# define C_WHITE_S ' '
 // # define C_NSEW 	'X'
 
 # define ERR_ARGS "Invalid call. Must be: ./cub3D <map_path/map.cub>"
@@ -23,19 +23,19 @@
 # define ERR_MAP7 "Invalid map! Verify the specification in PDF Subject"
 # define ERR_MAP8 "Map not surrounded by walls"
 # define ERR_TEXT "Texture out of pattern. Check Subject for more details."
-# define ERR_RGB  "Invalid RGB color format to Floor/Ceiling"
+# define ERR_RGB "Invalid RGB color format to Floor/Ceiling"
 
 # define HEIGHT 600
 # define WIDTH 800
+# define BITS_PER_BYTE 8
 # define TITLE "Cub3D"
 
 # define X 0
 # define Y 1
 
-#define COLOR_GROUND 0x738B22
-#define COLOR_SKY 0x87CEEB
+# define COLOR_GROUND 0x738B22
+# define COLOR_SKY 0x87CEEB
 # define COLOR_MINIMAP 0x000000
 # define COLOR_BORDER_MINIMAP 0xFFFFFF
 
-
-# endif
+#endif

@@ -14,18 +14,16 @@ int		worldMap[10][10] = {
 
 void	draw_backgound(t_data *data)
 {
-	int	pixel_x;
-	int	pixel_y;
-	int	color;
+	unsigned int	pixel_x;
+	unsigned int	pixel_y;
 
 	pixel_x = 0;
-	color = ft_mlx_rgb_to_int(190, 190, 255);
 	while (pixel_x < WIDTH)
 	{
 		pixel_y = 0;
 		while (pixel_y < HEIGHT)
 		{
-			ft_mlx_pixel_put(&data->view.screen, pixel_x, pixel_y, color);
+			ft_mlx_pixel_put(&data->view.screen, pixel_x, pixel_y, COLOR_SKY);
 			pixel_y++;
 		}
 		pixel_x++;
@@ -34,8 +32,8 @@ void	draw_backgound(t_data *data)
 
 void	draw_ground(t_data *data)
 {
-	int	pixel_x;
-	int	pixel_y;
+	unsigned int	pixel_x;
+	unsigned int	pixel_y;
 
 	pixel_x = 0;
 	while (pixel_x < WIDTH)
@@ -53,8 +51,8 @@ void	draw_ground(t_data *data)
 
 void	draw_minimap_square(t_img *img, int x, int y, int color)
 {
-	int	pixel_x;
-	int	pixel_y;
+	unsigned int	pixel_x;
+	unsigned int	pixel_y;
 
 	pixel_x = 0;
 	while (pixel_x < 10)
@@ -71,8 +69,8 @@ void	draw_minimap_square(t_img *img, int x, int y, int color)
 
 void	draw_minimap(t_data *data)
 {
-	int	pixel_x;
-	int	pixel_y;
+	unsigned int	pixel_x;
+	unsigned int	pixel_y;
 
 	pixel_x = 0;
 	while (pixel_x < 10)

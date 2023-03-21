@@ -6,7 +6,7 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:17 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/18 04:37:22 by lucas            ###   ########.fr       */
+/*   Updated: 2023/03/20 03:02:56 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	ft_mlx_put_img(t_view *view, t_img *img, int x, int y)
 
 void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
-	static char	*dst;
-
-	dst = img->addr + (y * img->data[1] + x * (img->data[0] / 8));
-	*(unsigned int *)dst = color;
+	if (img == NULL || x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+		return ;
+	*(unsigned int *)(img->addr + (y * img->data[1] + x * (img->data[0]
+					/ BITS_PER_BYTE))) = color;
 }
