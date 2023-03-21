@@ -66,11 +66,6 @@ $ git checkout validator
 $ git merge main
 $ git push
 ```
- # TODO
-
-```Bash
-## Commands samples
-```
 
 
 ## Links:
