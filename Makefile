@@ -88,8 +88,7 @@ bonus: all
 rebonus: fclean all
 
 norma:
-	norminette $(PATH_SRC)
-	norminette $(LIBFT_PATH)
+	norminette $(PATH_SRC) $(LIBFT_PATH) $(INC_PATH)
 
 run:
 	make re && ./cub3D ./maps/11.cub
