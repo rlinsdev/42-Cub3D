@@ -25,6 +25,7 @@ Emulating FPS Wolfenstein game (1992)
 	2. Walls are made of cubes that have the same size.
 	3. Floor is always flat.
 * **FOV** - **F**ield **o**f **V**iew The player should be able to see what is in front of him/her. For this, we will need to define a field of view (FOV)
+*  "To put the player inside the world, we need to define the player’s X coordinate, the player’s Y coordinate, and the angle that the player is facing to. These three attributes forms the 'point of view' of the player."
 * **Fisheye Effect**: The fisheye effect is an effect you see if you use the real distance, where all the walls become rounded, and can make you sick if you rotate.
 
 ## Images:
