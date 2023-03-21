@@ -50,8 +50,8 @@ Pythagoras:
 * No leaks are allowed.
 * Norma must be run.
 
- # To run:
-```
+ ## To run:
+```Bash
 $ git clone --recursive https://github.com/rlinsdev/42-Cub3D.git
 # or
 $ git clone https://github.com/rlinsdev/42-Cub3D.git
@@ -59,7 +59,7 @@ $ git submodule update --init --recursive
 ```
 
 ## Git sync main
-```
+```Bash
 $ git checkout main
 $ git pull
 $ git checkout validator
@@ -68,7 +68,7 @@ $ git push
 ```
  # TODO
 
-```
+```Bash
 ## Commands samples
 ```
 
@@ -77,11 +77,11 @@ $ git push
 
 
 * [Game Wolfenstein 3D](http://users.atw.hu/wolf3d/)
-* [Demo] (https://permadi.com/tutorial/raycast/demo/1/)
 * [MinilibX](https://harm-smits.github.io/42docs/libs/minilibx)
 * [Ray casting tutorial demos](https://github.com/permadi-com/ray-cast/tree/master/)
 * [Ray Casting tutor](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/)
 * [Samples in js/HTML](https://github.com/permadi-com/ray-cast/tree/master/)
+* [Demo](https://permadi.com/tutorial/raycast/demo/1/)
 * [Trigonometry](https://en.wikipedia.org/wiki/Trigonometry)
 * [Pythagoras](https://matematicabasica.net/teorema-de-pitagoras/)
 * [Lodev - Raycasting](https://lodev.org/cgtutor/raycasting.html)
