@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:32:47 by rlins             #+#    #+#             */
 /*   Updated: 2023/03/15 08:46:55 by rlins            ###   ########.fr       */
@@ -44,7 +44,7 @@ int	file_to_variable(t_data *data)
 
 /**
  * @brief If map start with blank space, just keep going to the next item in
- * map. Check if the value is Player position. Check if is the value color to
+ * map. Check if the value is ray position. Check if is the value color to
  * floor or ceiling. Check if is a map data.
  * @param data Data structure
  * @param file File passed by param in program

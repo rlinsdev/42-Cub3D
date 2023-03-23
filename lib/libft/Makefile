@@ -1,80 +1,94 @@
-# Collors
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/04/10 16:09:27 by rlins             #+#    #+#              #
+#    Updated: 2022/12/18 16:57:01 by rlins            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = libft.a
+
 GREEN = \033[0;32m
 RED = \033[0;31m
 BLUE = \033[0;34m
 RESET = \033[0m
 
-# Paths
-HEADERS_PATH = ./include/
-SRCS_PATH = ./src/
-OBJS_PATH = ./obj/
-LIBS_PATH = ../
+CC = gcc -c
 
-# Compilation
-CC = gcc -g
 FLAGS = -Wall -Wextra -Werror
 
-# Bash commands
-RM = rm -f
-MKDIR = mkdir -p
+AR = ar -rcs
 
-# Files
-LIBNAME = libft.a
-SRC_FILES =	ft_free.c \
-			ft_itoa_base.c \
-			ft_print_char.c \
-			ft_print_dec_int.c \
-			ft_print_hexa.c \
-			ft_print_pointer.c \
-			ft_print_string.c \
-			ft_printf.c \
-			ft_putchar.c \
-			ft_putstr.c \
-			ft_strlen.c \
-			ft_get_next_line.c \
-			ft_strchr.c \
-			ft_isascii.c \
-			ft_split.c \
-			ft_substr.c \
-			ft_strdup.c \
-			ft_strjoin.c \
-			ft_putendl_fd.c \
-			ft_putstr_fd.c \
-			ft_putchar_fd.c \
-			ft_memcmp.c \
-			ft_calloc.c \
-			ft_isdigit.c \
-			ft_atoi.c \
-			ft_bzero.c
+SRCS = ft_atoi.c \
+		ft_ato_long.c \
+		ft_bzero.c \
+		ft_calloc.c \
+		ft_free_array_str.c \
+		ft_free_ptr.c \
+		ft_isalnum.c \
+		ft_isalpha.c \
+		ft_isascii.c \
+		ft_isdigit.c \
+		ft_isprint.c \
+		ft_isspace.c \
+		ft_itoa.c \
+		ft_memchr.c \
+		ft_memcmp.c \
+		ft_memcpy.c \
+		ft_memmove.c \
+		ft_memset.c \
+		ft_putchar_fd.c \
+		ft_putendl_fd.c \
+		ft_putnbr_fd.c \
+		ft_putstr_fd.c \
+		ft_split.c \
+		ft_strchr.c \
+		ft_strcmp.c \
+		ft_strdup.c \
+		ft_striteri.c \
+		ft_strjoin.c \
+		ft_strlcat.c \
+		ft_strlcpy.c \
+		ft_strlen.c \
+		ft_strmapi.c \
+		ft_strncmp.c \
+		ft_strnstr.c \
+		ft_strrchr.c \
+		ft_strtrim.c \
+		ft_substr.c \
+		ft_tolower.c \
+		ft_toupper.c \
+		ft_realloc.c \
+		get_next_line.c \
 
-SOURCES = $(addprefix $(SRCS_PATH), $(SRC_FILES))
-OBJ_FILES = $(patsubst %.c, %.o, $(SRC_FILES))
-OBJECTS = $(addprefix $(OBJS_PATH), $(OBJ_FILES))
+OBJ_FILES = $(patsubst %.c, %.o, $(SRCS))
+OBJ = $(addprefix ./, $(OBJ_FILES))
 
-# Target
-all: prep $(LIBNAME)
+all: $(NAME)
 
-# Compiles
-prep:
-	@echo "$(LIBNAME): $(BLUE)Generating... Just a minute$(RESET)"
-	@$(MKDIR) $(SRCS_PATH) $(OBJS_PATH)
-	@echo "$(LIBNAME): $(GREEN)Done!$(RESET)"
+$(NAME):
+	@echo "$(BLUE)(just) a minute ⌛...$(RESET)"
+	$(CC) $(FLAGS) $(SRCS)
+	$(AR) $(NAME) $(OBJ)
+	ranlib $(NAME)
+	@echo "\n$(NAME): $(GREEN)$(NAME) was created ✓$(RESET)"
+	@echo
 
-$(LIBNAME): $(OBJECTS)
-	@ar -rcs $(LIBS_PATH)$(LIBNAME) $(OBJECTS)
-
-$(OBJS_PATH)%.o : $(SRCS_PATH)%.c $(HEADERS_PATH)*.h
-	@$(CC) $(FLAGS) -c -I $(HEADERS_PATH) $< -o $@
 
 clean:
-	@echo "$(GREEN)$(LIBNAME): $(RED)object (*.o) files were deleted$(RESET)"
-	@$(RM) $(OBJECTS)
+	@echo "\n$(NAME): $(RED)object (*.o) files were deleted ✗$(RESET)"
+	/bin/rm -f $(OBJ)
+	@echo
 
-fclean:
-	@echo "$(GREEN)$(LIBNAME): $(RED)was deleted$(RESET)"
-	@$(RM) $(OBJECTS)
-	@$(RM) $(LIBS_PATH)$(LIBNAME)
+fclean: clean
+	@echo "$(NAME): $(RED)$(NAME) was deleted ✗$(RESET)"
+	/bin/rm -rf $(NAME)
+	@echo
 
 re: fclean all
 
-.PHONY:	all clean fclean re
+.PHONY: all clean fclean re
