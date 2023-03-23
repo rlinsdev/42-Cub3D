@@ -167,9 +167,7 @@ bool	is_white_space(char c);
  * @return int - 0 OK. Otherwise error
  */
 
-bool	parse_tex_color(t_texture_det *text_det, char *row, int i);
-
-int parse_tex_color(t_texture_det *text_det, char *row, int i);
+int	parse_tex_color(t_texture_det *text_det, char *row, int i);
 
 
 /**
@@ -181,6 +179,7 @@ int parse_tex_color(t_texture_det *text_det, char *row, int i);
 void	spaces_to_wall(t_data *data);
 
 
+// TODO: documentar as funções abaixo
 int		ray_loop(t_data *data);
 
 void	draw_backgound(t_data *data);
@@ -190,6 +189,7 @@ void	draw_minimap(t_data *data);
 int		ray_rotate(t_ray *r, int keycode);
 int		ray_move(t_ray *r, int keycode);
 int		ray_resert(t_ray *r);
+void	calc_perpendicular(t_ray *ray);
 void	handles_all_hooks(t_data *data);
 
 void	calc_camera(t_ray *ray, int pixel);

@@ -43,10 +43,10 @@ SRCS +=		main.c \
 			init_map.c init_data.c \
 			mlx_img.c mlx_init.c mlx_hooks.c mlx_color.c \
 			error_handler.c sanitization.c \
-			val_map.c parse_texture.c exit.c \
+			val_map.c parse_texture.c exit.c val_texture.c \
 			parse_map_partial.c parse_texture_partial.c \
 			ray_calc.c ray_draw.c ray_move.c ray_loop.c \
-      
+
 OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.c=.o))
 
 all: $(MLX) $(LIBFT) $(NAME)

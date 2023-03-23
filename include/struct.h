@@ -38,8 +38,11 @@ typedef struct s_ray
 	double			perpendicular;
 	double			speed;
 	int				line_size[2];
+	char 			dir_char;
 	bool			hit_side;
 }					t_ray;
+
+
 
 typedef struct s_img
 {
