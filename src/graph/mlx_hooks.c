@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:14 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/21 01:09:04 by lucas            ###   ########.fr       */
+/*   Updated: 2023/03/23 10:16:09 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	handle_hook_key_press(int keycode, t_data *data)
 {
 	if (keycode == W_KEY_CONST || keycode == S_KEY_CONST
 		|| keycode == A_KEY_CONST || keycode == D_KEY_CONST)
-		ray_move(&data->ray, keycode);
+		ray_move(&data->ray, keycode, data->map);
 	if (keycode == LEFT_KEY_CONST || keycode == RIGHT_KEY_CONST)
 		ray_rotate(&data->ray, keycode);
 	if (keycode == R_KEY_CONST)

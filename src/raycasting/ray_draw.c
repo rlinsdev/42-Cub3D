@@ -1,16 +1,5 @@
 #include "cub3d.h"
 
-int		worldMap[10][10] = {
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	{1, 1, 0, 0, 1, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 0, 0, 0, 0, 0, 0, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 0, 0, 1, 0, 0, 0, 1, 1},
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
 
 void	draw_ceiling(t_data *data)
 {
@@ -79,10 +68,10 @@ void	draw_minimap(t_data *data)
 		pixel_y = 0;
 		while (pixel_y < 10)
 		{
-			if (worldMap[pixel_y][pixel_x])
+			if (data->map[pixel_y][pixel_x])
 				draw_minimap_square(&data->view.screen, pixel_x, pixel_y,
 						COLOR_MINIMAP);
-			else if (!worldMap[pixel_y][pixel_x])
+			else if (!data->map[pixel_y][pixel_x])
 				draw_minimap_square(&data->view.screen, pixel_x, pixel_y,
 						COLOR_BORDER_MINIMAP);
 			pixel_y++;
