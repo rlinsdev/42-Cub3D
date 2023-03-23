@@ -182,12 +182,12 @@ void	spaces_to_wall(t_data *data);
 // TODO: documentar as funções abaixo
 int		ray_loop(t_data *data);
 
-void	draw_backgound(t_data *data);
-void	draw_ground(t_data *data);
+void	draw_ceiling(t_data *data);
+void	draw_floor(t_data *data);
 void	draw_wall(t_data *data, int pixel);
 void	draw_minimap(t_data *data);
 int		ray_rotate(t_ray *r, int keycode);
-int		ray_move(t_ray *r, int keycode);
+int		ray_move(t_ray *r, int keycode, char **map);
 int		ray_resert(t_ray *r);
 void	calc_perpendicular(t_ray *ray);
 void	handles_all_hooks(t_data *data);
@@ -196,7 +196,7 @@ void	calc_camera(t_ray *ray, int pixel);
 void	calc_delta(t_ray *r);
 void	calc_side_x(t_ray *r);
 void	calc_side_y(t_ray *r);
-void	calc_dda(t_ray *r, t_view *v);
+void	calc_dda(t_ray *r, t_view *v, char **map);
 
 /**
  * @brief Validate Textures. Check if it is following the pattern

@@ -1,16 +1,6 @@
 #include "cub3d.h"
 
-int		worldMap3[10][10] = {
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	{1, 1, 0, 0, 1, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 0, 0, 0, 0, 0, 0, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 0, 0, 1, 0, 0, 0, 1, 1},
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+
 
 int	ray_rotate(t_ray *r, int keycode)
 {
@@ -31,14 +21,14 @@ int	ray_rotate(t_ray *r, int keycode)
 	return (true);
 }
 
-int	check_collision(t_ray *r, float dx, float dy)
+int	check_collision(t_ray *r, float dx, float dy, char **map)
 {
 	int	map_x;
 	int	map_y;
 
 	map_x = (int)(r->pos[0] + dx);
 	map_y = (int)(r->pos[1] + dy);
-	if (worldMap3[map_x][map_y] == 0)
+	if (map[map_x][map_y] == C_BACK_G)
 	{
 		r->pos[0] += dx;
 		r->pos[1] += dy;
@@ -47,16 +37,16 @@ int	check_collision(t_ray *r, float dx, float dy)
 	return (false);
 }
 
-int	ray_move(t_ray *r, int keycode)
+int	ray_move(t_ray *r, int keycode, char **map)
 {
 	if (keycode == W_KEY_CONST)
-		check_collision(r, r->dir[0] * r->speed, r->dir[1] * r->speed);
+		check_collision(r, r->dir[0] * r->speed, r->dir[1] * r->speed, map);
 	else if (keycode == S_KEY_CONST)
-		check_collision(r, -r->dir[0] * r->speed, -r->dir[1] * r->speed);
+		check_collision(r, -r->dir[0] * r->speed, -r->dir[1] * r->speed, map);
 	else if (keycode == A_KEY_CONST)
-		check_collision(r, -r->plane[0] * r->speed, -r->plane[1] * r->speed);
+		check_collision(r, -r->plane[0] * r->speed, -r->plane[1] * r->speed, map);
 	else if (keycode == D_KEY_CONST)
-		check_collision(r, r->plane[0] * r->speed, r->plane[1] * r->speed);
+		check_collision(r, r->plane[0] * r->speed, r->plane[1] * r->speed, map);
 	return (0);
 }
 

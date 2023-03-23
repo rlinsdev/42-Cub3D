@@ -3,27 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ray_calc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:58:12 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/21 14:59:23 by lucas            ###   ########.fr       */
+/*   Updated: 2023/03/23 11:00:44 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		worldMap5[10][10] = {
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	{1, 1, 0, 0, 1, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 0, 0, 0, 0, 0, 0, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 0, 0, 1, 0, 0, 0, 1, 1},
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-};
 
 void	calc_camera(t_ray *ray, int pixel)
 {
@@ -83,7 +71,7 @@ void	calc_side_y(t_ray *r)
 	}
 }
 
-void	calc_dda(t_ray *r, t_view *v)
+void	calc_dda(t_ray *r, t_view *v, char **map)
 {
 	r->dda_line_size[X] = r->dist_to_side[X];
 	r->dda_line_size[Y] = r->dist_to_side[Y];
@@ -101,7 +89,7 @@ void	calc_dda(t_ray *r, t_view *v)
 			r->dda_line_size[Y] += r->delta[Y];
 			r->hit_side = true;
 		}
-		if (worldMap5[r->wall_pos[X]][r->wall_pos[Y]] > 0)
+		if (map[r->wall_pos[X]][r->wall_pos[Y]] == C_WALL)
 			break ;
 	}
 }

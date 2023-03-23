@@ -2,17 +2,7 @@
 
 // remove esse map e use o map do data
 // documentar o codigo!!!
-int		worldMap2[10][10] = {
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	{1, 1, 0, 0, 1, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 0, 0, 0, 0, 0, 0, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 0, 0, 1, 0, 0, 0, 1, 1},
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+
 
 
 void	calc_raycast(t_data *data)
@@ -26,7 +16,7 @@ void	calc_raycast(t_data *data)
 		calc_delta(&data->ray);
 		calc_side_x(&data->ray);
 		calc_side_y(&data->ray);
-		calc_dda(&data->ray, &data->view);
+		calc_dda(&data->ray, &data->view, data->map);
 		calc_perpendicular(&data->ray);
 		draw_wall(data, pixel);
 		pixel++;
@@ -36,8 +26,8 @@ void	calc_raycast(t_data *data)
 
 int	ray_loop(t_data *data)
 {
-	draw_backgound(data);
-	draw_ground(data);
+	draw_ceiling(data);
+	draw_floor(data);
 	calc_raycast(data);
 	return (SUCCESS);
 }

@@ -1,18 +1,7 @@
 #include "cub3d.h"
 
-int		worldMap[10][10] = {
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	{1, 1, 0, 0, 1, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 0, 0, 0, 0, 0, 0, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 0, 0, 1, 0, 0, 0, 1, 1},
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
 
-void	draw_backgound(t_data *data)
+void	draw_ceiling(t_data *data)
 {
 	unsigned int	pixel_x;
 	unsigned int	pixel_y;
@@ -23,14 +12,15 @@ void	draw_backgound(t_data *data)
 		pixel_y = 0;
 		while (pixel_y < HEIGHT)
 		{
-			ft_mlx_pixel_put(&data->view.screen, pixel_x, pixel_y, COLOR_SKY);
+			ft_mlx_pixel_put(&data->view.screen, pixel_x, pixel_y,
+				data->texture_det.hex_ceiling);
 			pixel_y++;
 		}
 		pixel_x++;
 	}
 }
 
-void	draw_ground(t_data *data)
+void	draw_floor(t_data *data)
 {
 	unsigned int	pixel_x;
 	unsigned int	pixel_y;
@@ -42,7 +32,7 @@ void	draw_ground(t_data *data)
 		while (pixel_y < HEIGHT)
 		{
 			ft_mlx_pixel_put(&data->view.screen, pixel_x, pixel_y,
-					COLOR_GROUND);
+				data->texture_det.hex_floor);
 			pixel_y++;
 		}
 		pixel_x++;
@@ -78,10 +68,10 @@ void	draw_minimap(t_data *data)
 		pixel_y = 0;
 		while (pixel_y < 10)
 		{
-			if (worldMap[pixel_y][pixel_x])
+			if (data->map[pixel_y][pixel_x])
 				draw_minimap_square(&data->view.screen, pixel_x, pixel_y,
 						COLOR_MINIMAP);
-			else if (!worldMap[pixel_y][pixel_x])
+			else if (!data->map[pixel_y][pixel_x])
 				draw_minimap_square(&data->view.screen, pixel_x, pixel_y,
 						COLOR_BORDER_MINIMAP);
 			pixel_y++;

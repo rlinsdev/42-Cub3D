@@ -9,6 +9,8 @@ typedef struct s_texture
 	char			*east;
 	int				*floor;
 	int				*ceiling;
+	unsigned long	hex_floor;
+	unsigned long	hex_ceiling;
 }					t_texture_det;
 
 typedef struct s_map_detail

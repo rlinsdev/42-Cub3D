@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   val_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/22 23:46:15 by lucas            ###   ########.fr       */
+/*   Updated: 2023/03/23 10:40:46 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static int	is_valid_char_in_map(t_data *data, char **map)
 				return (error_msg(ERR_MAP_CHAR, 10));
 			if ((ft_strchr(VALID_PLAYER_POS, map[i][j])) != NULL)
 			{
-				if (data->ray.dir_char != '0')
+				if (data->ray.dir_char != C_BACK_G)
 					return (error_msg(ERR_SING_PLAYER, 11));
 				else
 					data->ray.dir_char = map[i][j];
