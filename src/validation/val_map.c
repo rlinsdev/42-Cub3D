@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   val_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/14 21:12:05 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/22 23:46:15 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	valid_map(t_data *data)
 {
 	int	valid_char_map;
 
-	data->player.direction = '0';
+	data->ray.dir_char = '0';
 	if (!data->map)
 		return (error_msg(ERR_MAP7, 7));
 	if (is_map_sur_walls(data) == false)
@@ -30,7 +30,7 @@ int	valid_map(t_data *data)
 		return (valid_char_map);
 	if (is_map_last_element(&data->map_det) == false)
 		return (error_msg(ERR_MAP_LAST, 16));
-	if (data->player.direction == '0')
+	if (data->ray.dir_char == '0')
 		return (error_msg(ERR_MAP_DIR, 17));
 
 	return (0);
@@ -86,10 +86,10 @@ static int	is_valid_char_in_map(t_data *data, char **map)
 				return (error_msg(ERR_MAP_CHAR, 10));
 			if ((ft_strchr(VALID_PLAYER_POS, map[i][j])) != NULL)
 			{
-				if (data->player.direction != '0')
+				if (data->ray.dir_char != '0')
 					return (error_msg(ERR_SING_PLAYER, 11));
 				else
-					data->player.direction = map[i][j];
+					data->ray.dir_char = map[i][j];
 			}
 			j++;
 		}

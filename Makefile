@@ -14,13 +14,14 @@ VPATH 			= $(shell find $(PATH_SRC) -type d)
 
 # Libft files and directories
 LIBFT_PATH 		= ./lib/libft/
-LIBFT 			= ./lib/libft.a
+LIBFT 			= $(LIBFT_PATH)/libft.a
 
 # Minilibx
 MLX_PATH	= ./lib/minilibx-linux/
 MLX_NAME	= libmlx.a
 MLX			= $(MLX_PATH)$(MLX_NAME)
-MLXFLAGS 	= -lmlx -lXext -lX11
+
+MLXFLAGS 		= -lmlx -lXext -lX11 -lm
 
 # Compilation
 CC = cc -g
@@ -40,12 +41,11 @@ SRCS +=		main.c \
 			val_args.c val_files.c \
 			parse_file.c parse_map.c \
 			init_map.c init_data.c \
-			mlx_img.c mlx_init.c mlx_hooks.c \
+			mlx_img.c mlx_init.c mlx_hooks.c mlx_color.c \
 			error_handler.c sanitization.c \
-			val_map.c parse_texture.c exit.c \
+			val_map.c parse_texture.c exit.c val_texture.c \
 			parse_map_partial.c parse_texture_partial.c \
-			val_texture.c
-
+			ray_calc.c ray_draw.c ray_move.c ray_loop.c \
 
 OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.c=.o))
 
@@ -89,6 +89,7 @@ rebonus: fclean all
 
 norma:
 	norminette $(PATH_SRC) $(LIBFT_PATH) $(INC_PATH)
+
 
 run:
 	make re && ./cub3D ./maps/11.cub
