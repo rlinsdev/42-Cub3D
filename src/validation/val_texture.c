@@ -6,13 +6,14 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 09:28:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/14 15:25:18 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/23 09:33:21 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
 static bool	valid_rgb(int *rgv_val);
+static unsigned long	rgb_to_hex(int *rgb);
 
 int	valid_texture(t_data *data, t_texture_det *text)
 {
@@ -25,6 +26,8 @@ int	valid_texture(t_data *data, t_texture_det *text)
 		return (error_msg(ERR_TEXT_PATH, 14));
 	if (valid_rgb(text->ceiling) == false || valid_rgb(text->floor) == false)
 		return (error_msg(ERR_RGB_VAL, 15));
+	// text->hex_ceiling = rgb_to_hexa()
+	// text->hex_floor =
 	return (0);
 }
 
@@ -45,4 +48,24 @@ static bool	valid_rgb(int *rgb_val)
 		i++;
 	}
 	return (true);
+}
+
+/**
+ * @brief Convert the RGB Color in file to Hexadecimal color
+ * Stackoverflow: https://stackoverflow.com/questions/14375156/
+ * @param rgb Array of int representing RGB Color
+ * @return unsigned long
+ */
+static unsigned long	rgb_to_hex(int *rgb)
+{
+	unsigned long	result;
+	int				r;
+	int				g;
+	int				b;
+
+	r = rgb[0];
+	g = rgb[1];
+	b = rgb[2];
+
+	return(((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
 }
