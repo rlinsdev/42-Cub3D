@@ -23,7 +23,8 @@ void	draw_backgound(t_data *data)
 		pixel_y = 0;
 		while (pixel_y < HEIGHT)
 		{
-			ft_mlx_pixel_put(&data->view.screen, pixel_x, pixel_y, COLOR_SKY);
+			ft_mlx_pixel_put(&data->view.screen, pixel_x, pixel_y,
+				data->texture_det.hex_ceiling);
 			pixel_y++;
 		}
 		pixel_x++;
@@ -42,7 +43,7 @@ void	draw_ground(t_data *data)
 		while (pixel_y < HEIGHT)
 		{
 			ft_mlx_pixel_put(&data->view.screen, pixel_x, pixel_y,
-					COLOR_GROUND);
+				data->texture_det.hex_floor);
 			pixel_y++;
 		}
 		pixel_x++;

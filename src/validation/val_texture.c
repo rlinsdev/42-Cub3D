@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 09:28:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/23 09:33:21 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/23 09:38:42 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	valid_texture(t_data *data, t_texture_det *text)
 		return (error_msg(ERR_TEXT_PATH, 14));
 	if (valid_rgb(text->ceiling) == false || valid_rgb(text->floor) == false)
 		return (error_msg(ERR_RGB_VAL, 15));
-	// text->hex_ceiling = rgb_to_hexa()
-	// text->hex_floor =
+	text->hex_ceiling = rgb_to_hex(text->ceiling);
+	text->hex_floor = rgb_to_hex(text->floor);
 	return (0);
 }
 
