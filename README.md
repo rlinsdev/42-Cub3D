@@ -28,6 +28,12 @@ Emulating FPS Wolfenstein game (1992)
 *  "To put the player inside the world, we need to define the player’s X coordinate, the player’s Y coordinate, and the angle that the player is facing to. These three attributes forms the 'point of view' of the player."
 * **Fisheye Effect**: The fisheye effect is an effect you see if you use the real distance, where all the walls become rounded, and can make you sick if you rotate.
 
+## Technical Details:
+* DDA Will handle the "hit" in wall, looking the intersections of ray until hit the wall. __This framework will give to us what block was hited, not the distance__ If this was handled by looking for a fixed distance until the wall, we are not able to get a good design.
+* DDA is able to identify block to  block where the ray will pass (x or y)
+* 0.66 is a good size in FPS games (Size of plane)
+* Formula: Dir + Plane + Multiplier (-1 a 1)
+
 ## Images:
 Distance to wall:
 
@@ -69,8 +75,6 @@ $ git push
 
 
 ## Links:
-
-
 * [Game Wolfenstein 3D](http://users.atw.hu/wolf3d/)
 * [MinilibX](https://harm-smits.github.io/42docs/libs/minilibx)
 * [Ray casting tutorial demos](https://github.com/permadi-com/ray-cast/tree/master/)
@@ -80,4 +84,5 @@ $ git push
 * [Trigonometry](https://en.wikipedia.org/wiki/Trigonometry)
 * [Pythagoras](https://matematicabasica.net/teorema-de-pitagoras/)
 * [Lodev - Raycasting](https://lodev.org/cgtutor/raycasting.html)
+* [Manual do código](https://www.youtube.com/watch?v=J5K8qMCB-7o&list=PLLFRf_pkM7b6rBRoTOW64NKdltCLQNpW5)
 
