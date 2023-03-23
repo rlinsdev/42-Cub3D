@@ -12,7 +12,7 @@ int		worldMap[10][10] = {
 	{1, 1, 0, 0, 1, 0, 0, 0, 1, 1},
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
 
-void	draw_backgound(t_data *data)
+void	draw_ceiling(t_data *data)
 {
 	unsigned int	pixel_x;
 	unsigned int	pixel_y;
@@ -31,7 +31,7 @@ void	draw_backgound(t_data *data)
 	}
 }
 
-void	draw_ground(t_data *data)
+void	draw_floor(t_data *data)
 {
 	unsigned int	pixel_x;
 	unsigned int	pixel_y;

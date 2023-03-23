@@ -36,8 +36,8 @@ void	calc_raycast(t_data *data)
 
 int	ray_loop(t_data *data)
 {
-	draw_backgound(data);
-	draw_ground(data);
+	draw_ceiling(data);
+	draw_floor(data);
 	calc_raycast(data);
 	return (SUCCESS);
 }

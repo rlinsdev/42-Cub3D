@@ -182,8 +182,8 @@ void	spaces_to_wall(t_data *data);
 // TODO: documentar as funções abaixo
 int		ray_loop(t_data *data);
 
-void	draw_backgound(t_data *data);
-void	draw_ground(t_data *data);
+void	draw_ceiling(t_data *data);
+void	draw_floor(t_data *data);
 void	draw_wall(t_data *data, int pixel);
 void	draw_minimap(t_data *data);
 int		ray_rotate(t_ray *r, int keycode);
