@@ -11,8 +11,6 @@ PATH_OBJS 		= ./objs/
 INC_PATH 		= ./include/
 VPATH 			= $(shell find $(PATH_SRC) -type d)
 
-# maps
-#MAP = maps/map_3x5.ber TODO: Colocar mapa do Cub3D
 
 # Libft files and directories
 LIBFT_PATH 		= ./lib/libft/
@@ -22,6 +20,7 @@ LIBFT 			= $(LIBFT_PATH)/libft.a
 MLX_PATH	= ./lib/minilibx-linux/
 MLX_NAME	= libmlx.a
 MLX			= $(MLX_PATH)$(MLX_NAME)
+
 MLXFLAGS 		= -lmlx -lXext -lX11 -lm
 
 # Compilation
@@ -47,13 +46,13 @@ SRCS +=		main.c \
 			val_map.c parse_texture.c exit.c \
 			parse_map_partial.c parse_texture_partial.c \
 			ray_calc.c ray_draw.c ray_move.c ray_loop.c \
-
+      
 OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.c=.o))
 
 all: $(MLX) $(LIBFT) $(NAME)
 
 $(NAME): $(OBJS) $(INC_PATH)cub3d.h
-	@$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(LIBFT) $(MLXFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(LIBFT) $(MLX) $(MLXFLAGS) -o $(NAME)
 	@echo "$(GREEN)Build Successful$(RESET)"
 
 $(PATH_OBJS)%.o: %.c
@@ -89,11 +88,11 @@ bonus: all
 rebonus: fclean all
 
 norma:
-	norminette $(PATH_SRC)
-	norminette $(LIBFT_PATH)
+	norminette $(PATH_SRC) $(LIBFT_PATH) $(INC_PATH)
 
-run: all
-	./cub3D ./maps/2-pdf-map.cub
+
+run:
+	make re && ./cub3D ./maps/11.cub
 #	./cub3D ./maps/4.cub
 
 valgrind:

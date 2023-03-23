@@ -30,7 +30,8 @@ static int	args_handler(t_data *data, char **argv)
 		return (free_data(data));
 	if (valid_map(data) != 0)
 		return (free_data(data));
-	// if (validTextureHere Too!)
+	if (valid_texture(data, &data->texture_det) != 0)
+		return (free_data(data));
 }
 
 int	main(int argc, char **argv)

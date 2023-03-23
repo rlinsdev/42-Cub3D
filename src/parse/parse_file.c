@@ -6,7 +6,7 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/17 00:27:26 by lucas            ###   ########.fr       */
+/*   Updated: 2023/03/15 08:46:55 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	file_to_variable(t_data *data)
 		j = 0;
 		while (data->map_det.file[i][j])
 		{
+			while (data->map_det.file[i][j] == '\n')
+				i++;
 			ret = handle_file_infos(data, data->map_det.file, i, j);
 			if (ret == BREAK)
 				break ;
@@ -53,7 +55,7 @@ int	file_to_variable(t_data *data)
  */
 static int	handle_file_infos(t_data *data, char **file, int i, int j)
 {
-	if (is_white_space(file[i][j]) == true)
+	while (is_white_space(file[i][j]) == true)
 		j++ ;
 	if (ft_isdigit(file[i][j]) == false)
 	{
@@ -65,7 +67,7 @@ static int	handle_file_infos(t_data *data, char **file, int i, int j)
 		}
 		else
 		{
-			if (parse_tex_color(&data->texture_det, file[i], j) == false)
+			if (parse_tex_color(&data->texture_det, file[i], j) != 0)
 				return (FAILURE);
 			return (BREAK);
 		}

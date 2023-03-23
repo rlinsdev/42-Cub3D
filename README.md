@@ -19,12 +19,14 @@ Emulating FPS Wolfenstein game (1992)
 * **Raycasting** is not the same as *raytracing*!
 	- **Raycasting** is a fast semi-3D technique that works in realtime even on 4MHz graphical calculators.
 	- while *raytracing* is a realistic rendering technique that supports reflections and shadows in true 3D scenes, and only recently computers became fast enough to do it in realtime for reasonably high resolutions and complex scenes.
-* DDA - The **D**igital **D**ifference **A**nalyzer(DDA) algorithm is used to draw lines on a screen in an incrementally. The algorithm is called the Digital Difference Analyzer because it interpolates based on the difference between the start and end points. The algorithm itself is very easy to understand and implement.
+* **DDA** - The **D**igital **D**ifference **A**nalyzer(DDA) algorithm is used to draw lines on a screen in an incrementally. The algorithm is called the Digital Difference Analyzer because it interpolates based on the difference between the start and end points. The algorithm itself is very easy to understand and implement.
 * **Ray Casting**:
 	1. Walls are always at 90° angle with the floor.
 	2. Walls are made of cubes that have the same size.
 	3. Floor is always flat.
-* **FOV** The player should be able to see what is in front of him/her. For this, we will need to define a field of view (FOV)
+* **FOV** - **F**ield **o**f **V**iew The player should be able to see what is in front of him/her. For this, we will need to define a field of view (FOV)
+*  "To put the player inside the world, we need to define the player’s X coordinate, the player’s Y coordinate, and the angle that the player is facing to. These three attributes forms the 'point of view' of the player."
+* **Fisheye Effect**: The fisheye effect is an effect you see if you use the real distance, where all the walls become rounded, and can make you sick if you rotate.
 
 ## Images:
 Distance to wall:
@@ -35,6 +37,9 @@ Calculating heading:
 
 ![Calculating heading](http://gamecodeschool.com/wp-content/uploads/2015/06/simple_game_graphics_movement_without_trigonometric_functions.png)
 
+Pythagoras:
+
+![pythagoras](https://upload.wikimedia.org/wikipedia/commons/3/39/Animated_gif_version_of_SVG_of_rearrangement_proof_of_Pythagorean_theorem.gif)
 
 
 ## More information:
@@ -45,24 +50,23 @@ Calculating heading:
 * No leaks are allowed.
 * Norma must be run.
 
+ ## To run:
+```Bash
+$ git clone --recursive https://github.com/rlinsdev/42-Cub3D.git
+# or
+$ git clone https://github.com/rlinsdev/42-Cub3D.git
+$ git submodule update --init --recursive
+```
 
 ## Git sync main
-```
+```Bash
 $ git checkout main
 $ git pull
 $ git checkout validator
 $ git merge main
 $ git push
 ```
- # TODO
 
-```
-
-## Commands samples
-```
- # TODO
-
-```
 
 ## Links:
 
@@ -72,4 +76,8 @@ $ git push
 * [Ray casting tutorial demos](https://github.com/permadi-com/ray-cast/tree/master/)
 * [Ray Casting tutor](https://permadi.com/1996/05/ray-casting-tutorial-table-of-contents/)
 * [Samples in js/HTML](https://github.com/permadi-com/ray-cast/tree/master/)
+* [Demo](https://permadi.com/tutorial/raycast/demo/1/)
+* [Trigonometry](https://en.wikipedia.org/wiki/Trigonometry)
+* [Pythagoras](https://matematicabasica.net/teorema-de-pitagoras/)
+* [Lodev - Raycasting](https://lodev.org/cgtutor/raycasting.html)
 

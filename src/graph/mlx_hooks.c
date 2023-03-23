@@ -16,7 +16,9 @@ int	handle_hook_close(t_data *data)
 {
 	mlx_destroy_image(data->view.mlx, data->view.screen.img);
 	mlx_destroy_window(data->view.mlx, data->view.win);
-	mlx_destroy_display(data->view.mlx); // Todo: Comentado p/ compilar
+
+	mlx_destroy_display(data->view.mlx);
+
 	free_data(data);
 	free(data->view.mlx);
 	exit(SUCCESS);

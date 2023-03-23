@@ -164,9 +164,13 @@ bool	is_white_space(char c);
  * @param text_det Texture Details structure
  * @param row row in file
  * @param i index to check; verify the information
- * @return boolean - True or false
+ * @return int - 0 OK. Otherwise error
  */
+
 bool	parse_tex_color(t_texture_det *text_det, char *row, int i);
+
+int parse_tex_color(t_texture_det *text_det, char *row, int i);
+
 
 /**
  * @brief Change white space into wall in map. First, PDF tell us that just
@@ -175,6 +179,7 @@ bool	parse_tex_color(t_texture_det *text_det, char *row, int i);
  * @param data data structure
  */
 void	spaces_to_wall(t_data *data);
+
 
 int		ray_loop(t_data *data);
 
@@ -192,4 +197,21 @@ void	calc_delta(t_ray *r);
 void	calc_side_x(t_ray *r);
 void	calc_side_y(t_ray *r);
 void	calc_dda(t_ray *r, t_view *v);
+
+/**
+ * @brief Validate Textures. Check if it is following the pattern
+ * @param data Data Structure
+ * @param text Texture Structure
+ * @return int. 0 if It's OK. Otherwise: Error
+ */
+int	valid_texture(t_data *data, t_texture_det *text);
+
+/**
+ * @brief Validate path of program. Initially, will validate the path of
+ * texture in file.
+ * @param path Path to be validate
+ * @return boolean.
+ */
+bool	val_file_path(char *path);
+
 #endif
