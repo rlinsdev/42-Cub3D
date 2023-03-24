@@ -52,8 +52,29 @@ int	ray_move(t_ray *r, int keycode, char **map)
 
 int	ray_resert(t_ray *r)
 {
-	r->dir[0] = 0;
-	r->dir[1] = -1;
-	r->plane[0] = 0.66;
-	r->plane[1] = 0;
+	player_dir_handler(r);
+}
+
+void player_dir_handler(t_ray *r)
+{
+	if (r->dir_char == 'W')
+	{
+		r->dir[Y] = WEST;
+		r->plane[0] = 0.66;
+	}
+	else if (r->dir_char == 'E')
+	{
+		r->dir[Y] = EAST;
+		r->plane[0] = 0.66;
+	}
+	else if (r->dir_char == 'N')
+	{
+		r->dir[X] = NORTH;
+		r->plane[1] = 0.66;
+	}
+	else if (r->dir_char == 'S')
+	{
+		r->dir[X] = SOUTH;
+		r->plane[1] = 0.66;
+	}
 }
