@@ -52,8 +52,6 @@ int	ray_move(t_ray *r, int keycode, char **map)
 
 int	ray_resert(t_ray *r)
 {
-	r->pos[0] = 5;
-	r->pos[1] = 5;
 	r->dir[0] = 0;
 	r->dir[1] = -1;
 	r->plane[0] = 0.66;
