@@ -32,16 +32,18 @@ typedef struct s_ray
 	double			plane[2];
 	double			ray_dir[2];
 	double			delta[2];
-	int				wall_pos[2];
+	double			wall_pos[2];
 	double			dist_to_side[2];
 	double			step[2];
 	double			dda_line_size[2];
 	double			wall_dist[2];
-	double			perpendicular;
+	double			perp;
 	double			speed;
+	double 			multiplier;
 	int				line_size[2];
 	char 			dir_char;
 	bool			hit_side;
+
 }					t_ray;
 
 

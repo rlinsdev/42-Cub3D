@@ -186,16 +186,19 @@ void	draw_ceiling(t_data *data);
 void	draw_floor(t_data *data);
 void	draw_wall(t_data *data, int pixel);
 void	draw_minimap(t_data *data);
-int		ray_rotate(t_ray *r, int keycode);
-int		ray_move(t_ray *r, int keycode, char **map);
+int		ray_rotate_left(t_ray *r);
+int		ray_rotate_right(t_ray *r);
+int     ray_move_left(t_ray *r, char **map);
+int     ray_move_right(t_ray *r, char **map);
+int     ray_move_up(t_ray *r, char **map);
+int     ray_move_down(t_ray *r, char **map);
 int		ray_resert(t_ray *r);
 void	calc_perpendicular(t_ray *ray);
 void	handles_all_hooks(t_data *data);
 
 void	calc_camera(t_ray *ray, int pixel);
 void	calc_delta(t_ray *r);
-void	calc_side_x(t_ray *r);
-void	calc_side_y(t_ray *r);
+void	calc_side(t_ray *r);
 void	calc_dda(t_ray *r, t_view *v, char **map);
 
 /**
