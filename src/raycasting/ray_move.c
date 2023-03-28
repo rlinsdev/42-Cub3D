@@ -1,61 +1,57 @@
 #include "cub3d.h"
 
-
-
-int	ray_rotate(t_ray *r, int keycode)
+int	ray_move_left(t_ray *r, char **map)
 {
-	if (keycode == RIGHT_KEY_CONST)
+	int	new_pos[2];
+
+	new_pos[X] = r->pos[X] - r->plane[X] * r->speed;
+	new_pos[Y] = r->pos[Y] - r->plane[Y] * r->speed;
+	if (map[new_pos[X]][new_pos[Y]] == C_BACK_G)
 	{
-		r->dir[0] = r->dir[0] * cos((4.9 * M_PI) / 180) + r->dir[1] * -sin((4.9 * M_PI) / 180);
-		r->dir[1] = r->dir[0] * sin((4.9 * M_PI) / 180) + r->dir[1] * cos((4.9 * M_PI) / 180);
-		r->plane[0] = r->plane[0] * cos((4.9 * M_PI) / 180) + r->plane[1] * -sin((4.9 * M_PI) / 180);
-		r->plane[1] = r->plane[0] * sin((4.9 * M_PI) / 180) + r->plane[1] * cos((4.9 * M_PI) / 180);
+		r->pos[X] -= r->plane[X] * r->speed;
+		r->pos[Y] -= r->plane[Y] * r->speed;
 	}
-	else if (keycode == LEFT_KEY_CONST)
-	{
-		r->dir[0] = r->dir[0] * cos((-4.9 * M_PI) / 180) + r->dir[1] * -sin((-4.9 * M_PI) / 180);
-		r->dir[1] = r->dir[0] * sin((-4.9 * M_PI) / 180) + r->dir[1] * cos((-4.9 * M_PI) / 180);
-		r->plane[0] = r->plane[0] * cos((-4.9 * M_PI) / 180) + r->plane[1] * -sin((-4.9 * M_PI) / 180);
-		r->plane[1] = r->plane[0] * sin((-4.9 * M_PI) / 180) + r->plane[1] * cos((-4.9 * M_PI) / 180);
-	}
-	return (true);
+	return (EXIT_SUCCESS);
 }
 
-int	check_collision(t_ray *r, float dx, float dy, char **map)
+int	ray_move_right(t_ray *r, char **map)
 {
-	int	map_x;
-	int	map_y;
+	int	new_pos[2];
 
-	map_x = (int)(r->pos[0] + dx);
-	map_y = (int)(r->pos[1] + dy);
-	if (map[map_x][map_y] == C_BACK_G)
+	new_pos[X] = r->pos[X] + r->plane[X] * r->speed;
+	new_pos[Y] = r->pos[Y] + r->plane[Y] * r->speed;
+	if (map[new_pos[X]][new_pos[Y]] == C_BACK_G)
 	{
-		r->pos[0] += dx;
-		r->pos[1] += dy;
-		return (true);
+		r->pos[X] += r->plane[X] * r->speed;
+		r->pos[Y] += r->plane[Y] * r->speed;
 	}
-	return (false);
+	return (EXIT_SUCCESS);
 }
 
-int	ray_move(t_ray *r, int keycode, char **map)
+int	ray_move_up(t_ray *r, char **map)
 {
-	if (keycode == W_KEY_CONST)
-		check_collision(r, r->dir[0] * r->speed, r->dir[1] * r->speed, map);
-	else if (keycode == S_KEY_CONST)
-		check_collision(r, -r->dir[0] * r->speed, -r->dir[1] * r->speed, map);
-	else if (keycode == A_KEY_CONST)
-		check_collision(r, -r->plane[0] * r->speed, -r->plane[1] * r->speed, map);
-	else if (keycode == D_KEY_CONST)
-		check_collision(r, r->plane[0] * r->speed, r->plane[1] * r->speed, map);
-	return (0);
+	int	new_pos[2];
+
+	new_pos[X] = r->pos[X] + r->dir[X] * r->speed;
+	new_pos[Y] = r->pos[Y] + r->dir[Y] * r->speed;
+	if (map[new_pos[X]][new_pos[Y]] == C_BACK_G)
+	{
+		r->pos[X] += r->dir[X] * r->speed;
+		r->pos[Y] += r->dir[Y] * r->speed;
+	}
+	return (EXIT_SUCCESS);
 }
 
-int	ray_resert(t_ray *r)
+int	ray_move_down(t_ray *r, char **map)
 {
-	r->pos[0] = 5;
-	r->pos[1] = 5;
-	r->dir[0] = 0;
-	r->dir[1] = -1;
-	r->plane[0] = 0.66;
-	r->plane[1] = 0;
+	int	new_pos[2];
+
+	new_pos[X] = r->pos[X] - r->dir[X] * r->speed;
+	new_pos[Y] = r->pos[Y] - r->dir[Y] * r->speed;
+	if (map[new_pos[X]][new_pos[Y]] == C_BACK_G)
+	{
+		r->pos[X] -= r->dir[X] * r->speed;
+		r->pos[Y] -= r->dir[Y] * r->speed;
+	}
+	return (EXIT_SUCCESS);
 }

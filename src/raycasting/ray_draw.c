@@ -59,25 +59,25 @@ void	draw_minimap_square(t_img *img, int x, int y, int color)
 
 void	draw_minimap(t_data *data)
 {
-	unsigned int	pixel_x;
-	unsigned int	pixel_y;
+	unsigned int	x;
+	unsigned int	y;
 
-	pixel_x = 0;
-	while (pixel_x < 10)
+	x = 0;
+	while (x < data->map_det.width)
 	{
-		pixel_y = 0;
-		while (pixel_y < 10)
+		y = 0;
+		while (y < data->map_det.height)
 		{
-			if (data->map[pixel_y][pixel_x])
-				draw_minimap_square(&data->view.screen, pixel_x, pixel_y,
-						COLOR_MINIMAP);
-			else if (!data->map[pixel_y][pixel_x])
-				draw_minimap_square(&data->view.screen, pixel_x, pixel_y,
-						COLOR_BORDER_MINIMAP);
-			pixel_y++;
+			if (data->map[y][x] == '1')
+				draw_minimap_square(&data->view.screen, x, y, COLOR_MINIMAP);
+			else if (data->map[y][x] == '0' || data->map[y][x] == 'W')
+				draw_minimap_square(&data->view.screen, x, y,COLOR_BORDER_MINIMAP);
+			y++;
 		}
-		pixel_x++;
+		x++;
 	}
+	draw_minimap_square(&data->view.screen, data->ray.pos[Y], data->ray.pos[X],
+			COLOR_PLAYER);
 }
 
 void	draw_wall(t_data *data, int pixel)
