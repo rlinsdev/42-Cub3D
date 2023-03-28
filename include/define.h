@@ -54,4 +54,9 @@
 # define COLOR_MINIMAP 0x000000
 # define COLOR_BORDER_MINIMAP 0xFFFFFF
 # define COLOR_PLAYER 0x0000FF
+
+# ifndef DEBUG_INFO
+#  define DEBUG_INFO 1
+# endif
+
 #endif

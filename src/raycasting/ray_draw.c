@@ -95,5 +95,4 @@ void	draw_wall(t_data *data, int pixel)
 		ft_mlx_pixel_put(&data->view.screen, pixel, pixel_y, color);
 		pixel_y++;
 	}
-	//player_dir_handler(&data->ray);
 }
