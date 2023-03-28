@@ -39,10 +39,6 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     "objs": true,
-    ".gitignore": true,
-    "cub3D": true,
-    "README.md": true,
     "lib": true,
-    ".vscode": true,
   }
 }
