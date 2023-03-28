@@ -92,7 +92,7 @@ norma:
 
 
 run:
-	make re && ./cub3D ./maps/1-simple-map.cub
+	make re && ./cub3D ./maps/5.cub
 #	./cub3D ./maps/4.cub
 
 valgrind:

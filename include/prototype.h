@@ -217,4 +217,12 @@ int	valid_texture(t_data *data, t_texture_det *text);
  */
 bool	val_file_path(char *path);
 
+/**
+ * @brief Responsible to handle the player direction. Will get from map what
+ * value was passed: NSEW. according with this, the player will be point to
+ * this direction.
+ * @param r Ray structure
+ */
+void player_dir_handler(t_ray *r);
+
 #endif

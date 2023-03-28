@@ -16,6 +16,11 @@
 # define C_WHITE_S ' '
 // # define C_NSEW 	'X'
 
+# define NORTH -1
+# define WEST -1
+# define EAST 1
+# define SOUTH 1
+
 # define VALID_CHAR_MAP "01NSEW"
 # define VALID_PLAYER_POS "NSEW"
 
