@@ -26,6 +26,7 @@ int	ray_rotate_left(t_ray *r)
 	return (EXIT_SUCCESS);
 }
 
+// TODO: Remover - não usado em nenhum lugar
 int	ray_resert(t_ray *r)
 {
 	r->pos[0] = 5;

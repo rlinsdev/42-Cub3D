@@ -59,9 +59,9 @@ typedef struct s_view
 {
 	void			*mlx;
 	void			*win;
-	int				**map_test;
+	int				**map_test; // TODO: Remover
 	int				color;
-	int				map[24][24];
+	int				map[24][24]; // TODO: Rever este index cravado
 	t_img			screen;
 }					t_view;
 

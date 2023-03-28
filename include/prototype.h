@@ -224,4 +224,11 @@ bool	val_file_path(char *path);
  */
 void	debug_ray(t_ray *r);
 
+/**
+ * @brief Set the player direction object. Accord with the Char Direction (NSWE)
+ * point the camera to some side
+ * @param r ray structure
+ */
+void	set_player_direction(t_ray *r);
+
 #endif
