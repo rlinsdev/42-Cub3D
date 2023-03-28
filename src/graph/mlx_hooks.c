@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:14 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/28 02:01:23 by lucas            ###   ########.fr       */
+/*   Updated: 2023/03/28 10:38:12 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	handle_hook_key_press(int keycode, t_data *data)
 		ray_rotate_right(&data->ray);
 	else if (keycode == ESC_KEY_CONST)
 		handle_hook_close(data);
+	if (DEBUG_INFO)
+		debug_ray(&data->ray);
 	return (EXIT_SUCCESS);
 }
 
