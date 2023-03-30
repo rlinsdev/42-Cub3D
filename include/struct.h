@@ -6,13 +6,18 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 12:37:41 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 12:44:58 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
+/**
+ * @brief Texture structure. First, all variables captured by files. Then,
+ * variables to handle the texture wall
+ * @param size até pos: //TODO:L documentar
+ */
 typedef struct s_texture
 {
 	char			*north;
@@ -23,12 +28,12 @@ typedef struct s_texture
 	int				*ceiling;
 	unsigned long	hex_floor;
 	unsigned long	hex_ceiling;
-	int				size;//TODO:L
-	int				index;//TODO:L
-	double			step;//TODO:L
-	double			pos;//TODO:L
-	int				x;//TODO:L
-	int				y;//TODO:L
+	int				size;
+	int				index;
+	double			step;
+	double			pos;
+	int				x;
+	int				y;
 }					t_texture_det;
 
 typedef struct s_map_detail
@@ -42,6 +47,7 @@ typedef struct s_map_detail
 	int				start_i_map;
 	int				end_i_map;
 }					t_map_det;
+
 /**
  * @brief Player structure.
  * @param dir: Player Direction (NEWS), Position (x/y)
@@ -62,7 +68,6 @@ typedef struct s_player
 	int		rotate;
 }	t_player;
 
-//TODO:L Variáveis _x e _y em 1 só? Array de 2?
 /**
  * @brief Ray Structure
  * @param mapX and mapY represent the current square of the map the ray is in.
@@ -114,7 +119,12 @@ typedef struct s_view
 	void			*win;
 	t_img			screen;
 }					t_view;
-
+/**
+ * @brief Data Structure. Principal Structure in project
+ * @param texture_pixels: Pixel by pixel to draw the texture
+ * @param textures: The 4 side array of integer, represented by enum (NSWE).
+ * 4 side of textures
+ */
 typedef struct s_data
 {
 	char			**map;
@@ -123,8 +133,8 @@ typedef struct s_data
 	t_map_det		map_det;
 	t_texture_det	texture_det;
 	t_player		player;
-	int				**texture_pixels; // TODO:L
-	int				**textures; // TODO:L
+	int				**texture_pixels;
+	int				**textures;
 }					t_data;
 
 #endif
