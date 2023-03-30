@@ -25,7 +25,7 @@ void	init_ray(t_ray *ray)
 	ray->deltadist_y = 0;
 	ray->wall_dist = 0;
 	ray->wall_x = 0;
-	ray->side = 0;
+	ray->hit_side = false; //TODO:L Acabei de transformar em bool aqui
 	ray->line_height = 0;
 	ray->draw_start = 0;
 	ray->draw_end = 0;
@@ -95,13 +95,13 @@ static void	perform_dda(t_data *data, t_ray *ray)
 		{
 			ray->sidedist_x += ray->deltadist_x;
 			ray->map_x += ray->step_x;
-			ray->side = 0;
+			ray->hit_side = false;
 		}
 		else
 		{
 			ray->sidedist_y += ray->deltadist_y;
 			ray->map_y += ray->step_y;
-			ray->side = 1;
+			ray->hit_side = true;
 		}
 		if (ray->map_y < 0.25
 			|| ray->map_x < 0.25
@@ -117,7 +117,7 @@ static void	perform_dda(t_data *data, t_ray *ray)
 static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
 {
 	// **//Calculate distance projected on camera direction (Euclidean distance would give fisheye effect!)
-	if (ray->side == 0)
+	if (ray->hit_side == false)
 		ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
 	else
 		ray->wall_dist = (ray->sidedist_y - ray->deltadist_y);
@@ -130,7 +130,7 @@ static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
 	ray->draw_end = ray->line_height / 2 + data->win_height / 2;
 	if (ray->draw_end >= data->win_height)
 		ray->draw_end = data->win_height - 1;
-	if (ray->side == 0)
+	if (ray->hit_side == false)
 		ray->wall_x = player->pos_y + ray->wall_dist * ray->dir_y;
 	else
 		ray->wall_x = player->pos_x + ray->wall_dist * ray->dir_x;

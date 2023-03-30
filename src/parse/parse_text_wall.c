@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:23:30 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 11:43:05 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 12:16:34 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init_texture_pixels(t_data *data)
 //TODO:L
 static void	get_texture_index(t_data *data, t_ray *ray)
 {
-	if (ray->side == 0)
+	if (ray->hit_side == false)
 	{
 		if (ray->dir_x < 0)
 			data->texture_det.index = WEST;
@@ -61,7 +61,7 @@ void	update_texture_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x)
 
 	get_texture_index(data, ray);
 	tex->x = (int)(ray->wall_x * tex->size);
-	if ((ray->side == 0 && ray->dir_x < 0) || (ray->side == 1 && ray->dir_y > 0))
+	if ((ray->hit_side == false && ray->dir_x < 0) || (ray->hit_side == true && ray->dir_y > 0))
 		tex->x = tex->size - tex->x - 1;
 	tex->step = 1.0 * tex->size / ray->line_height;
 	tex->pos = (ray->draw_start - data->win_height / 2 + ray->line_height / 2) * tex->step;

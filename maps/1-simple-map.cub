@@ -1,7 +1,7 @@
-NO textures/wall/wall-01.xpm
-SO textures/wall/wall-02.xpm
-WE textures/wall/wall-03.xpm
-EA textures/wall/wall-04.xpm
+NO textures/general/wet_sponge.xpm
+SO textures/general/wet_sponge.xpm
+WE textures/general/wet_sponge.xpm
+EA textures/general/wet_sponge.xpm
 F 20,20,20
 C 200,200,200
 111111111111111111111

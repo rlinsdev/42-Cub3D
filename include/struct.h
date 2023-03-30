@@ -33,12 +33,13 @@ typedef struct s_map_detail
 }					t_map_det;
 /**
  * @brief Player structure.
- *
+ * @param dir: Player Direction (NEWS), Position (x/y)
+ * TODO:L Colocar mais coisa?
  */
 typedef struct s_player
 {
 	char	dir;
-	double	pos_x; // TODO:L Deixar 1 var só?
+	double	pos_x;
 	double	pos_y;
 	double	dir_x;
 	double	dir_y;
@@ -50,30 +51,35 @@ typedef struct s_player
 	int		rotate;
 }	t_player;
 
-//TODO:L Remover estes comentários. Pensar em colocar em outro lugar...
+//TODO:L Variáveis _x e _y em 1 só? Array de 2?
+/**
+ * @brief Ray Structure
+ * @param mapX and mapY represent the current square of the map the ray is in.
+ * @param sideDistX and sideDistY get incremented with deltaDistX with every
+ * jump in their direction, and mapX and mapY get incremented with stepX e stepY
+ * respectively. Later in the code they will be incremented while steps was did.
+ * @param deltaDistX and deltaDistY are the distance the ray has to travel to go
+ * from 1 x-side to the next x-side, or from 1 y-side to the next y-side.
+ * deltaDistX = abs(|rayDir| / rayDirX)
+ *
+ */
 typedef struct s_ray
 {
 	double	camera_x;
-	// **rayDirX é o 'rayDirX' na documentação
-	double	dir_x; // dir[0]
-	double	dir_y;// dir[1]
-	int		map_x; // **mapX and mapY represent the current square of the map the ray is in.
-	int		map_y; // **mapX and mapY represent the current square of the map the ray is in.
-	// **sideDistX and sideDistY get incremented with deltaDistX with every jump in their direction, and mapX and mapY get incremented with stepX and stepY respectively.
+	double	dir_x;
+	double	dir_y;
+	int		map_x;
+	int		map_y;
 	int		step_x;
 	int		step_y;
-	// **sideDistX and sideDistY are initially the distance the ray has to travel from its start position to the first x-side and the first y-side.
-	// **Later in the code they will be incremented while steps are taken.
 	double	sidedist_x;
 	double	sidedist_y;
-	// **deltaDistX and deltaDistY are the distance the ray has to travel to go from 1 x-side to the next x-side, or from 1 y-side to the next y-side.
-	// **deltaDistX = abs(|rayDir| / rayDirX)
 	double	deltadist_x;
 	double	deltadist_y;
-	double	wall_dist; //** perpWallDist
+	double	wall_dist;
 	double	wall_x;
-	int		side;		//hit_side
-	int		line_height; //**  lineHeight
+	bool	hit_side;
+	int		line_height;
 	int		draw_start;
 	int		draw_end;
 
