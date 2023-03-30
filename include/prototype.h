@@ -243,5 +243,6 @@ void	update_texture_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x);
 void	render_images(t_data *data);
 void	init_textures(t_data *data);
 void	init_texture_img(t_data *data, t_img *image, char *path);
+int		validate_move(t_data *data, double new_x, double new_y);
 
 #endif
