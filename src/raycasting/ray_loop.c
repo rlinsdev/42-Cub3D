@@ -1,5 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_loop.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/30 17:04:51 by rlins             #+#    #+#             */
+/*   Updated: 2023/03/30 17:11:11 by rlins            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
+static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y);
+static void	render_raycast(t_data *data);
 
 /*
 We initialize the set up for the rays
@@ -166,8 +180,6 @@ void	set_image_pixel(t_img *image, int x, int y, int color)
 	image->addr[pixel] = color;
 }
 
-//TODO:L Documentar que o proiemri oé pra textura, os outros 2 pro chão e ceu
-
 /**
  * @brief Responsible to read all pixel by pixel and draw the screen.
  * The first condition will draw the textures.
@@ -222,7 +234,14 @@ void	init_img(t_data *data, t_img *image, int width, int height)
 	return ;
 }
 
-static void	render_frame(t_data *data) // draw wall
+/**
+ * @brief
+ *
+ * Important: mlx_put_image_to_window is the responsible to put image in screen.
+ * If reallocated inside the loop, all draw will be slow
+ * @param data
+ */
+static void	render_frame(t_data *data)
 {
 	t_img	image;
 	int		x;
@@ -238,16 +257,10 @@ static void	render_frame(t_data *data) // draw wall
 		{
 			set_frame_image_pixel(data, &image, x, y);
 			x++;
-
-			// // Código lins
-			// if (x % 100)
-			// 	mlx_put_image_to_window(data->mlx, data->win, image.img, 0, 0); // Esse é o cara que coloca a imagem na tela
-			// 	// Deixar ele aqui, faz com que vá renderizando devagarzinho, pixel por pixel
-			// // Código lins
 		}
 		y++;
 	}
-	mlx_put_image_to_window(data->view.mlx, data->view.win, image.img, 0, 0); // Esse é o cara que coloca a imagem na tela
+	mlx_put_image_to_window(data->view.mlx, data->view.win, image.img, 0, 0);
 	mlx_destroy_image(data->view.mlx, image.img);
 }
 
@@ -275,6 +288,5 @@ int	ray_loop(t_data *data)
 	if (data->player.has_moved == 0)
 		return (0);
 	render_images(data);
-	// draw_minimap(data);
 	return (SUCCESS);
 }

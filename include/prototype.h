@@ -185,20 +185,15 @@ int	parse_tex_color(t_texture_det *text_det, char *row, int i);
 void	spaces_to_wall(t_data *data);
 
 
-// TODO: documentar as funções abaixo
+/**
+ * @brief This is the MLX loop method called. Any game must be a while (true)
+ * code to render the screen. MLX have your call to do this. And, this was the
+ * method called to do this work
+ * @param data Data Structure
+ * @return int
+ */
 int		ray_loop(t_data *data);
 
-// void	draw_ceiling(t_data *data);
-// void	draw_floor(t_data *data);
-// void	draw_wall(t_data *data, int pixel);
-// void	draw_minimap(t_data *data);
-// int		ray_rotate_left(t_ray *r);
-// int		ray_rotate_right(t_ray *r);
-// int     ray_move_left(t_ray *r, char **map);
-// int     ray_move_right(t_ray *r, char **map);
-// int     ray_move_up(t_ray *r, char **map);
-// int     ray_move_down(t_ray *r, char **map);
-// int		ray_resert(t_ray *r);
 void	calc_perpendicular(t_ray *ray);
 void	handles_all_hooks(t_data *data);
 
@@ -240,6 +235,13 @@ int		move_player(t_data *data);
 int		rotate_player(t_data *data, double rotdir);
 void	init_texture_pixels(t_data *data);
 void	update_texture_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x);
+
+/**
+ * @brief Responsible to render all images. This method will be called in the
+ * begin of program (render the screen in user position vision) and will be
+ * called any time the player move.
+ * @param data Data Structure
+ */
 void	render_images(t_data *data);
 void	init_textures(t_data *data);
 void	init_texture_img(t_data *data, t_img *image, char *path);
