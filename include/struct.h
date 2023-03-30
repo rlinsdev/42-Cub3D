@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
+/*   Updated: 2023/03/30 12:32:35 by rlins            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCT_H
 # define STRUCT_H
 
@@ -11,13 +23,12 @@ typedef struct s_texture
 	int				*ceiling;
 	unsigned long	hex_floor;
 	unsigned long	hex_ceiling;
-	// New TODO:L
-	int				size;
-	int				index;
-	double			step;
-	double			pos;
-	int				x;
-	int				y;
+	int				size;//TODO:L
+	int				index;//TODO:L
+	double			step;//TODO:L
+	double			pos;//TODO:L
+	int				x;//TODO:L
+	int				y;//TODO:L
 }					t_texture_det;
 
 typedef struct s_map_detail
@@ -114,8 +125,8 @@ typedef struct s_data
 	t_player		player;
 	int				**texture_pixels; // TODO:L
 	int				**textures; // TODO:L
-	int				win_height; // TODO:L testar sem
-	int				win_width; //TODO:L Testar sem estas variaveis aqui
+	//int				win_height; // TODO:L testar sem
+	// int				win_width; //TODO:L Testar sem estas variaveis aqui
 }					t_data;
 
 #endif

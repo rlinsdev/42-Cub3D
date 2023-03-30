@@ -122,14 +122,14 @@ static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
 	else
 		ray->wall_dist = (ray->sidedist_y - ray->deltadist_y);
 		// **//Calculate height of line to draw on screen
-	ray->line_height = (int)(data->win_height / ray->wall_dist);
+	ray->line_height = (int)(HEIGHT / ray->wall_dist);
 	// **//calculate lowest and highest pixel to fill in current stripe
-	ray->draw_start = -(ray->line_height) / 2 + data->win_height / 2;
+	ray->draw_start = -(ray->line_height) / 2 + HEIGHT / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
-	ray->draw_end = ray->line_height / 2 + data->win_height / 2;
-	if (ray->draw_end >= data->win_height)
-		ray->draw_end = data->win_height - 1;
+	ray->draw_end = ray->line_height / 2 + HEIGHT / 2;
+	if (ray->draw_end >= HEIGHT)
+		ray->draw_end = HEIGHT - 1;
 	if (ray->hit_side == false)
 		ray->wall_x = player->pos_y + ray->wall_dist * ray->dir_y;
 	else
@@ -180,9 +180,9 @@ static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y)
 	if (data->texture_pixels[y][x] > 0)
 		// printf("oi");
 		set_image_pixel(image, x, y, data->texture_pixels[y][x]);
-	else if (y < data->win_height / 2)
+	else if (y < HEIGHT / 2)
 		set_image_pixel(image, x, y, data->texture_det.hex_ceiling); // Todo: Aqui está botando o céu e o chão
-	else if (y < data->win_height -1)
+	else if (y < HEIGHT -1)
 		set_image_pixel(image, x, y, data->texture_det.hex_floor);  // Todo: Aqui está botando o céu e o chão
 }
 //TODO:L Ver se precisa disso mesmo
@@ -226,12 +226,12 @@ static void	render_frame(t_data *data) // draw wall
 	int		y;
 
 	image.img = NULL;
-	init_img(data, &image, data->win_width, data->win_height);
+	init_img(data, &image, WIDTH, HEIGHT);
 	y = 0;
-	while (y < data->win_height)
+	while (y < HEIGHT)
 	{
 		x = 0;
-		while (x < data->win_width)
+		while (x < WIDTH)
 		{
 			set_frame_image_pixel(data, &image, x, y);
 			x++;

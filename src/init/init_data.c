@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:21:54 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 11:41:59 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 12:32:44 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,4 @@ void	init_data(t_data *data)
 {
 	ft_bzero(data, sizeof(t_data));
 	init_ray(&data->ray, data);
-	data->win_width = WIDTH;
-	data->win_height = HEIGHT; // TODO: Ver se precisa destsa 2 variaveis mesmo
-	//TODO:L
 }

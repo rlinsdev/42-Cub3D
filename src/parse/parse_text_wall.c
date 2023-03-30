@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:23:30 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 12:16:34 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 12:33:08 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ void	init_texture_pixels(t_data *data)
 
 	if (data->texture_pixels)
 		free_tab((void **)data->texture_pixels);
-	data->texture_pixels = ft_calloc(data->win_height + 1,
+	data->texture_pixels = ft_calloc(HEIGHT + 1,
 			sizeof * data->texture_pixels);
 	if (!data->texture_pixels)
 		// clean_exit(data, err_msg(NULL, ERR_MALLOC, 1));
 		printf("!ERROR aqui"); //TODO:L
 	i = 0;
-	while (i < data->win_height)
+	while (i < HEIGHT)
 	{
-		data->texture_pixels[i] = ft_calloc(data->win_width + 1,
+		data->texture_pixels[i] = ft_calloc(WIDTH + 1,
 				sizeof * data->texture_pixels);
 		if (!data->texture_pixels[i])
 			// clean_exit(data, err_msg(NULL, ERR_MALLOC, 1));
@@ -64,7 +64,7 @@ void	update_texture_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x)
 	if ((ray->hit_side == false && ray->dir_x < 0) || (ray->hit_side == true && ray->dir_y > 0))
 		tex->x = tex->size - tex->x - 1;
 	tex->step = 1.0 * tex->size / ray->line_height;
-	tex->pos = (ray->draw_start - data->win_height / 2 + ray->line_height / 2) * tex->step;
+	tex->pos = (ray->draw_start - HEIGHT / 2 + ray->line_height / 2) * tex->step;
 	y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
