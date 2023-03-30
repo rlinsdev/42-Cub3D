@@ -56,43 +56,44 @@ void	draw_minimap_square(t_img *img, int x, int y, int color)
 		pixel_x++;
 	}
 }
+//TODO:L Tentar rodar com isso descomentado... mas acho q nao vai dar mto certo não...
+// void	draw_minimap(t_data *data)
+// {
+// 	unsigned int	x;
+// 	unsigned int	y;
 
-void	draw_minimap(t_data *data)
-{
-	unsigned int	x;
-	unsigned int	y;
+// 	x = 0;
+// 	while (x < data->map_det.width)
+// 	{
+// 		y = 0;
+// 		while (y < data->map_det.height)
+// 		{
+// 			if (data->map[y][x] == '1')
+// 				draw_minimap_square(&data->view.screen, x, y, COLOR_MINIMAP);
+// 			else if (data->map[y][x] == '0' || data->map[y][x] == 'W')
+// 				draw_minimap_square(&data->view.screen, x, y,COLOR_BORDER_MINIMAP);
+// 			y++;
+// 		}
+// 		x++;
+// 	}
+// 	draw_minimap_square(&data->view.screen, data->ray.pos[Y], data->ray.pos[X],
+// 			COLOR_PLAYER);
+// }
 
-	x = 0;
-	while (x < data->map_det.width)
-	{
-		y = 0;
-		while (y < data->map_det.height)
-		{
-			if (data->map[y][x] == '1')
-				draw_minimap_square(&data->view.screen, x, y, COLOR_MINIMAP);
-			else if (data->map[y][x] == '0' || data->map[y][x] == 'W')
-				draw_minimap_square(&data->view.screen, x, y,COLOR_BORDER_MINIMAP);
-			y++;
-		}
-		x++;
-	}
-	draw_minimap_square(&data->view.screen, data->ray.pos[Y], data->ray.pos[X],
-			COLOR_PLAYER);
-}
+//TODO:L Deixar este método como 'histórico' qdo for rodar só com cor / s/ textura
+// void	draw_wall(t_data *data, int pixel)
+// {
+// 	int	pixel_y;
+// 	int	color;
 
-void	draw_wall(t_data *data, int pixel)
-{
-	int	pixel_y;
-	int	color;
-
-	if (data->ray.hit_side == 0)
-		color = ft_mlx_rgb_to_int(255, 0, 0);
-	else
-		color = ft_mlx_rgb_to_int(128, 0, 0);
-	pixel_y = data->ray.line_size[0];
-	while (pixel_y < data->ray.line_size[1])
-	{
-		ft_mlx_pixel_put(&data->view.screen, pixel, pixel_y, color);
-		pixel_y++;
-	}
-}
+// 	if (data->ray.hit_side == 0)
+// 		color = ft_mlx_rgb_to_int(255, 0, 0);
+// 	else
+// 		color = ft_mlx_rgb_to_int(128, 0, 0);
+// 	pixel_y = data->ray.line_size[0];
+// 	while (pixel_y < data->ray.line_size[1])
+// 	{
+// 		ft_mlx_pixel_put(&data->view.screen, pixel, pixel_y, color);
+// 		pixel_y++;
+// 	}
+// }
