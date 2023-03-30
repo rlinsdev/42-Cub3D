@@ -227,8 +227,17 @@ void	debug_ray(t_ray *r);
 /**
  * @brief Set the player direction object. Accord with the Char Direction (NSWE)
  * point the camera to some side
- * @param r ray structure
+ * @param p player structure
  */
-void	set_player_direction(t_ray *r);
+void	set_player_direction(t_player *p);
+//TODO:L Documentar todos estes métodos. Renomear / realocar, etc...
+int		move_player(t_data *data);
+int		rotate_player(t_data *data, double rotdir);
+void	init_texture_pixels(t_data *data);
+void	free_tab(void **tab);
+void	update_texture_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x);
+void	render_images(t_data *data);
+void	init_textures(t_data *data);
+void	init_texture_img(t_data *data, t_img *image, char *path);
 
 #endif
