@@ -47,7 +47,7 @@ SRCS +=		main.c \
 			parse_map_partial.c parse_texture_partial.c \
 			ray_calc.c ray_loop.c \
 			debug.c player_move.c player_pos.c parse_text_wall.c \
-			val_move.c
+			val_move.c parse_img.c
 
 OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.c=.o))
 

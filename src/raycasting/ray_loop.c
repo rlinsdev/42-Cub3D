@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:04:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 17:11:11 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 17:53:56 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,39 +199,6 @@ static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y)
 		set_image_pixel(image, x, y, data->texture_det.hex_ceiling);
 	else if (y < HEIGHT -1)
 		set_image_pixel(image, x, y, data->texture_det.hex_floor);
-}
-//TODO:L Ver se precisa disso mesmo
-void	init_img_clean(t_img *img)
-{
-	img->img = NULL;
-	img->addr = NULL;
-	img->pixel_bits = 0;
-	img->size_line = 0;
-	img->endian = 0;
-}
-
-//TODO:L Setup, não init
-void	init_texture_img(t_data *data, t_img *image, char *path)
-{
-	init_img_clean(image);
-	image->img = mlx_xpm_file_to_image(data->view.mlx, path, &data->texture_det.size, &data->texture_det.size);
-	if (image->img == NULL)
-		// clean_exit(data, err_msg("mlx", ERR_MLX_IMG, 1)); //TODO:L
-		printf("Erro aqui");
-	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits, &image->size_line, &image->endian);
-	return ;
-}
-
-void	init_img(t_data *data, t_img *image, int width, int height)
-{
-	init_img_clean(image);
-	image->img = mlx_new_image(data->view.mlx, width, height);
-	if (image->img == NULL)
-		// clean_exit(data, err_msg("mlx", ERR_MLX_IMG, 1)); //TODO:L
-		printf("Erro aqui");
-	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits,
-			&image->size_line, &image->endian);
-	return ;
 }
 
 /**
