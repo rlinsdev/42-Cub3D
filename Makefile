@@ -46,7 +46,7 @@ SRCS +=		main.c \
 			val_map.c parse_texture.c exit.c val_texture.c \
 			parse_map_partial.c parse_texture_partial.c \
 			ray_calc.c ray_draw.c ray_move.c ray_loop.c ray_rotate.c \
-			debug.c
+			debug.c player_move.c player_pos.c parse_text_wall.c
 
 OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.c=.o))
 
@@ -93,7 +93,7 @@ norma:
 
 
 run:
-	./cub3D ./maps/1.cub
+	./cub3D ./maps/20.cub
 #	./cub3D ./maps/4.cub
 
 valgrind:
