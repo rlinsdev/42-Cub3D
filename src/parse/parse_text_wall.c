@@ -6,12 +6,13 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:23:30 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 15:54:42 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 18:27:05 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
+static void	get_texture_index(t_data *data, t_ray *ray);
 
 void	init_texture_pixels(t_data *data)
 {
@@ -19,23 +20,26 @@ void	init_texture_pixels(t_data *data)
 
 	if (data->texture_pixels)
 		free_array_gen((void **)data->texture_pixels);
-	data->texture_pixels = ft_calloc(HEIGHT + 1,
-			sizeof * data->texture_pixels);
+	data->texture_pixels = ft_calloc(HEIGHT + 1, sizeof * data->texture_pixels);
 	if (!data->texture_pixels)
-		// clean_exit(data, err_msg(NULL, ERR_MALLOC, 1));
-		printf("!ERROR aqui"); //TODO:L
+		exit_and_free(data, error_msg(ERR_MALC, 23));
 	i = 0;
 	while (i < HEIGHT)
 	{
 		data->texture_pixels[i] = ft_calloc(WIDTH + 1,
 				sizeof * data->texture_pixels);
 		if (!data->texture_pixels[i])
-			// clean_exit(data, err_msg(NULL, ERR_MALLOC, 1));
-			printf("Error"); //TODO:L
+			exit_and_free(data, error_msg(ERR_MALC, 24));
 		i++;
 	}
 }
-//TODO:L
+
+/**
+ * @brief Responsible to update the index of texture in current pixel.
+ * This calculation is based in the ray direction and if the ray hit the wall.
+ * @param data Dat aStructure
+ * @param ray Ray structure
+ */
 static void	get_texture_index(t_data *data, t_ray *ray)
 {
 	if (ray->hit_side == false)
@@ -54,7 +58,7 @@ static void	get_texture_index(t_data *data, t_ray *ray)
 	}
 }
 
-void	update_texture_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x)
+void	update_text_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x)
 {
 	int			y;
 	int			color;
@@ -91,8 +95,7 @@ static int	*xpm_to_img(t_data *data, char *path)
 	buffer = ft_calloc(1,
 			sizeof * buffer * data->texture_det.size * data->texture_det.size);
 	if (!buffer)
-		// clean_exit(data, err_msg(NULL, ERR_MALLOC, 1));
-		printf("Erro aqui"); //TODO:L
+		exit_and_free(data, error_msg(ERR_MALC, 25));
 	y = 0;
 	while (y < data->texture_det.size)
 	{
@@ -132,13 +135,11 @@ void	init_textures(t_data *data)
 
 	data->textures = ft_calloc(5, sizeof * data->textures);
 	if (!data->textures)
-		// clean_exit(data, err_msg(NULL, ERR_MALLOC, 1));
-		printf("Erro aqui"); //TODO:L
+		exit_and_free(data, error_msg(ERR_MALC, 26));
 	data->textures[NORTH] = xpm_to_img(data, data->texture_det.north);
 	data->textures[SOUTH] = xpm_to_img(data, data->texture_det.south);
 	data->textures[EAST] = xpm_to_img(data, data->texture_det.east);
 	data->textures[WEST] = xpm_to_img(data, data->texture_det.west);
-
 	init_texinfo(&data->texture_det);
 }
 

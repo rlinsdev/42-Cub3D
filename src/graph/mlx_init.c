@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:23 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/30 11:40:58 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 18:23:32 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_mlx_init(t_data *data)
 
 	view = &data->view;
 	view->mlx = mlx_init();
-	init_textures(data); //TODO:L Ver se é necessário inicializar as texturas mesmo ou só o BZero ta de boas
+	init_textures(data);
 	set_player_direction(&data->player);
 	view->win = mlx_new_window(view->mlx, WIDTH, HEIGHT, TITLE);
 	ft_mlx_init_img(view);

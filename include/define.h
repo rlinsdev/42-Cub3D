@@ -39,6 +39,8 @@
 # define ERR_MAP_CHAR "Character invalid in map."
 # define ERR_SING_PLAYER "Map error. Just one player allowed."
 
+# define ERR_MLX_IMG "MLX new Image error. Check the framework"
+
 # define WIDTH 640
 # define HEIGHT 480
 

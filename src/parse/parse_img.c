@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:50:10 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 17:53:59 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 18:15:37 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	init_img(t_data *data, t_img *i, int width, int height)
 	init_img_clean(i);
 	i->img = mlx_new_image(data->view.mlx, width, height);
 	if (i->img == NULL)
-		// clean_exit(data, err_msg("mlx", ERR_MLX_IMG, 1)); //TODO:L
-		printf("Erro aqui");
+		exit_and_free(data, error_msg(ERR_MLX_IMG, 20));
 	i->addr = (int *)mlx_get_data_addr(i->img, &i->pixel_bits,
 			&i->size_line, &i->endian);
 	return ;
@@ -32,8 +31,7 @@ void	init_texture_img(t_data *data, t_img *image, char *path)
 	init_img_clean(image);
 	image->img = mlx_xpm_file_to_image(data->view.mlx, path, &data->texture_det.size, &data->texture_det.size);
 	if (image->img == NULL)
-		// clean_exit(data, err_msg("mlx", ERR_MLX_IMG, 1)); //TODO:L
-		printf("Erro aqui");
+		exit_and_free(data, error_msg(ERR_MLX_IMG, 21));
 	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits, &image->size_line, &image->endian);
 	return ;
 }

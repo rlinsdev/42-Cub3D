@@ -184,7 +184,6 @@ int	parse_tex_color(t_texture_det *text_det, char *row, int i);
  */
 void	spaces_to_wall(t_data *data);
 
-
 /**
  * @brief This is the MLX loop method called. Any game must be a while (true)
  * code to render the screen. MLX have your call to do this. And, this was the
@@ -220,7 +219,7 @@ bool	val_file_path(char *path);
 
 /**
  * @brief Show the values of some structure.
- * @param r data structure
+ * @param data data structure
  */
 void	debug(t_data *data);
 
@@ -230,11 +229,10 @@ void	debug(t_data *data);
  * @param p player structure
  */
 void	set_player_direction(t_player *p);
-//TODO:L Documentar todos estes métodos. Renomear / realocar, etc...
 int		move_player(t_data *data);
 int		rotate_player(t_data *data, double rotdir);
 void	init_texture_pixels(t_data *data);
-void	update_texture_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x);
+void	update_text_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x);
 
 /**
  * @brief Responsible to render all images. This method will be called in the
@@ -243,9 +241,15 @@ void	update_texture_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x);
  * @param data Data Structure
  */
 void	render_images(t_data *data);
-void	init_textures(t_data *data);
-int		validate_move(t_data *data, double new_x, double new_y);
 
+/**
+ * @brief Initialize each texture. North South East West.
+ * Will call the method xpm_to_image, passing the path os texture by param
+ * @param data Data Structure
+ */
+void	init_textures(t_data *data);
+
+int		validate_move(t_data *data, double new_x, double new_y);
 void	init_texture_img(t_data *data, t_img *image, char *path);
 void	init_img(t_data *data, t_img *i, int width, int height);
 

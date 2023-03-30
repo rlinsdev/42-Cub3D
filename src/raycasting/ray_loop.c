@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:04:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 17:53:56 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 18:20:33 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ void	calc_raycast(t_data *data)
 {
 	int	pixel;
 	t_ray	ray;
-	t_player player; //TODO:L Se faltar linha, passar o objeto direto do data mesmo.
+	t_player player;
 
 	pixel = 0;
 	ray = data->ray;
@@ -167,7 +167,7 @@ void	calc_raycast(t_data *data)
 		set_dda(&ray, &player);
 		perform_dda(data, &ray);
 		calculate_line_height(&ray, data, &player);
-		update_texture_pixels(data, &data->texture_det, &ray, pixel);
+		update_text_pixels(data, &data->texture_det, &ray, pixel);
 		pixel++;
 	}
 }
