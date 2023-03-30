@@ -6,7 +6,7 @@ We initialize the set up for the rays
 - camera_x -> Where is the camera (-1 = left, 0 = center, 1 = right)
 - dir_x/y = direction of the ray
 - map_x/y = current square of the ray
-- deltadist_x/y = distance to go to the next x or y.
+- delta_dist_x/y = distance to go to the next x or y.
 */
 
 //TODO:L Ver se precisa deste código mesmo
@@ -19,10 +19,10 @@ void	init_ray(t_ray *ray)
 	ray->map_y = 0;
 	ray->step_x = 0;
 	ray->step_y = 0;
-	ray->sidedist_x = 0;
-	ray->sidedist_y = 0;
-	ray->deltadist_x = 0;
-	ray->deltadist_y = 0;
+	ray->side_dist_x = 0;
+	ray->side_dist_y = 0;
+	ray->delta_dist_x = 0;
+	ray->delta_dist_y = 0;
 	ray->wall_dist = 0;
 	ray->wall_x = 0;
 	ray->hit_side = false; //TODO:L Acabei de transformar em bool aqui
@@ -40,14 +40,14 @@ static void	init_raycasting_info(int x, t_ray *ray, t_player *player)
 	ray->dir_y = player->dir_y + player->plane_y * ray->camera_x;
 	ray->map_x = (int)player->pos_x;
 	ray->map_y = (int)player->pos_y;
-	ray->deltadist_x = fabs(1 / ray->dir_x); //fabs() function of math.h header file in C programming is used to get the absolute value of a floating point number. This function returns the absolute value in double.
-	ray->deltadist_y = fabs(1 / ray->dir_y);
+	ray->delta_dist_x = fabs(1 / ray->dir_x); //fabs() function of math.h header file in C programming is used to get the absolute value of a floating point number. This function returns the absolute value in double.
+	ray->delta_dist_y = fabs(1 / ray->dir_y);
 }
 
 /*
 - We are doing the initial set up for the dda
 - dda algorithm will jump one square in each loop eiter in a x or y direction
-- ray->sidedist_x or y = distance from the ray start position to the
+- ray->side_dist_x or y = distance from the ray start position to the
 	next x or y position
 - if x or y < 0 go the next x or y to the left
 - if x or y > 0 go the next x or y to the right
@@ -58,22 +58,22 @@ static void	set_dda(t_ray *ray, t_player *player) // **calculate step and initia
 	if (ray->dir_x < 0)
 	{
 		ray->step_x = -1;
-		ray->sidedist_x = (player->pos_x - ray->map_x) * ray->deltadist_x;
+		ray->side_dist_x = (player->pos_x - ray->map_x) * ray->delta_dist_x;
 	}
 	else
 	{
 		ray->step_x = 1;
-		ray->sidedist_x = (ray->map_x + 1.0 - player->pos_x) * ray->deltadist_x;
+		ray->side_dist_x = (ray->map_x + 1.0 - player->pos_x) * ray->delta_dist_x;
 	}
 	if (ray->dir_y < 0)
 	{
 		ray->step_y = -1;
-		ray->sidedist_y = (player->pos_y - ray->map_y) * ray->deltadist_y;
+		ray->side_dist_y = (player->pos_y - ray->map_y) * ray->delta_dist_y;
 	}
 	else
 	{
 		ray->step_y = 1;
-		ray->sidedist_y = (ray->map_y + 1.0 - player->pos_y) * ray->deltadist_y;
+		ray->side_dist_y = (ray->map_y + 1.0 - player->pos_y) * ray->delta_dist_y;
 	}
 }
 
@@ -91,15 +91,15 @@ static void	perform_dda(t_data *data, t_ray *ray)
 	while (hit == 0)
 	{
 		// **//jump to next map square, either in x-direction, or in y-direction
-		if (ray->sidedist_x < ray->sidedist_y)
+		if (ray->side_dist_x < ray->side_dist_y)
 		{
-			ray->sidedist_x += ray->deltadist_x;
+			ray->side_dist_x += ray->delta_dist_x;
 			ray->map_x += ray->step_x;
 			ray->hit_side = false;
 		}
 		else
 		{
-			ray->sidedist_y += ray->deltadist_y;
+			ray->side_dist_y += ray->delta_dist_y;
 			ray->map_y += ray->step_y;
 			ray->hit_side = true;
 		}
@@ -118,9 +118,9 @@ static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
 {
 	// **//Calculate distance projected on camera direction (Euclidean distance would give fisheye effect!)
 	if (ray->hit_side == false)
-		ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
+		ray->wall_dist = (ray->side_dist_x - ray->delta_dist_x);
 	else
-		ray->wall_dist = (ray->sidedist_y - ray->deltadist_y);
+		ray->wall_dist = (ray->side_dist_y - ray->delta_dist_y);
 		// **//Calculate height of line to draw on screen
 	ray->line_height = (int)(HEIGHT / ray->wall_dist);
 	// **//calculate lowest and highest pixel to fill in current stripe

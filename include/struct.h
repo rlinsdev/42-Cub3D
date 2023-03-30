@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 12:32:35 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 12:37:41 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ typedef struct s_ray
 	int		map_y;
 	int		step_x;
 	int		step_y;
-	double	sidedist_x;
-	double	sidedist_y;
-	double	deltadist_x;
-	double	deltadist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
 	double	wall_dist;
 	double	wall_x;
 	bool	hit_side;
@@ -125,8 +125,6 @@ typedef struct s_data
 	t_player		player;
 	int				**texture_pixels; // TODO:L
 	int				**textures; // TODO:L
-	//int				win_height; // TODO:L testar sem
-	// int				win_width; //TODO:L Testar sem estas variaveis aqui
 }					t_data;
 
 #endif
