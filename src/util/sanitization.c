@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 09:27:20 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/11 10:33:13 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 11:53:13 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,25 @@ void	free_ptr(void *ptr)
 	{
 		free(ptr);
 		ptr = NULL;
+	}
+}
+
+//TODO:L Tem que frellá mais coisa aqui nesta classe e testar vazamento de memória
+//TODO:L Apagar o outrométodo... que está com o nome de array. Deixar só este agnóstico
+void	free_tab(void **tab)
+{
+	size_t	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	if (tab)
+	{
+		free(tab);
+		tab = NULL;
 	}
 }
 
