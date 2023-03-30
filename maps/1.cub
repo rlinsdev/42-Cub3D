@@ -1,13 +1,13 @@
-NO textures/Wolfenstein/redbrick.xpm
-SO textures/Wolfenstein/wood.xpm
-WE textures/Wolfenstein/mossy.xpm
-EA textures/Wolfenstein/greystone.xpm
+WE textures/wolfenstein/grey_stone.xpm
+NO textures/wolfenstein/purple_stone.xpm
+SO textures/wolfenstein/red_brick.xpm
+EA textures/wolfenstein/wood.xpm
 F 20,20,20
 C 200,200,200
 1111111111111111111111111
 1000000000100000000000001
 1000000000000000000000001
-1000000000W00000000000001
+1000000000S00000000000001
 1000000000000000000000001
 1000000001010000000000001
 1111111111111111111111111
