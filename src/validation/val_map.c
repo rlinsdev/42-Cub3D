@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/28 16:00:56 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 11:54:21 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 static bool	is_map_sur_walls(t_data *data);
 static int	is_valid_char_in_map(t_data *data, char **map);
 static bool	is_map_last_element(t_map_det *map_det);
+static int	check_position_is_valid(t_data *data, char **map_tab);
+static bool	check_player_position(t_data *data, char **map_tab);
+
+//TODO:L Quebrar em outra classe essa classe aqui
 
 int	valid_map(t_data *data)
 {
 	int	valid_char_map;
 
-	data->ray.dir_char = '0';
+	data->player.dir = '0'; //TODO:L FAZER O TESTE COLOCANDO COMENTÁRIO E VENDO SE APARECE AO CODAR AQUI
 	if (!data->map)
 		return (error_msg(ERR_MAP7, 7));
 	if (is_map_sur_walls(data) == false)
@@ -30,7 +34,9 @@ int	valid_map(t_data *data)
 		return (valid_char_map);
 	if (is_map_last_element(&data->map_det) == false)
 		return (error_msg(ERR_MAP_LAST, 16));
-	if (data->ray.dir_char == '0')
+	if (check_player_position(data, data->map) == false)
+		return (FAILURE);
+	if (data->player.dir == '0')
 		return (error_msg(ERR_MAP_DIR, 17));
 
 	return (0);
@@ -76,6 +82,7 @@ static int	is_valid_char_in_map(t_data *data, char **map)
 	int	j;
 
 	i = 0;
+	data->player.dir = '0';
 	while (map[i])
 	{
 		j = 0;
@@ -87,13 +94,15 @@ static int	is_valid_char_in_map(t_data *data, char **map)
 				return (error_msg(ERR_MAP_CHAR, 10));
 			if ((ft_strchr(VALID_PLAYER_POS, map[i][j])) != NULL)
 			{
-				if (data->ray.dir_char != C_BACK_G)
+				if (data->player.dir != C_BACK_G)
 					return (error_msg(ERR_SING_PLAYER, 11));
 				else
 				{
-					data->ray.pos[X] = i;
-					data->ray.pos[Y] = j;
-					data->ray.dir_char = map[i][j];
+					//TODO:L
+					// data->ray.pos[X] = i;
+					// data->ray.pos[Y] = j;
+					// data->ray.dir_char = map[i][j];
+					data->player.dir = map[i][j];
 				}
 			}
 			j++;
@@ -139,3 +148,51 @@ static bool	is_map_sur_walls(t_data *data)
 	}
 	return (true);
 }
+//TODO:L
+static bool	check_player_position(t_data *data, char **map_tab)
+{
+	int	i;
+	int	j;
+	i = 0;
+	while (map_tab[i])
+	{
+		j = 0;
+		while (map_tab[i][j])
+		{
+			if (ft_strchr("NSEW", map_tab[i][j]))
+			{
+				data->player.pos_x = (double)j + 0.5;
+				data->player.pos_y = (double)i + 0.5;
+				map_tab[i][j] = '0'; // Onde ncontrava-se o Person, receberá 'vazio'
+				// Queria criar uma condição "EndLoops" pra cair fora dos 2 loops depois de ter achado o valor...
+			}
+			j++;
+		}
+		i++;
+	}
+	if (check_position_is_valid(data, map_tab) == FAILURE)
+	{
+		error_msg("Wrong Player Position", 1);
+		return (false);
+	} // TODO: Tipar esta mensagem}
+	return (true);
+}
+//TODO:L
+static int	check_position_is_valid(t_data *data, char **map_tab)
+{
+	int	i;
+	int	j;
+
+	i = (int)data->player.pos_y;
+	j = (int)data->player.pos_x;
+	if (ft_strlen(map_tab[i - 1]) < (size_t)j
+		|| ft_strlen(map_tab[i + 1]) < (size_t)j
+		// || is_a_white_space(map_tab[i][j - 1]) == SUCCESS
+		// || is_a_white_space(map_tab[i][j + 1]) == SUCCESS
+		// || is_a_white_space(map_tab[i - 1][j]) == SUCCESS
+		// || is_a_white_space(map_tab[i + 1][j]) == SUCCESS
+		)
+		return (FAILURE);
+	return (SUCCESS);
+}
+
