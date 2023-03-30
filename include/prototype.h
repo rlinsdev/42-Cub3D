@@ -27,10 +27,11 @@ void	init_map_handler(t_data *data, char *path);
 void	free_ptr(void *ptr);
 
 /**
- * @brief Release a memory from a Array of char (String)
- * @param arr_str string to be freed
+ * @brief Release a memory from a Array. Void to be generic. Will clean
+ * string, array of int, etc.
+ * @param arr Array to be freed
  */
-void	free_array_str(char **arr_str);
+void	free_array_gen(void **arr);
 
 /**
  * @brief Will clean up all Data structure.
@@ -132,6 +133,11 @@ int		handle_hook_key(int keycode, t_data *data);
 
 int		handle_hook_resize(t_data *data);
 
+/**
+ * @brief Responsible to validate the map loaded by param
+ * @param data Data Structure
+ * @return int. 0 OK. otherwise problem
+ */
 int		valid_map(t_data *data);
 
 /**
@@ -234,7 +240,6 @@ void	set_player_direction(t_player *p);
 int		move_player(t_data *data);
 int		rotate_player(t_data *data, double rotdir);
 void	init_texture_pixels(t_data *data);
-void	free_tab(void **tab);
 void	update_texture_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x);
 void	render_images(t_data *data);
 void	init_textures(t_data *data);
