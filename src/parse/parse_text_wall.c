@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:23:30 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 12:33:08 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 15:54:42 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_texture_pixels(t_data *data)
 	int	i;
 
 	if (data->texture_pixels)
-		free_tab((void **)data->texture_pixels);
+		free_array_gen((void **)data->texture_pixels);
 	data->texture_pixels = ft_calloc(HEIGHT + 1,
 			sizeof * data->texture_pixels);
 	if (!data->texture_pixels)
