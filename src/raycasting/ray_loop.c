@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:04:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 18:20:33 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 18:38:47 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,81 +15,50 @@
 static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y);
 static void	render_raycast(t_data *data);
 
-/*
-We initialize the set up for the rays
-- camera_x -> Where is the camera (-1 = left, 0 = center, 1 = right)
-- dir_x/y = direction of the ray
-- map_x/y = current square of the ray
-- delta_dist_x/y = distance to go to the next x or y.
-*/
-
-//TODO:L Ver se precisa deste código mesmo
-void	init_ray(t_ray *ray)
-{
-	ray->camera_x = 0;
-	ray->dir_x = 0;
-	ray->dir_y = 0;
-	ray->map_x = 0;
-	ray->map_y = 0;
-	ray->step_x = 0;
-	ray->step_y = 0;
-	ray->side_dist_x = 0;
-	ray->side_dist_y = 0;
-	ray->delta_dist_x = 0;
-	ray->delta_dist_y = 0;
-	ray->wall_dist = 0;
-	ray->wall_x = 0;
-	ray->hit_side = false; //TODO:L Acabei de transformar em bool aqui
-	ray->line_height = 0;
-	ray->draw_start = 0;
-	ray->draw_end = 0;
-}
+// //TODO:L Ver se precisa deste código mesmo
+// void	init_ray(t_ray *ray)
+// {
+// 	// ray->camera_x = 0;
+// 	// ray->dir_x = 0;
+// 	// ray->dir_y = 0;
+// 	// ray->map_x = 0;
+// 	// ray->map_y = 0;
+// 	// ray->step_x = 0;
+// 	// ray->step_y = 0;
+// 	// ray->side_dist_x = 0;
+// 	// ray->side_dist_y = 0;
+// 	// ray->delta_dist_x = 0;
+// 	// ray->delta_dist_y = 0;
+// 	// ray->wall_dist = 0;
+// 	// ray->wall_x = 0;
+// 	// ray->hit_side = false; //TODO:L Acabei de transformar em bool aqui
+// 	// ray->line_height = 0;
+// 	// ray->draw_start = 0;
+// 	// ray->draw_end = 0;
+// }
 //TODO:L
 //TODO:L Trocar o nome de Init pra SetUp ou algo assim
+
+/**
+ * @brief
+ *
+ * fabs: This function returns the absolute value in double.
+ * @param x
+ * @param ray
+ * @param player
+ */
 static void	init_raycasting_info(int x, t_ray *ray, t_player *player)
 {
-	init_ray(ray);
+	// init_ray(ray);
 	ray->camera_x = 2 * x / (double)WIDTH - 1;
 	ray->dir_x = player->dir_x + player->plane_x * ray->camera_x;
 	ray->dir_y = player->dir_y + player->plane_y * ray->camera_x;
 	ray->map_x = (int)player->pos_x;
 	ray->map_y = (int)player->pos_y;
-	ray->delta_dist_x = fabs(1 / ray->dir_x); //fabs() function of math.h header file in C programming is used to get the absolute value of a floating point number. This function returns the absolute value in double.
+	ray->delta_dist_x = fabs(1 / ray->dir_x);
 	ray->delta_dist_y = fabs(1 / ray->dir_y);
 }
 
-/*
-- We are doing the initial set up for the dda
-- dda algorithm will jump one square in each loop eiter in a x or y direction
-- ray->side_dist_x or y = distance from the ray start position to the
-	next x or y position
-- if x or y < 0 go the next x or y to the left
-- if x or y > 0 go the next x or y to the right
-*/
-//TODO:L Colocar lá na classe de Calculo DDA se p´a...
-static void	set_dda(t_ray *ray, t_player *player) // **calculate step and initial sideDist
-{
-	if (ray->dir_x < 0)
-	{
-		ray->step_x = -1;
-		ray->side_dist_x = (player->pos_x - ray->map_x) * ray->delta_dist_x;
-	}
-	else
-	{
-		ray->step_x = 1;
-		ray->side_dist_x = (ray->map_x + 1.0 - player->pos_x) * ray->delta_dist_x;
-	}
-	if (ray->dir_y < 0)
-	{
-		ray->step_y = -1;
-		ray->side_dist_y = (player->pos_y - ray->map_y) * ray->delta_dist_y;
-	}
-	else
-	{
-		ray->step_y = 1;
-		ray->side_dist_y = (ray->map_y + 1.0 - player->pos_y) * ray->delta_dist_y;
-	}
-}
 
 /*
 - We implement the DDA algorithm -> the loop will increment 1 square
@@ -164,7 +133,7 @@ void	calc_raycast(t_data *data)
 	while (pixel < WIDTH)
 	{
 		init_raycasting_info(pixel, &ray, &player);
-		set_dda(&ray, &player);
+		calc_dda(&ray, &player);
 		perform_dda(data, &ray);
 		calculate_line_height(&ray, data, &player);
 		update_text_pixels(data, &data->texture_det, &ray, pixel);
@@ -239,7 +208,7 @@ static void	render_frame(t_data *data)
 static void	render_raycast(t_data *data)
 {
 	init_texture_pixels(data);
-	init_ray(&data->ray);
+	// init_ray(&data->ray);
 	calc_raycast(data);
 	render_frame(data);
 }

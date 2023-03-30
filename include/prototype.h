@@ -199,7 +199,14 @@ void	handles_all_hooks(t_data *data);
 void	calc_camera(t_ray *ray, int pixel);
 void	calc_delta(t_ray *r);
 void	calc_side(t_ray *r);
-void	calc_dda(t_ray *r, t_view *v, char **map);
+
+/**
+ * @brief
+ *
+ * @param ray
+ * @param player
+ */
+void	calc_dda(t_ray *ray, t_player *player);
 
 /**
  * @brief Validate Textures. Check if it is following the pattern

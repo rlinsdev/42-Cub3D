@@ -6,13 +6,47 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:58:12 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/30 11:46:34 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 18:37:19 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 //TODO:L Eu acho que esta classe vai receber o código que deixxei espalhado... aí fica com o nome q ele deu mesmo...
+
+
+/*
+- We are doing the initial set up for the dda
+- dda algorithm will jump one square in each loop eiter in a x or y direction
+- ray->side_dist_x or y = distance from the ray start position to the
+	next x or y position
+- if x or y < 0 go the next x or y to the left
+- if x or y > 0 go the next x or y to the right
+*/
+//TODO:L Colocar lá na classe de Calculo DDA se p´a...
+void	calc_dda(t_ray *ray, t_player *p) // **calculate step and initial sideDist
+{
+	if (ray->dir_x < 0)
+	{
+		ray->step_x = -1;
+		ray->side_dist_x = (p->pos_x - ray->map_x) * ray->delta_dist_x;
+	}
+	else
+	{
+		ray->step_x = 1;
+		ray->side_dist_x = (ray->map_x + 1.0 - p->pos_x) * ray->delta_dist_x;
+	}
+	if (ray->dir_y < 0)
+	{
+		ray->step_y = -1;
+		ray->side_dist_y = (p->pos_y - ray->map_y) * ray->delta_dist_y;
+	}
+	else
+	{
+		ray->step_y = 1;
+		ray->side_dist_y = (ray->map_y + 1.0 - p->pos_y) * ray->delta_dist_y;
+	}
+}
 
 // void	calc_camera(t_ray *r, int pixel)
 // {

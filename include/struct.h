@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 12:44:58 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 18:31:41 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,11 @@ typedef struct s_player
  * respectively. Later in the code they will be incremented while steps was did.
  * @param deltaDistX and deltaDistY are the distance the ray has to travel to go
  * from 1 x-side to the next x-side, or from 1 y-side to the next y-side.
- * deltaDistX = abs(|rayDir| / rayDirX)*/
+ * deltaDistX = abs(|rayDir| / rayDirX)
+ * @param camera_x -> Where is the camera (-1 = left, 0 = center, 1 = right)
+ * @param dir_x/y = direction of the ray
+ * @param map_x/y = current square of the ray
+ * */
 typedef struct s_ray
 {
 	double	camera_x;
