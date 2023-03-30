@@ -154,16 +154,8 @@ void	calc_raycast(t_data *data)
 		perform_dda(data, &ray);
 		calculate_line_height(&ray, data, &player);
 		update_texture_pixels(data, &data->texture_det, &ray, pixel);
-		//TODO:L Vou deixar como histórico, porque pode me ajudar a me encontrar onde colocar o código.
-		// calc_camera(&data->ray, pixel);
-		// calc_delta(&data->ray);
-		// calc_side(&data->ray);
-		// calc_dda(&data->ray, &data->view, data->map);
-		// calc_perpendicular(&data->ray);
-		// draw_wall(data, pixel);
 		pixel++;
 	}
-	// ft_mlx_put_img(&data->view, &data->view.screen, 0, 0);
 }
 //TODO:L
 void	set_image_pixel(t_img *image, int x, int y, int color)
@@ -175,15 +167,26 @@ void	set_image_pixel(t_img *image, int x, int y, int color)
 }
 
 //TODO:L Documentar que o proiemri oé pra textura, os outros 2 pro chão e ceu
+
+/**
+ * @brief Responsible to read all pixel by pixel and draw the screen.
+ * The first condition will draw the textures.
+ * The second condition will draw the Ceiling/sky
+ * The third condition will draw the floor/ground
+ * Important: If we go to implement the map, probably, the call will be here!
+ * @param data Data Structure
+ * @param image Image structure
+ * @param x x coordinate in map array
+ * @param y y coordinate in map array
+ */
 static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y)
 {
 	if (data->texture_pixels[y][x] > 0)
-		// printf("oi");
 		set_image_pixel(image, x, y, data->texture_pixels[y][x]);
 	else if (y < HEIGHT / 2)
-		set_image_pixel(image, x, y, data->texture_det.hex_ceiling); // Todo: Aqui está botando o céu e o chão
+		set_image_pixel(image, x, y, data->texture_det.hex_ceiling);
 	else if (y < HEIGHT -1)
-		set_image_pixel(image, x, y, data->texture_det.hex_floor);  // Todo: Aqui está botando o céu e o chão
+		set_image_pixel(image, x, y, data->texture_det.hex_floor);
 }
 //TODO:L Ver se precisa disso mesmo
 void	init_img_clean(t_img *img)
@@ -248,17 +251,19 @@ static void	render_frame(t_data *data) // draw wall
 	mlx_destroy_image(data->view.mlx, image.img);
 }
 
-//TODO:L
+/**
+ * @brief //TODO:L
+ *
+ * @param data
+ */
 static void	render_raycast(t_data *data)
 {
 	init_texture_pixels(data);
 	init_ray(&data->ray);
-	// raycasting(&data->player, data);
 	calc_raycast(data);
 	render_frame(data);
 }
 
-//TODO:L
 void	render_images(t_data *data)
 {
 	render_raycast(data);
@@ -270,9 +275,6 @@ int	ray_loop(t_data *data)
 	if (data->player.has_moved == 0)
 		return (0);
 	render_images(data);
-
-	// draw_ceiling(data); //TODO:L
-	// draw_floor(data);
-	//draw_minimap(data);
+	// draw_minimap(data);
 	return (SUCCESS);
 }
