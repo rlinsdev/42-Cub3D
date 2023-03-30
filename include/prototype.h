@@ -224,11 +224,10 @@ int	valid_texture(t_data *data, t_texture_det *text);
 bool	val_file_path(char *path);
 
 /**
- * @brief Show the values of some variables in Ray structure.
- * Pos / Dir / Plane... In Axis X and Y
- * @param r Ray structure
+ * @brief Show the values of some structure.
+ * @param r data structure
  */
-void	debug_ray(t_ray *r);
+void	debug(t_data *data);
 
 /**
  * @brief Set the player direction object. Accord with the Char Direction (NSWE)

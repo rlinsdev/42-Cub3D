@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:14 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/30 11:39:33 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 16:04:42 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	handle_hook_key_press(int keycode, t_data *data)
 	if (keycode == XK_d)
 		data->player.move_x = 1;
 	if (DEBUG_INFO)
-		debug_ray(&data->ray);
+		debug(data);
 	return (0);
 }
 //TODO:L Ver se precisa deste método mesmo... o q q ele faz de diferente
