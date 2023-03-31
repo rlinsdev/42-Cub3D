@@ -40,7 +40,7 @@ INCLUDE = -I $(INC_PATH) -I $(LIBFT_PATH)
 SRCS +=		main.c val_files.c \
 			parse_file.c parse_map.c \
 			init_map.c init_data.c \
-			mlx_img.c mlx_init.c mlx_hooks.c mlx_color.c \
+			mlx_img.c mlx_init.c mlx_hooks.c \
 			error_handler.c sanitization.c \
 			val_map.c parse_texture.c exit.c val_texture.c \
 			parse_map_partial.c parse_texture_partial.c \

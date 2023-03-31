@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 18:35:41 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 18:44:57 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,15 +112,6 @@ char	*ft_mlx_get_addr(t_img *img);
  * @param y The y coordinate of the image
  */
 void	ft_mlx_put_img(t_view *view, t_img *img, int x, int y);
-
-/**
- * @brief transform a rgb color to an int
- * @param r red
- * @param g green
- * @param b blue
- * @return color in int
-*/
-int		ft_mlx_rgb_to_int(int r, int g, int b);
 
 /**
  * @brief Close the window and free all memory

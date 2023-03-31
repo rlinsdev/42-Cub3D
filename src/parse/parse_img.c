@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:50:10 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 18:34:20 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 18:42:54 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,3 @@ void	init_texture_img(t_data *data, t_img *image, char *path)
 			&image->size_line, &image->endian);
 	return ;
 }
-
