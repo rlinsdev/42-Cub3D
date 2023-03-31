@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:14 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/30 22:07:19 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 11:04:36 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ int	handle_hook_key_press(int keycode, t_data *data)
 		data->player.move_y = -1;
 	if (keycode == XK_d)
 		data->player.move_x = 1;
-	if (DEBUG_INFO)
-		debug(data);
 	return (0);
 }
 

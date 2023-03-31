@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:04:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 10:26:59 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 11:09:07 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y);
 static void	set_image_pixel(t_img *image, int x, int y, int color);
+static void	setup_raycasting_info(int x, t_ray *ray, t_player *player);
 
 /**
  * @brief
  *
- * fabs: This function returns the absolute value in double.
+ * @hint: fabs: This function returns the absolute value in double.
  * @param x
  * @param ray
  * @param player
  */
-static void	init_raycasting_info(int x, t_ray *ray, t_player *player)
+static void	setup_raycasting_info(int x, t_ray *ray, t_player *player)
 {
-	// init_ray(ray);
 	ray->camera_x = 2 * x / (double)WIDTH - 1;
 	ray->dir_x = player->dir_x + player->plane_x * ray->camera_x;
 	ray->dir_y = player->dir_y + player->plane_y * ray->camera_x;
@@ -36,17 +36,23 @@ static void	init_raycasting_info(int x, t_ray *ray, t_player *player)
 }
 
 
-//TODO:L
+/**
+ * @brief Calculate distance projected on camera direction (Euclidean distance
+ * would give fisheye effect!)
+ * @hint: line_height: Calculate height of line to draw on screen
+ * @hint: Calculate lowest and highest pixel to fill in current stripe
+ * @param ray Ray Structure
+ * @param data Data Structure
+ * @param player Player Structure
+ */
 static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
 {
-	// **//Calculate distance projected on camera direction (Euclidean distance would give fisheye effect!)
+
 	if (ray->hit_side == false)
 		ray->wall_dist = (ray->side_dist_x - ray->delta_dist_x);
 	else
 		ray->wall_dist = (ray->side_dist_y - ray->delta_dist_y);
-		// **//Calculate height of line to draw on screen
 	ray->line_height = (int)(HEIGHT / ray->wall_dist);
-	// **//calculate lowest and highest pixel to fill in current stripe
 	ray->draw_start = -(ray->line_height) / 2 + HEIGHT / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
@@ -63,27 +69,24 @@ static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
 void	calc_raycast(t_data *data)
 {
 	int	pixel;
-	t_ray	ray;
-	t_player player;
 
 	pixel = 0;
-	ray = data->ray;
-	player = data->player;
 	while (pixel < WIDTH)
 	{
-		init_raycasting_info(pixel, &ray, &player);
-		calc_dda(&ray, &player);
-		perform_dda(data, &ray);
-		calculate_line_height(&ray, data, &player);
-		update_text_pixels(data, &data->texture_det, &ray, pixel);
+		setup_raycasting_info(pixel, &data->ray, &data->player);
+		calc_dda(&data->ray, &data->player);
+		perform_dda(data, &data->ray);
+		calculate_line_height(&data->ray, data, &data->player);
+		update_text_pixels(data, &data->texture_det, &data->ray, pixel);
 		pixel++;
 	}
+	if (DEBUG_INFO)
+		debug(data);
 }
 
-/** //TODO:L
- * @brief Responsible to draw. Each pixel will pass here
- *
- * Important: If we going to generate the minimap, we probably will use this
+/**
+ * @brief Responsible put the color in exact pixel. Each pixel will pass here
+ * @hint: If we going to generate the minimap, we probably will use this
  * func.
  * @param image image structure
  * @param x X axis
@@ -103,7 +106,7 @@ static void	set_image_pixel(t_img *image, int x, int y, int color)
  * The first condition will draw the textures.
  * The second condition will draw the Ceiling/sky
  * The third condition will draw the floor/ground
- * Important: If we go to implement the map, probably, the call will be here!
+ * @hint: If we go to implement the map, probably, the call will be here!
  * @param data Data Structure
  * @param image Image structure
  * @param x x coordinate in map array
@@ -120,10 +123,11 @@ static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y)
 }
 
 /**
- * @brief
+ * @brief pass through all pixel
  *
- * Important: mlx_put_image_to_window is the responsible to put image in screen.
- * If reallocated inside the loop, all draw will be slow
+ * @hint: mlx_put_image_to_window is the responsible to put image in screen.
+ * If reallocated inside the loop, all draw will be slow / you can see the
+ * screen generating...
  * @param data
  */
 static void	render_frame(t_data *data)

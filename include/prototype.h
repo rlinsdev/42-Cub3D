@@ -250,13 +250,22 @@ void	debug(t_data *data);
  * @param p player structure
  */
 void	set_player_direction(t_player *p);
+
+/**
+ * @brief Identify if user move forward, back, left, right or rotation.
+ * Call the
+ * @hint: Effect to 'keep going' and 'turn fluid' is able keeping 'if'
+ * condition. else if will exclusive direction
+ * @param data
+ * @return int
+ */
 int		move_player(t_data *data);
 int		rotate_player(t_data *data, double rotdir);
 void	init_texture_pixels(t_data *data);
 
 /**
  * @brief Handle all the calc to update the texture of a pixel.
- * Important: North and East texture will received a effect of grey. If you
+ * @int: North and East texture will received a effect of grey. If you
  * run a map with the same texture in all dir, North and East will got this
  * effect
  * Will draw to start ray until the draw end ray.
