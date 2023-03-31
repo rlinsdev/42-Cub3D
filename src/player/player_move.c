@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 08:37:54 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 22:17:43 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 11:34:46 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,3 @@ int	move_player(t_data *data)
 		moved += rotate_player(data, data->player.rotate);
 	return (moved);
 }
-
-
-

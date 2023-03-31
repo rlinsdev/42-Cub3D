@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 11:11:32 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 11:24:49 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 # define STRUCT_H
 
 /**
- * @brief Texture structure. First, all variables captured by files. Then,
+ * @brief Texture structure. First: all variables captured by files. Then,
  * variables to handle the texture wall
- * @param size até pos: //TODO:L documentar
  */
 typedef struct s_texture
 {
@@ -51,10 +50,8 @@ typedef struct s_map_detail
 /**
  * @brief Player structure.
  * @param dir: Player Direction (NEWS), Position (x/y)
- *
  * @param rotate: Indicate the side of rotation
  * @hint: dir an plane just change when in rotation.
- * TODO:L Colocar mais coisa?
  */
 typedef struct s_player
 {
@@ -84,7 +81,6 @@ typedef struct s_player
  * @param camera_x -> Where is the camera (-1 = left, 0 = center, 1 = right)
  * @param dir_x/y = direction of the ray
  * @param map_x/y = current square of the ray
- * @param wall_dist Perpendicular distance
  * */
 typedef struct s_ray
 {

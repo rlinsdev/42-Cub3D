@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 09:03:59 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 12:10:06 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static bool	is_map_last_element(t_map_det *map_det)
 /**
  * @brief Handle the character in map. 6 possible characters: 0 for an empty
  * space, 1 for a wall, and N,S,E or W for the player’s start position
- * IMPORTANT: Direction Player updated Here!
+ * @hint: Direction Player updated Here!
  * @param data Data structure
  * @param map Matrix representing map
  * @return int 0 OK. other wise: error

@@ -51,13 +51,11 @@
 # define Y 1
 
 /**
- * @brief For the cube world, we use bitmaps that have the size of 64 by 64 pixels.
+ * @brief In this project,was used bitmaps that have the size of 64 by 64 pixels
  * This size is chosen because 64 by 64 is also the size of the cube facets that
  * we are using in our world
- *
  */
-# define TEX_SIZE 64 // TODO:Lins - Texture size
-// TODO:L Talvez dê para add comentários aqui, aparecer no código, sem a norminette dar problema
+# define TEX_SIZE 64
 
 # define COLOR_MINIMAP 0x000000
 # define COLOR_BORDER_MINIMAP 0xFFFFFF

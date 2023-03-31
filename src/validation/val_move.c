@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:14:16 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 22:25:28 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 11:36:52 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	validate_move(t_data *data, double new_x, double new_y)
 
 /**
  * @brief This method will calculate if the axis X and Y keep inside the
- * map width and height. Will return true if is inside. false if is outside
+ * map width and height. Will return true if is inside. false if is outside.
+ * It will handle the limits player in map surrounded by '1's
  * @param data Data Structure
  * @param x axis X
  * @param y axis Y
