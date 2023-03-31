@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:23:30 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 11:38:07 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 18:42:43 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,20 @@ static void	get_texture_index(t_data *data, t_ray *ray)
 	}
 }
 
-void	update_text_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x)
+void	update_text_pixels(t_data *data, t_texture_det *tex, t_ray *r, int x)
 {
 	int			y;
 	int			color;
 
-	get_texture_index(data, ray);
-	tex->x = (int)(ray->wall_x * tex->size);
-	if ((ray->hit_side == false && ray->dir_x < 0) || (ray->hit_side == true && ray->dir_y > 0))
+	get_texture_index(data, r);
+	tex->x = (int)(r->wall_x * tex->size);
+	if ((r->hit_side == false && r->dir_x < 0) || (r->hit_side == true
+			&& r->dir_y > 0))
 		tex->x = tex->size - tex->x - 1;
-	tex->step = 1.0 * tex->size / ray->line_height;
-	tex->pos = (ray->draw_start - HEIGHT / 2 + ray->line_height / 2) * tex->step;
-	y = ray->draw_start;
-	while (y < ray->draw_end)
+	tex->step = 1.0 * tex->size / r->line_height;
+	tex->pos = (r->draw_start - HEIGHT / 2 + r->line_height / 2) * tex->step;
+	y = r->draw_start;
+	while (y < r->draw_end)
 	{
 		tex->y = (int)tex->pos & (tex->size - 1);
 		tex->pos += tex->step;
@@ -122,4 +123,3 @@ void	setup_textures(t_data *data)
 	data->textures[WEST] = xpm_to_img(data, data->texture_det.west);
 	data->texture_det.size = TEX_SIZE;
 }
-
