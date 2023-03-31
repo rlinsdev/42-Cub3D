@@ -6,13 +6,13 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 09:28:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/23 09:38:42 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 17:36:48 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-static bool	valid_rgb(int *rgv_val);
+static bool				valid_rgb(int *rgv_val);
 static unsigned long	rgb_to_hex(int *rgb);
 
 int	valid_texture(t_data *data, t_texture_det *text)
@@ -22,7 +22,7 @@ int	valid_texture(t_data *data, t_texture_det *text)
 	if (!text->ceiling || !text->floor)
 		return (error_msg(ERR_TEXT_COL, 13));
 	if (!val_file_path(text->north) || !val_file_path(text->south)
-	 	|| !val_file_path(text->east) || !val_file_path(text->west))
+		|| !val_file_path(text->east) || !val_file_path(text->west))
 		return (error_msg(ERR_TEXT_PATH, 14));
 	if (valid_rgb(text->ceiling) == false || valid_rgb(text->floor) == false)
 		return (error_msg(ERR_RGB_VAL, 15));
@@ -66,6 +66,5 @@ static unsigned long	rgb_to_hex(int *rgb)
 	r = rgb[0];
 	g = rgb[1];
 	b = rgb[2];
-
-	return(((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
+	return (((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff));
 }

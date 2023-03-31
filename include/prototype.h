@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 17:33:52 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 17:39:37 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -321,5 +321,14 @@ void	init_img(t_data *data, t_img *i, int width, int height);
  * @param s_code Status code of exit
  */
 void	exit_and_free(t_data *data, int s_code);
+
+/**
+ * @brief //TODO:L
+ *
+ * @param data
+ * @param map
+ * @return int
+ */
+int		check_position_is_valid(t_data *data, char **map);
 
 #endif
