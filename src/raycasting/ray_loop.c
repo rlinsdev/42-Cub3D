@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:04:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 14:09:16 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 18:14:16 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ static void	set_image_pixel(t_img *image, int x, int y, int color);
 static void	setup_raycasting_info(int x, t_ray *ray, t_player *player);
 
 /**
- * @brief
- *
+ * @brief Formula to get all the pixels in the all width, range from -1 until 1
+ * range of POV)
  * @hint: fabs: This function returns the absolute value in double.
- * @param x
- * @param ray
- * @param player
+ * @param x pixel
+ * @param ray Ray structure
+ * @param player Player
  */
 static void	setup_raycasting_info(int x, t_ray *ray, t_player *player)
 {
-	ray->camera_x = 2 * x / (double)WIDTH - 1;
-	ray->dir_x = player->dir_x + player->plane_x * ray->camera_x;
-	ray->dir_y = player->dir_y + player->plane_y * ray->camera_x;
+	ray->multiplier = 2 * x / (double)WIDTH - 1;
+	ray->dir_x = player->dir_x + player->plane_x * ray->multiplier;
+	ray->dir_y = player->dir_y + player->plane_y * ray->multiplier;
 	ray->map_x = (int)player->pos_x;
 	ray->map_y = (int)player->pos_y;
 	ray->delta_dist_x = fabs(1 / ray->dir_x);

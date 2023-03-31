@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:20:05 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 17:59:49 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 18:14:30 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	debug_player(t_player *p)
 static void	debug_ray(t_ray *r)
 {
 	printf("\n****Ray****\n");
-	printf("camera: %f\n", r->camera_x);
+	printf("multiplier: %f\n", r->multiplier);
 	printf("dir_x: %f\n", r->dir_x);
 	printf("dir_y: %f\n", r->dir_y);
 	printf("map_x: %d\n", r->map_x);
