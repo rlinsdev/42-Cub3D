@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:04:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 11:33:34 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 14:09:16 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ static void	render_frame(t_data *data)
 		y++;
 	}
 	mlx_put_image_to_window(data->view.mlx, data->view.win, image.img, 0, 0);
-	mlx_destroy_image(data->view.mlx, image.img);
+	mlx_destroy_image(data->view.mlx, image.img);// Todo: Ver se será necesário mesmo isso. Talvez não de merda de tirar isso!
 }
 
 void	render_images(t_data *data)
