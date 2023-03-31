@@ -253,6 +253,18 @@ void	set_player_direction(t_player *p);
 int		move_player(t_data *data);
 int		rotate_player(t_data *data, double rotdir);
 void	init_texture_pixels(t_data *data);
+
+/**
+ * @brief Handle all the calc to update the texture of a pixel.
+ * Important: North and East texture will received a effect of grey. If you
+ * run a map with the same texture in all dir, North and East will got this
+ * effect
+ * Will draw to start ray until the draw end ray.
+ * @param data Data structure
+ * @param tex Texture details structure
+ * @param ray Ray structure
+ * @param x pixel
+ */
 void	update_text_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x);
 
 /**
@@ -268,7 +280,7 @@ void	render_images(t_data *data);
  * Will call the method xpm_to_image, passing the path os texture by param
  * @param data Data Structure
  */
-void	init_textures(t_data *data);
+void	setup_textures(t_data *data);
 
 /**
  * @brief Validate the move. If is a invalid move (out of window game)

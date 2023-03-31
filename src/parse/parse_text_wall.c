@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:23:30 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 08:56:21 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 10:38:02 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,6 @@ static void	get_texture_index(t_data *data, t_ray *ray)
 	}
 }
 
-/**
- * @brief //TODO:L
- *
- * @param data
- * @param tex
- * @param ray
- * @param x
- */
 void	update_text_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x)
 {
 	int			y;
@@ -119,28 +111,27 @@ static int	*xpm_to_img(t_data *data, char *path)
 	mlx_destroy_image(data->view.mlx, tmp.img);
 	return (buffer);
 }
-//TODO:L Precisa disto mesmo?
-void	init_texinfo(t_texture_det *textures)
+// //TODO:L Precisa disto mesmo?
+// void	init_texinfo(t_texture_det *textures)
+// {
+// 	textures->north = NULL;
+// 	textures->south = NULL;
+// 	textures->west = NULL;
+// 	textures->east = NULL;
+// 	textures->floor = 0;
+// 	textures->ceiling = 0;
+// 	// textures->hex_floor = 0x0;
+// 	// textures->hex_ceiling = 0x0;
+// 	textures->size = TEX_SIZE;
+// 	textures->step = 0.0;
+// 	textures->pos = 0.0;
+// 	textures->x = 0;
+// 	textures->y = 0;
+// }
+
+
+void	setup_textures(t_data *data)
 {
-	textures->north = NULL;
-	textures->south = NULL;
-	textures->west = NULL;
-	textures->east = NULL;
-	textures->floor = 0;
-	textures->ceiling = 0;
-	// textures->hex_floor = 0x0;
-	// textures->hex_ceiling = 0x0;
-	textures->size = TEX_SIZE;
-	textures->step = 0.0;
-	textures->pos = 0.0;
-	textures->x = 0;
-	textures->y = 0;
-}
-
-
-void	init_textures(t_data *data)
-{
-
 	data->textures = ft_calloc(5, sizeof * data->textures);
 	if (!data->textures)
 		exit_and_free(data, error_msg(ERR_MALC, 26));
@@ -148,6 +139,6 @@ void	init_textures(t_data *data)
 	data->textures[SOUTH] = xpm_to_img(data, data->texture_det.south);
 	data->textures[EAST] = xpm_to_img(data, data->texture_det.east);
 	data->textures[WEST] = xpm_to_img(data, data->texture_det.west);
-	init_texinfo(&data->texture_det);
+	data->texture_det.size = TEX_SIZE;
 }
 

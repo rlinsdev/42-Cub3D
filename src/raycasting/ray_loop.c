@@ -6,14 +6,13 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:04:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 08:53:17 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 10:26:59 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y);
-static void	render_raycast(t_data *data);
 static void	set_image_pixel(t_img *image, int x, int y, int color);
 
 /**
@@ -84,10 +83,12 @@ void	calc_raycast(t_data *data)
 /** //TODO:L
  * @brief Responsible to draw. Each pixel will pass here
  *
- * @param image
- * @param x
- * @param y
- * @param color
+ * Important: If we going to generate the minimap, we probably will use this
+ * func.
+ * @param image image structure
+ * @param x X axis
+ * @param y y axis
+ * @param color integer color to put in pixel
  */
 static void	set_image_pixel(t_img *image, int x, int y, int color)
 {
@@ -148,21 +149,11 @@ static void	render_frame(t_data *data)
 	mlx_destroy_image(data->view.mlx, image.img);
 }
 
-/**
- * @brief //TODO:L
- *
- * @param data
- */
-static void	render_raycast(t_data *data)
+void	render_images(t_data *data)
 {
 	init_texture_pixels(data);
 	calc_raycast(data);
 	render_frame(data);
-}
-
-void	render_images(t_data *data)
-{
-	render_raycast(data);
 }
 
 int	ray_loop(t_data *data)

@@ -94,7 +94,7 @@ norma:
 
 
 run:
-	./cub3D ./maps/1.cub
+	./cub3D ./maps/20.cub
 #	./cub3D ./maps/4.cub
 
 valgrind:
