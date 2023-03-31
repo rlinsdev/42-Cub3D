@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 09:27:20 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 15:53:46 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 17:21:06 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ int	free_data(t_data *data)
 {
 	if (data)
 	{
+		if (data->textures)
+			free_array_gen((void **)data->textures);
+		if (data->texture_pixels)
+			free_array_gen((void **)data->texture_pixels);
 		free_textures(&data->texture_det);
 		free_map(data);
 	}

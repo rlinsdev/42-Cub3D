@@ -98,6 +98,6 @@ run:
 #	./cub3D ./maps/4.cub
 
 valgrind:
-	$(LEAK) ./cub3D ./maps/2-pdf-map.cub
+	$(LEAK) ./cub3D ./maps/1.cub
 
 .PHONY: all run re clean fclean
