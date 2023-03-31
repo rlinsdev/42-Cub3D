@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:23:30 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 18:27:05 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 08:56:21 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,14 @@ static void	get_texture_index(t_data *data, t_ray *ray)
 	}
 }
 
+/**
+ * @brief //TODO:L
+ *
+ * @param data
+ * @param tex
+ * @param ray
+ * @param x
+ */
 void	update_text_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x)
 {
 	int			y;
@@ -76,7 +84,7 @@ void	update_text_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x)
 		tex->pos += tex->step;
 		color = data->textures[tex->index][tex->size * tex->y + tex->x];
 		if (tex->index == NORTH || tex->index == EAST)
-			color = (color >> 1) & 8355711; //TODO:L
+			color = (color >> 1) & 8355711;
 		if (color > 0)
 			data->texture_pixels[y][x] = color;
 		y++;

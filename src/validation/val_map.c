@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 15:50:20 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 09:03:59 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,11 +143,11 @@ static bool	is_map_sur_walls(t_data *data)
 /**
  * @brief Update player position (Pos_X Pos_Y). The old space will received
  * 'empty' in map
+ * Important: Put plus 0.5 to get a better angles. Without, the idea of 3D will
+ * be worst. Test without to verify
  * @param data Data Struct
  * @param map Map - Array representation
- * @return true
- * @return false
- * //TODO:L Porque do 0.5? E se deixar isso sem somar nada??
+ * @return boolean
  */
 static bool	check_player_position(t_data *data, char **map)
 {
@@ -185,7 +185,6 @@ static bool	check_player_position(t_data *data, char **map)
  * @param data
  * @param map
  * @return int
- * //TODO:L Fazer dar erro aqui
  */
 static int	check_position_is_valid(t_data *data, char **map)
 {

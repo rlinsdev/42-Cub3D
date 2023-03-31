@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:04:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 22:36:19 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 08:53:17 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y);
 static void	render_raycast(t_data *data);
+static void	set_image_pixel(t_img *image, int x, int y, int color);
 
 /**
  * @brief
@@ -79,8 +80,16 @@ void	calc_raycast(t_data *data)
 		pixel++;
 	}
 }
-//TODO:L
-void	set_image_pixel(t_img *image, int x, int y, int color)
+
+/** //TODO:L
+ * @brief Responsible to draw. Each pixel will pass here
+ *
+ * @param image
+ * @param x
+ * @param y
+ * @param color
+ */
+static void	set_image_pixel(t_img *image, int x, int y, int color)
 {
 	int	pixel;
 
