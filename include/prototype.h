@@ -256,7 +256,16 @@ void	render_images(t_data *data);
  */
 void	init_textures(t_data *data);
 
+/**
+ * @brief Validate the move. If is a invalid move (out of window game)
+ * If it's a valid move, change the player position
+ * @param data Data structure
+ * @param new_x New PosX to player
+ * @param new_y new PosY to player
+ * @return int
+ */
 int		validate_move(t_data *data, double new_x, double new_y);
+
 void	init_texture_img(t_data *data, t_img *image, char *path);
 void	init_img(t_data *data, t_img *i, int width, int height);
 
