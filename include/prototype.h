@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 18:26:35 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 18:35:41 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -330,5 +330,37 @@ void	exit_and_free(t_data *data, int s_code);
  * @return int
  */
 int		check_position_is_valid(t_data *data, char **map);
+
+/**
+ * @brief Calculate distance projected on camera direction (Euclidean distance
+ * would give fisheye effect!)
+ * @hint: line_height: Calculate height of line to draw on screen
+ * @hint: Calculate lowest and highest pixel to fill in current stripe
+ * @param ray Ray Structure
+ * @param data Data Structure
+ * @param player Player Structure
+ */
+void	calculate_line_height(t_ray *ray, t_data *data, t_player *player);
+
+/**
+ * @brief Responsible put the color in exact pixel. Each pixel will pass here
+ * @hint: If we going to generate the minimap, we probably will use this
+ * func.
+ * @param image image structure
+ * @param x X axis
+ * @param y y axis
+ * @param color integer color to put in pixel
+ */
+void	set_image_pixel(t_img *image, int x, int y, int color);
+
+/**
+ * @brief Formula to get all the pixels in the all width, range from -1 until 1
+ * range of POV)
+ * @hint: fabs: This function returns the absolute value in double.
+ * @param x pixel
+ * @param ray Ray structure
+ * @param player Player
+ */
+void	setup_raycast_info(int x, t_ray *ray, t_player *player);
 
 #endif

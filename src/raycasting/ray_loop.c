@@ -6,64 +6,13 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:04:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 18:14:16 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 18:35:54 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y);
-static void	set_image_pixel(t_img *image, int x, int y, int color);
-static void	setup_raycasting_info(int x, t_ray *ray, t_player *player);
-
-/**
- * @brief Formula to get all the pixels in the all width, range from -1 until 1
- * range of POV)
- * @hint: fabs: This function returns the absolute value in double.
- * @param x pixel
- * @param ray Ray structure
- * @param player Player
- */
-static void	setup_raycasting_info(int x, t_ray *ray, t_player *player)
-{
-	ray->multiplier = 2 * x / (double)WIDTH - 1;
-	ray->dir_x = player->dir_x + player->plane_x * ray->multiplier;
-	ray->dir_y = player->dir_y + player->plane_y * ray->multiplier;
-	ray->map_x = (int)player->pos_x;
-	ray->map_y = (int)player->pos_y;
-	ray->delta_dist_x = fabs(1 / ray->dir_x);
-	ray->delta_dist_y = fabs(1 / ray->dir_y);
-}
-
-/**
- * @brief Calculate distance projected on camera direction (Euclidean distance
- * would give fisheye effect!)
- * @hint: line_height: Calculate height of line to draw on screen
- * @hint: Calculate lowest and highest pixel to fill in current stripe
- * @param ray Ray Structure
- * @param data Data Structure
- * @param player Player Structure
- */
-static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
-{
-
-	if (ray->hit_side == false)
-		ray->wall_dist = (ray->side_dist_x - ray->delta_dist_x);
-	else
-		ray->wall_dist = (ray->side_dist_y - ray->delta_dist_y);
-	ray->line_height = (int)(HEIGHT / ray->wall_dist);
-	ray->draw_start = -(ray->line_height) / 2 + HEIGHT / 2;
-	if (ray->draw_start < 0)
-		ray->draw_start = 0;
-	ray->draw_end = ray->line_height / 2 + HEIGHT / 2;
-	if (ray->draw_end >= HEIGHT)
-		ray->draw_end = HEIGHT - 1;
-	if (ray->hit_side == false)
-		ray->wall_x = player->pos_y + ray->wall_dist * ray->dir_y;
-	else
-		ray->wall_x = player->pos_x + ray->wall_dist * ray->dir_x;
-	ray->wall_x -= floor(ray->wall_x);
-}
 
 void	calc_raycast(t_data *data)
 {
@@ -72,7 +21,7 @@ void	calc_raycast(t_data *data)
 	pixel = 0;
 	while (pixel < WIDTH)
 	{
-		setup_raycasting_info(pixel, &data->ray, &data->player);
+		setup_raycast_info(pixel, &data->ray, &data->player);
 		calc_dda(&data->ray, &data->player);
 		perform_dda(data, &data->ray);
 		calculate_line_height(&data->ray, data, &data->player);
@@ -81,23 +30,6 @@ void	calc_raycast(t_data *data)
 	}
 	if (DEBUG_INFO)
 		debug(data);
-}
-
-/**
- * @brief Responsible put the color in exact pixel. Each pixel will pass here
- * @hint: If we going to generate the minimap, we probably will use this
- * func.
- * @param image image structure
- * @param x X axis
- * @param y y axis
- * @param color integer color to put in pixel
- */
-static void	set_image_pixel(t_img *image, int x, int y, int color)
-{
-	int	pixel;
-
-	pixel = y * (image->size_line / 4) + x;
-	image->addr[pixel] = color;
 }
 
 /**
@@ -149,7 +81,7 @@ static void	render_frame(t_data *data)
 		y++;
 	}
 	mlx_put_image_to_window(data->view.mlx, data->view.win, image.img, 0, 0);
-	mlx_destroy_image(data->view.mlx, image.img);// Todo: Ver se será necesário mesmo isso. Talvez não de merda de tirar isso!
+	mlx_destroy_image(data->view.mlx, image.img);
 }
 
 void	render_images(t_data *data)
