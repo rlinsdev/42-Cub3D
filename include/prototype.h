@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prototype.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
+/*   Updated: 2023/03/31 17:33:52 by rlins            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PROTOTYPE_H
 # define PROTOTYPE_H
 
@@ -173,8 +185,7 @@ bool	is_white_space(char c);
  * @return int - 0 OK. Otherwise error
  */
 
-int	parse_tex_color(t_texture_det *text_det, char *row, int i);
-
+int		parse_tex_color(t_texture_det *text_det, char *row, int i);
 
 /**
  * @brief Change white space into wall in map. First, PDF tell us that just
@@ -228,7 +239,7 @@ void	perform_dda(t_data *data, t_ray *ray);
  * @param text Texture Structure
  * @return int. 0 if It's OK. Otherwise: Error
  */
-int	valid_texture(t_data *data, t_texture_det *text);
+int		valid_texture(t_data *data, t_texture_det *text);
 
 /**
  * @brief Validate path of program. Initially, will validate the path of
