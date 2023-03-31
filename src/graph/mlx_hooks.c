@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:14 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/31 11:04:36 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 18:46:38 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ int	handle_hook_close(t_data *data)
 {
 	mlx_destroy_image(data->view.mlx, data->view.screen.img);
 	mlx_destroy_window(data->view.mlx, data->view.win);
-
 	mlx_destroy_display(data->view.mlx);
-
 	free_data(data);
 	free(data->view.mlx);
 	exit(SUCCESS);
@@ -79,6 +77,6 @@ void	handles_all_hooks(t_data *data)
 {
 	mlx_hook(data->view.win, 17, 1L << 17, handle_hook_close, data);
 	mlx_hook(data->view.win, 2, 1L << 0, handle_hook_key_press, data);
-	mlx_hook(data->view.win, KeyRelease, KeyReleaseMask, key_release_handler, data);
+	mlx_hook(data->view.win, 3, KeyReleaseMask, key_release_handler, data);
 	mlx_loop_hook(data->view.mlx, ray_loop, data);
 }

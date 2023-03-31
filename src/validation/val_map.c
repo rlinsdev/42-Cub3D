@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 17:45:31 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 18:47:11 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static int	is_valid_char_in_map(t_data *data, char **map)
 				else
 					data->player.dir = map[i][j];
 			}
-			j++; // ACHO Q NAO PODE TER ISSO AQUI NAO
+			//j++; // ACHO Q NAO PODE TER ISSO AQUI NAO
 		}
 	}
 	return (0);
