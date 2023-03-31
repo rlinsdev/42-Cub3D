@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:02 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/11 12:24:04 by lucas            ###   ########.fr       */
+/*   Updated: 2023/03/31 13:27:41 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
+// TODO: Remover esta func
 int ft_mlx_rgb_to_int(int r, int g, int b)
 {
     return (r << 16 | g << 8 | b);

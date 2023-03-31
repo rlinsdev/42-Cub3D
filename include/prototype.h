@@ -27,10 +27,11 @@ void	init_map_handler(t_data *data, char *path);
 void	free_ptr(void *ptr);
 
 /**
- * @brief Release a memory from a Array of char (String)
- * @param arr_str string to be freed
+ * @brief Release a memory from a Array. Void to be generic. Will clean
+ * string, array of int, etc.
+ * @param arr Array to be freed
  */
-void	free_array_str(char **arr_str);
+void	free_array_gen(void **arr);
 
 /**
  * @brief Will clean up all Data structure.
@@ -132,6 +133,11 @@ int		handle_hook_key(int keycode, t_data *data);
 
 int		handle_hook_resize(t_data *data);
 
+/**
+ * @brief Responsible to validate the map loaded by param
+ * @param data Data Structure
+ * @return int. 0 OK. otherwise problem
+ */
 int		valid_map(t_data *data);
 
 /**
@@ -178,28 +184,43 @@ int	parse_tex_color(t_texture_det *text_det, char *row, int i);
  */
 void	spaces_to_wall(t_data *data);
 
-
-// TODO: documentar as funções abaixo
+/**
+ * @brief This is the MLX loop method called. Any game must be a while (true)
+ * code to render the screen. MLX have your call to do this. And, this was the
+ * method called to do this work
+ * @param data Data Structure
+ * @return int
+ */
 int		ray_loop(t_data *data);
 
-void	draw_ceiling(t_data *data);
-void	draw_floor(t_data *data);
-void	draw_wall(t_data *data, int pixel);
-void	draw_minimap(t_data *data);
-int		ray_rotate_left(t_ray *r);
-int		ray_rotate_right(t_ray *r);
-int     ray_move_left(t_ray *r, char **map);
-int     ray_move_right(t_ray *r, char **map);
-int     ray_move_up(t_ray *r, char **map);
-int     ray_move_down(t_ray *r, char **map);
-int		ray_resert(t_ray *r);
 void	calc_perpendicular(t_ray *ray);
 void	handles_all_hooks(t_data *data);
 
 void	calc_camera(t_ray *ray, int pixel);
 void	calc_delta(t_ray *r);
 void	calc_side(t_ray *r);
-void	calc_dda(t_ray *r, t_view *v, char **map);
+
+/**
+ * @brief calculate step and initial sideDist.
+ * Will apply the DDA calculation
+ * if x or y < 0 go the next x or y to the left
+ * if x or y > 0 go the next x or y to the right
+ * @param ray
+ * @param player
+ */
+void	calc_dda(t_ray *ray, t_player *player);
+
+/**
+ * @brief Implement the DDA algorithm -> the loop will increment 1 square
+ * until we hit a wall
+ * If the side_dist_x < side_dist_y, x is the closest point from the ray
+ * In first 'if', jump to next map square, either in x-direction, or in
+ * y-direction.
+ * Verify if hit the wall
+ * @param data Data Structure
+ * @param ray Ray Structure
+ */
+void	perform_dda(t_data *data, t_ray *ray);
 
 /**
  * @brief Validate Textures. Check if it is following the pattern
@@ -218,17 +239,76 @@ int	valid_texture(t_data *data, t_texture_det *text);
 bool	val_file_path(char *path);
 
 /**
- * @brief Show the values of some variables in Ray structure.
- * Pos / Dir / Plane... In Axis X and Y
- * @param r Ray structure
+ * @brief Show the values of some structure.
+ * @param data data structure
  */
-void	debug_ray(t_ray *r);
+void	debug(t_data *data);
 
 /**
  * @brief Set the player direction object. Accord with the Char Direction (NSWE)
  * point the camera to some side
- * @param r ray structure
+ * @param p player structure
  */
-void	set_player_direction(t_ray *r);
+void	set_player_direction(t_player *p);
+
+/**
+ * @brief Identify if user move forward, back, left, right or rotation.
+ * Call the
+ * @hint: Effect to 'keep going' and 'turn fluid' is able keeping 'if'
+ * condition. else if will exclusive direction
+ * @param data
+ * @return int
+ */
+int		move_player(t_data *data);
+int		rotate_player(t_data *data, double rotdir);
+void	init_texture_pixels(t_data *data);
+
+/**
+ * @brief Handle all the calc to update the texture of a pixel.
+ * @int: North and East texture will received a effect of grey. If you
+ * run a map with the same texture in all dir, North and East will got this
+ * effect
+ * Will draw to start ray until the draw end ray.
+ * @param data Data structure
+ * @param tex Texture details structure
+ * @param ray Ray structure
+ * @param x pixel
+ */
+void	update_text_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x);
+
+/**
+ * @brief Responsible to render all images. This method will be called in the
+ * begin of program (render the screen in user position vision) and will be
+ * called any time the player move.
+ * @param data Data Structure
+ */
+void	render_images(t_data *data);
+
+/**
+ * @brief Initialize each texture. North South East West.
+ * Will call the method xpm_to_image, passing the path os texture by param
+ * @param data Data Structure
+ */
+void	setup_textures(t_data *data);
+
+/**
+ * @brief Validate the move. If is a invalid move (out of window game)
+ * If it's a valid move, change the player position
+ * @param data Data structure
+ * @param new_x New PosX to player
+ * @param new_y new PosY to player
+ * @return int
+ */
+int		validate_move(t_data *data, double new_x, double new_y);
+
+void	init_texture_img(t_data *data, t_img *image, char *path);
+void	init_img(t_data *data, t_img *i, int width, int height);
+
+/**
+ * @brief Exi the program, but free all memory allocation
+ * @param data data Structure
+ * @param s_code Status code of exit
+ */
+void	exit_and_free(t_data *data, int s_code);
 
 #endif

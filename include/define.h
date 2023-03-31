@@ -14,12 +14,7 @@
 # define C_WALL '1'
 # define C_BACK_G '0'
 # define C_WHITE_S ' '
-// # define C_NSEW 	'X'
 
-# define NORTH -1
-# define WEST -1
-# define EAST 1
-# define SOUTH 1
 
 # define VALID_CHAR_MAP "01NSEW"
 # define VALID_PLAYER_POS "NSEW"
@@ -39,21 +34,35 @@
 # define ERR_TEXT_COL "Color not found in file."
 # define ERR_TEXT_PATH "Error in Texture. Invalid path."
 # define ERR_RGB_VAL "Invalid RGB Value. Check the file passed by param."
+# define ERR_PLA_POS "Invalid Player position"
 
 # define ERR_MAP_CHAR "Character invalid in map."
 # define ERR_SING_PLAYER "Map error. Just one player allowed."
 
-# define HEIGHT 600
-# define WIDTH 800
+# define ERR_MLX_IMG "MLX new Image error. Check the framework"
+
+# define WIDTH 640
+# define HEIGHT 480
+
 # define BITS_PER_BYTE 8
 # define TITLE "Cub3D"
 
 # define X 0
 # define Y 1
 
+/**
+ * @brief In this project,was used bitmaps that have the size of 64 by 64 pixels
+ * This size is chosen because 64 by 64 is also the size of the cube facets that
+ * we are using in our world
+ */
+# define TEX_SIZE 64
+
 # define COLOR_MINIMAP 0x000000
 # define COLOR_BORDER_MINIMAP 0xFFFFFF
 # define COLOR_PLAYER 0x0000FF
+
+# define MOVE_SPEED 0.0125
+# define ROTSPEED 0.015
 
 # ifndef DEBUG_INFO
 #  define DEBUG_INFO 1

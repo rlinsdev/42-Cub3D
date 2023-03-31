@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 09:27:20 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/11 10:33:13 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 15:53:46 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,24 @@ void	free_ptr(void *ptr)
 	}
 }
 
-void	free_array_str(char **arr_str)
+void	free_array_gen(void **arr)
 {
 	int	i;
 
 	i = 0;
-	if (arr_str)
+	if (arr)
 	{
-		while (arr_str[i])
+		while (arr[i])
 		{
-			if (arr_str[i])
+			if (arr[i])
 			{
-				free_ptr(arr_str[i]);
-				arr_str[i] = NULL;
+				free_ptr(arr[i]);
+				arr[i] = NULL;
 			}
 			i++;
 		}
-		free(arr_str);
-		arr_str = NULL;
+		free(arr);
+		arr = NULL;
 	}
 }
 

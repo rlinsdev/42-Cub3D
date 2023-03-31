@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/28 16:00:56 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 12:10:06 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 static bool	is_map_sur_walls(t_data *data);
 static int	is_valid_char_in_map(t_data *data, char **map);
 static bool	is_map_last_element(t_map_det *map_det);
+static int	check_position_is_valid(t_data *data, char **map);
+static bool	check_player_position(t_data *data, char **map);
 
 int	valid_map(t_data *data)
 {
 	int	valid_char_map;
 
-	data->ray.dir_char = '0';
+	data->player.dir = C_BACK_G;
 	if (!data->map)
 		return (error_msg(ERR_MAP7, 7));
 	if (is_map_sur_walls(data) == false)
@@ -30,9 +32,10 @@ int	valid_map(t_data *data)
 		return (valid_char_map);
 	if (is_map_last_element(&data->map_det) == false)
 		return (error_msg(ERR_MAP_LAST, 16));
-	if (data->ray.dir_char == '0')
+	if (check_player_position(data, data->map) == false)
+		return (FAILURE);
+	if (data->player.dir == '0')
 		return (error_msg(ERR_MAP_DIR, 17));
-
 	return (0);
 }
 
@@ -65,7 +68,7 @@ static bool	is_map_last_element(t_map_det *map_det)
 /**
  * @brief Handle the character in map. 6 possible characters: 0 for an empty
  * space, 1 for a wall, and N,S,E or W for the player’s start position
- * IMPORTANT: Position of Player and Direction updated Here!
+ * @hint: Direction Player updated Here!
  * @param data Data structure
  * @param map Matrix representing map
  * @return int 0 OK. other wise: error
@@ -76,6 +79,7 @@ static int	is_valid_char_in_map(t_data *data, char **map)
 	int	j;
 
 	i = 0;
+	data->player.dir = '0';
 	while (map[i])
 	{
 		j = 0;
@@ -87,14 +91,10 @@ static int	is_valid_char_in_map(t_data *data, char **map)
 				return (error_msg(ERR_MAP_CHAR, 10));
 			if ((ft_strchr(VALID_PLAYER_POS, map[i][j])) != NULL)
 			{
-				if (data->ray.dir_char != C_BACK_G)
+				if (data->player.dir != C_BACK_G)
 					return (error_msg(ERR_SING_PLAYER, 11));
 				else
-				{
-					data->ray.pos[X] = i;
-					data->ray.pos[Y] = j;
-					data->ray.dir_char = map[i][j];
-				}
+					data->player.dir = map[i][j];
 			}
 			j++;
 		}
@@ -139,3 +139,62 @@ static bool	is_map_sur_walls(t_data *data)
 	}
 	return (true);
 }
+
+/**
+ * @brief Update player position (Pos_X Pos_Y). The old space will received
+ * 'empty' in map
+ * Important: Put plus 0.5 to get a better angles. Without, the idea of 3D will
+ * be worst. Test without to verify
+ * @param data Data Struct
+ * @param map Map - Array representation
+ * @return boolean
+ */
+static bool	check_player_position(t_data *data, char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (ft_strchr("NSEW", map[i][j]))
+			{
+				data->player.pos_x = (double)j + 0.5;
+				data->player.pos_y = (double)i + 0.5;
+				map[i][j] = C_BACK_G;
+			}
+			j++;
+		}
+		i++;
+	}
+	if (check_position_is_valid(data, map) == FAILURE)
+	{
+		error_msg(ERR_PLA_POS, 1);
+		return (false);
+	}
+	return (true);
+}
+
+
+/**
+ * @brief //TODO:L
+ *
+ * @param data
+ * @param map
+ * @return int
+ */
+static int	check_position_is_valid(t_data *data, char **map)
+{
+	int	i;
+	int	j;
+
+	i = (int)data->player.pos_y;
+	j = (int)data->player.pos_x;
+	if (ft_strlen(map[i - 1]) < (size_t)j || ft_strlen(map[i + 1]) < (size_t)j)
+		return (FAILURE);
+	return (SUCCESS);
+}
+
