@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:04:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 18:38:47 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 22:36:19 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,6 @@
 
 static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y);
 static void	render_raycast(t_data *data);
-
-// //TODO:L Ver se precisa deste código mesmo
-// void	init_ray(t_ray *ray)
-// {
-// 	// ray->camera_x = 0;
-// 	// ray->dir_x = 0;
-// 	// ray->dir_y = 0;
-// 	// ray->map_x = 0;
-// 	// ray->map_y = 0;
-// 	// ray->step_x = 0;
-// 	// ray->step_y = 0;
-// 	// ray->side_dist_x = 0;
-// 	// ray->side_dist_y = 0;
-// 	// ray->delta_dist_x = 0;
-// 	// ray->delta_dist_y = 0;
-// 	// ray->wall_dist = 0;
-// 	// ray->wall_x = 0;
-// 	// ray->hit_side = false; //TODO:L Acabei de transformar em bool aqui
-// 	// ray->line_height = 0;
-// 	// ray->draw_start = 0;
-// 	// ray->draw_end = 0;
-// }
-//TODO:L
-//TODO:L Trocar o nome de Init pra SetUp ou algo assim
 
 /**
  * @brief
@@ -60,42 +36,6 @@ static void	init_raycasting_info(int x, t_ray *ray, t_player *player)
 }
 
 
-/*
-- We implement the DDA algorithm -> the loop will increment 1 square
--   until we hit a wall
-- If the sidedistx < sidedisty, x is the closest point from the ray
-*/
-//TODO:L
-static void	perform_dda(t_data *data, t_ray *ray)
-{
-	int	hit;
-
-	hit = 0;
-	while (hit == 0)
-	{
-		// **//jump to next map square, either in x-direction, or in y-direction
-		if (ray->side_dist_x < ray->side_dist_y)
-		{
-			ray->side_dist_x += ray->delta_dist_x;
-			ray->map_x += ray->step_x;
-			ray->hit_side = false;
-		}
-		else
-		{
-			ray->side_dist_y += ray->delta_dist_y;
-			ray->map_y += ray->step_y;
-			ray->hit_side = true;
-		}
-		if (ray->map_y < 0.25
-			|| ray->map_x < 0.25
-			|| ray->map_y > data->map_det.height - 0.25
-			|| ray->map_x > data->map_det.width - 1.25)
-			break ;
-		// **//Check if ray has hit a wall
-		else if (data->map[ray->map_y][ray->map_x] > '0')
-			hit = 1;
-	}
-}
 //TODO:L
 static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
 {
@@ -119,7 +59,6 @@ static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
 		ray->wall_x = player->pos_x + ray->wall_dist * ray->dir_x;
 	ray->wall_x -= floor(ray->wall_x);
 }
-
 
 void	calc_raycast(t_data *data)
 {
@@ -208,7 +147,6 @@ static void	render_frame(t_data *data)
 static void	render_raycast(t_data *data)
 {
 	init_texture_pixels(data);
-	// init_ray(&data->ray);
 	calc_raycast(data);
 	render_frame(data);
 }

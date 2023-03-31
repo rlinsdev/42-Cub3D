@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/30 18:31:41 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 22:41:56 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ typedef struct s_map_detail
 /**
  * @brief Player structure.
  * @param dir: Player Direction (NEWS), Position (x/y)
+ *
+ * @param rotate: Indicate the side of rotation
+ * Important: Idr an plane just change when in rotation.
  * TODO:L Colocar mais coisa?
  */
 typedef struct s_player

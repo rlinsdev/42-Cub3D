@@ -201,12 +201,26 @@ void	calc_delta(t_ray *r);
 void	calc_side(t_ray *r);
 
 /**
- * @brief
- *
+ * @brief calculate step and initial sideDist.
+ * Will apply the DDA calculation
+ * if x or y < 0 go the next x or y to the left
+ * if x or y > 0 go the next x or y to the right
  * @param ray
  * @param player
  */
 void	calc_dda(t_ray *ray, t_player *player);
+
+/**
+ * @brief Implement the DDA algorithm -> the loop will increment 1 square
+ * until we hit a wall
+ * If the side_dist_x < side_dist_y, x is the closest point from the ray
+ * In first 'if', jump to next map square, either in x-direction, or in
+ * y-direction.
+ * Verify if hit the wall
+ * @param data Data Structure
+ * @param ray Ray Structure
+ */
+void	perform_dda(t_data *data, t_ray *ray);
 
 /**
  * @brief Validate Textures. Check if it is following the pattern
