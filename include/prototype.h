@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 17:39:37 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 18:26:35 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,9 +207,9 @@ int		ray_loop(t_data *data);
 void	calc_perpendicular(t_ray *ray);
 void	handles_all_hooks(t_data *data);
 
-void	calc_camera(t_ray *ray, int pixel);
-void	calc_delta(t_ray *r);
-void	calc_side(t_ray *r);
+// void	calc_camera(t_ray *ray, int pixel);
+// void	calc_delta(t_ray *r);
+// void	calc_side(t_ray *r);
 
 /**
  * @brief calculate step and initial sideDist.
@@ -227,7 +227,7 @@ void	calc_dda(t_ray *ray, t_player *player);
  * If the side_dist_x < side_dist_y, x is the closest point from the ray
  * In first 'if', jump to next map square, either in x-direction, or in
  * y-direction.
- * Verify if hit the wall
+ * Handle which side of the wall the ray strikes
  * @param data Data Structure
  * @param ray Ray Structure
  */
