@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:14 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/30 16:04:42 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/30 22:07:19 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,14 @@ int	handle_hook_close(t_data *data)
 	exit(SUCCESS);
 }
 
-//TODO:L
+/**
+ * @brief Handle all key press used in game.
+ * @param keycode Key code pressed
+ * @param data Data structure
+ * @return int
+ */
 int	handle_hook_key_press(int keycode, t_data *data)
 {
-	// if (keycode == A_KEY_CONST)
-	// 	ray_move_left(&data->ray, data->map);
-	// else if (keycode == D_KEY_CONST)
-	// 	ray_move_right(&data->ray, data->map);
-	// else if (keycode == W_KEY_CONST)
-	// 	ray_move_up(&data->ray, data->map);
-	// else if (keycode == S_KEY_CONST)
-	// 	ray_move_down(&data->ray, data->map);
-	// else if (keycode == LEFT_KEY_CONST)
-	// 	ray_rotate_left(&data->ray);
-	// else if (keycode == RIGHT_KEY_CONST)
-	// 	ray_rotate_right(&data->ray);
-	// else if (keycode == ESC_KEY_CONST)
-	// 	handle_hook_close(data);
-	// if (DEBUG_INFO)
-	// 	debug_ray(&data->ray);
-	// return (EXIT_SUCCESS);
 	if (keycode == XK_Escape)
 		handle_hook_close(data);
 	if (keycode == XK_Left)
@@ -62,7 +50,14 @@ int	handle_hook_key_press(int keycode, t_data *data)
 		debug(data);
 	return (0);
 }
-//TODO:L Ver se precisa deste método mesmo... o q q ele faz de diferente
+
+/**
+ * @brief Handle the Key Up / key release action. When activated, the player
+ * stop to move. Without this, the player keep going
+ * @param key Key released
+ * @param data Data Structure
+ * @return int
+ */
 static int	key_release_handler(int key, t_data *data)
 {
 	if (key == XK_Escape)
