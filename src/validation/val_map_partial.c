@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enum.h                                             :+:      :+:    :+:   */
+/*   val_map_partial.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/31 17:31:40 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 17:32:37 by rlins            ###   ########.fr       */
+/*   Created: 2023/03/31 17:38:36 by rlins             #+#    #+#             */
+/*   Updated: 2023/03/31 17:43:42 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENUM_H
-# define ENUM_H
+#include <cub3d.h>
 
-enum	e_output
+int	check_position_is_valid(t_data *data, char **map)
 {
-	SUCCESS = 0,
-	FAILURE = 1,
-	BREAK = 3,
-	CONTINUE = 4
-};
+	int	i;
+	int	j;
 
-enum e_texture_index
-{
-	NORTH = 0,
-	SOUTH = 1,
-	EAST = 2,
-	WEST = 3
-};
-
-#endif
+	i = (int)data->player.pos_y;
+	j = (int)data->player.pos_x;
+	if (ft_strlen(map[i - 1]) < (size_t)j || ft_strlen(map[i + 1]) < (size_t)j)
+		return (FAILURE);
+	return (SUCCESS);
+}

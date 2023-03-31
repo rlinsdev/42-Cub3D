@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prototype.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
+/*   Updated: 2023/03/31 18:35:41 by rlins            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PROTOTYPE_H
 # define PROTOTYPE_H
 
@@ -173,8 +185,7 @@ bool	is_white_space(char c);
  * @return int - 0 OK. Otherwise error
  */
 
-int	parse_tex_color(t_texture_det *text_det, char *row, int i);
-
+int		parse_tex_color(t_texture_det *text_det, char *row, int i);
 
 /**
  * @brief Change white space into wall in map. First, PDF tell us that just
@@ -196,9 +207,9 @@ int		ray_loop(t_data *data);
 void	calc_perpendicular(t_ray *ray);
 void	handles_all_hooks(t_data *data);
 
-void	calc_camera(t_ray *ray, int pixel);
-void	calc_delta(t_ray *r);
-void	calc_side(t_ray *r);
+// void	calc_camera(t_ray *ray, int pixel);
+// void	calc_delta(t_ray *r);
+// void	calc_side(t_ray *r);
 
 /**
  * @brief calculate step and initial sideDist.
@@ -216,7 +227,7 @@ void	calc_dda(t_ray *ray, t_player *player);
  * If the side_dist_x < side_dist_y, x is the closest point from the ray
  * In first 'if', jump to next map square, either in x-direction, or in
  * y-direction.
- * Verify if hit the wall
+ * Handle which side of the wall the ray strikes
  * @param data Data Structure
  * @param ray Ray Structure
  */
@@ -228,7 +239,7 @@ void	perform_dda(t_data *data, t_ray *ray);
  * @param text Texture Structure
  * @return int. 0 if It's OK. Otherwise: Error
  */
-int	valid_texture(t_data *data, t_texture_det *text);
+int		valid_texture(t_data *data, t_texture_det *text);
 
 /**
  * @brief Validate path of program. Initially, will validate the path of
@@ -310,5 +321,46 @@ void	init_img(t_data *data, t_img *i, int width, int height);
  * @param s_code Status code of exit
  */
 void	exit_and_free(t_data *data, int s_code);
+
+/**
+ * @brief //TODO:L
+ *
+ * @param data
+ * @param map
+ * @return int
+ */
+int		check_position_is_valid(t_data *data, char **map);
+
+/**
+ * @brief Calculate distance projected on camera direction (Euclidean distance
+ * would give fisheye effect!)
+ * @hint: line_height: Calculate height of line to draw on screen
+ * @hint: Calculate lowest and highest pixel to fill in current stripe
+ * @param ray Ray Structure
+ * @param data Data Structure
+ * @param player Player Structure
+ */
+void	calculate_line_height(t_ray *ray, t_data *data, t_player *player);
+
+/**
+ * @brief Responsible put the color in exact pixel. Each pixel will pass here
+ * @hint: If we going to generate the minimap, we probably will use this
+ * func.
+ * @param image image structure
+ * @param x X axis
+ * @param y y axis
+ * @param color integer color to put in pixel
+ */
+void	set_image_pixel(t_img *image, int x, int y, int color);
+
+/**
+ * @brief Formula to get all the pixels in the all width, range from -1 until 1
+ * range of POV)
+ * @hint: fabs: This function returns the absolute value in double.
+ * @param x pixel
+ * @param ray Ray structure
+ * @param player Player
+ */
+void	setup_raycast_info(int x, t_ray *ray, t_player *player);
 
 #endif

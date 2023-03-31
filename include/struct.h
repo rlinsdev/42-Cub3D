@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 11:24:49 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 18:16:12 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,14 @@ typedef struct s_player
  * from 1 x-side to the next x-side, or from 1 y-side to the next y-side.
  * deltaDistX = abs(|rayDir| / rayDirX)
  * @param line_height height of line to draw on screen
- * @param camera_x -> Where is the camera (-1 = left, 0 = center, 1 = right)
- * @param dir_x/y = direction of the ray
+ * @param multiplier -> Where is the camera (-1 = left, 0 = center, 1 = right)
+ * @param dir_x/y = direction of the ray. Ray from the Player until the small
+ * peace of plane
  * @param map_x/y = current square of the ray
  * */
 typedef struct s_ray
 {
-	double	camera_x;
+	double	multiplier;
 	double	dir_x;
 	double	dir_y;
 	int		map_x;

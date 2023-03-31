@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   define.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/31 17:34:05 by rlins             #+#    #+#             */
+/*   Updated: 2023/03/31 17:34:13 by rlins            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFINE_H
 # define DEFINE_H
 
@@ -14,7 +26,6 @@
 # define C_WALL '1'
 # define C_BACK_G '0'
 # define C_WHITE_S ' '
-
 
 # define VALID_CHAR_MAP "01NSEW"
 # define VALID_PLAYER_POS "NSEW"

@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 12:10:06 by rlins            ###   ########.fr       */
+/*   Updated: 2023/03/31 17:45:31 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static bool	is_map_sur_walls(t_data *data);
 static int	is_valid_char_in_map(t_data *data, char **map);
 static bool	is_map_last_element(t_map_det *map_det);
-static int	check_position_is_valid(t_data *data, char **map);
 static bool	check_player_position(t_data *data, char **map);
 
 int	valid_map(t_data *data)
@@ -78,12 +77,12 @@ static int	is_valid_char_in_map(t_data *data, char **map)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = -1;
 	data->player.dir = '0';
-	while (map[i])
+	while (map[++i])
 	{
-		j = 0;
-		while (map[i][j])
+		j = -1;
+		while (map[i][++j])
 		{
 			while (is_white_space(map[i][j]))
 				j++;
@@ -96,9 +95,8 @@ static int	is_valid_char_in_map(t_data *data, char **map)
 				else
 					data->player.dir = map[i][j];
 			}
-			j++;
+			j++; // ACHO Q NAO PODE TER ISSO AQUI NAO
 		}
-		i++;
 	}
 	return (0);
 }
@@ -177,24 +175,3 @@ static bool	check_player_position(t_data *data, char **map)
 	}
 	return (true);
 }
-
-
-/**
- * @brief //TODO:L
- *
- * @param data
- * @param map
- * @return int
- */
-static int	check_position_is_valid(t_data *data, char **map)
-{
-	int	i;
-	int	j;
-
-	i = (int)data->player.pos_y;
-	j = (int)data->player.pos_x;
-	if (ft_strlen(map[i - 1]) < (size_t)j || ft_strlen(map[i + 1]) < (size_t)j)
-		return (FAILURE);
-	return (SUCCESS);
-}
-
