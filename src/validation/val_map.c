@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 18:47:11 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/01 12:01:45 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ static bool	is_map_last_element(t_map_det *map_det)
 		while (map_det->file[i][j])
 		{
 			if (map_det->file[i][j] != ' ' && map_det->file[i][j] != '\t' &&
-				map_det->file[i][j] != '\n' && map_det->file[i][j] != '\r')
+				map_det->file[i][j] != '\n' && map_det->file[i][j] != '\r' &&
+				map_det->file[i][j] != '\v' && map_det->file[i][j] != '\f')
 				return (false);
 			j++;
 		}
@@ -95,7 +96,6 @@ static int	is_valid_char_in_map(t_data *data, char **map)
 				else
 					data->player.dir = map[i][j];
 			}
-			//j++; // ACHO Q NAO PODE TER ISSO AQUI NAO
 		}
 	}
 	return (0);
@@ -123,6 +123,8 @@ static bool	is_map_sur_walls(t_data *data)
 		col_size = ft_strlen(data->map[i]);
 		while (data->map[i][j])
 		{
+			while (is_white_space(data->map[i][j]))
+				j++;
 			if (i == 0 && data->map[i][j] != C_WALL)
 				return (false);
 			else if (i == data->map_det.height -1 && data->map[i][j] != C_WALL)
