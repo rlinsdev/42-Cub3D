@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 12:17:31 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 16:26:20 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_texture
  * @param fd: File descriptor
  * @param lines_file: Lines of file
  * @param path: path of .cub file
- * @param **file: all file passed by param in this variable
+ * @param file: all file passed by param in this variable
  * @param height, width - Size of window
  * @param start_i_map, end_i_map: Start/end index of map
  */
@@ -67,9 +67,14 @@ typedef struct s_map_detail
 /**
  * @brief Player structure.
  * @param dir: Player Direction (NEWS)
- *
- * @param rotate: Indicate the side of rotation
- * @param has_moved -Player moving.
+ * @param pos_x, pos_y: Position of player
+ * @param dir_x, dir_y: Player direction
+ * @param plane_x, plane_y: The 2d ray-caste version of camera plane
+ * @param has_moved -Player moving. Will be always incremented when clicked
+ * @param move_x -1 when 'A' clicked +1 when 'D' clicked
+ * @param move_y -1 when 'W' clicked +1 when 'S' clicked
+ * @param rotate: -1 when 'left arrow' clicked. +1 when 'right arrow' clicked
+ * 
  * @hint: dir an plane just change when in rotation.
  */
 typedef struct s_player
