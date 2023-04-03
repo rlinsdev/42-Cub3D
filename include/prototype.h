@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 08:49:00 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 09:04:04 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,6 @@ void	free_array_gen(void **arr);
  * @return ExitFailure (1)
  */
 int		free_data(t_data *data);
-
-/**
- * @brief Validation extension of file. .xpm files
- * @param file file name
- * @return boolean
- */
-bool	val_xpm_file(char *file);
 
 /**
  * @brief Validation extension of file. .cub files / map file
@@ -145,7 +138,6 @@ int		valid_map(t_data *data);
 
 /**
  * @brief Exit program.
- *TODO: Depois receberá comandos do MLX para limpeza das imgs e destroy
  * @param data Sta structure to be cleaned
  * @param exit_code Status code to exit
  */

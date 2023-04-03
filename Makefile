@@ -93,10 +93,10 @@ norma:
 
 
 run:
-	./cub3D ./maps/fail/20-hole_in_wall.cub
+	./cub3D ./maps/1.cub
 #	./cub3D ./maps/4.cub
 
 valgrind:
-	$(LEAK) ./cub3D ./maps/1.cub
+	$(LEAK) ./cub3D ./maps/1-simple-map.cub
 
 .PHONY: all run re clean fclean
