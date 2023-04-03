@@ -6,19 +6,13 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:04:23 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/14 10:11:15 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 09:04:00 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
 static bool	val_file_ext(char *file, char c1, char c2, char c3);
-
-// TODO: Chamar quando for executar os muros
-bool	val_xpm_file(char *file)
-{
-	return (val_file_ext(file, 'x', 'p', 'm'));
-}
 
 bool	val_cub_file(char *file)
 {
