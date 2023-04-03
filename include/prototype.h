@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 09:04:04 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 10:17:08 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ char	*ft_mlx_get_addr(t_img *img);
 void	ft_mlx_put_img(t_view *view, t_img *img, int x, int y);
 
 /**
- * @brief Close the window and free all memory
+ * @brief Close the window and free all memory (esc or 'X' in window will call
+ * it)
  * @param data Data structure
  */
 int		handle_hook_close(t_data *data);
@@ -119,15 +120,6 @@ int		handle_hook_close(t_data *data);
  * @return int
  */
 int		handle_hook_key(int keycode, t_data *data);
-
-/**
- * @brief Will handle all possibles errors in map. This method jus call others
- * to do this management.
- * @param data structure
- * @return int. 0 Success. Otherwise error
- */
-
-int		handle_hook_resize(t_data *data);
 
 /**
  * @brief Responsible to validate the map loaded by param
@@ -173,7 +165,7 @@ int		parse_tex_color(t_texture_det *text_det, char *row, int i);
 /**
  * @brief Change white space into wall in map. First, PDF tell us that just
  * some type of char is valid in map. Then, 'spaces are valid, but must be
- * handle'.
+ * handle'... Nobody nows rs
  * @param data data structure
  */
 void	spaces_to_wall(t_data *data);
@@ -187,20 +179,19 @@ void	spaces_to_wall(t_data *data);
  */
 int		ray_loop(t_data *data);
 
-void	calc_perpendicular(t_ray *ray);
+/**
+ * @brief Responsible to handle all the hooks: Key press / loops
+ * @param data Data STructure
+ */
 void	handles_all_hooks(t_data *data);
-
-// void	calc_camera(t_ray *ray, int pixel);
-// void	calc_delta(t_ray *r);
-// void	calc_side(t_ray *r);
 
 /**
  * @brief calculate step and initial sideDist.
  * Will apply the DDA calculation
  * if x or y < 0 go the next x or y to the left
  * if x or y > 0 go the next x or y to the right
- * @param ray
- * @param player
+ * @param ray Ray Structure
+ * @param player Player structure
  */
 void	calc_dda(t_ray *ray, t_player *player);
 
@@ -233,7 +224,7 @@ int		valid_texture(t_data *data, t_texture_det *text);
 bool	val_file_path(char *path);
 
 /**
- * @brief Show the values of some structure.
+ * @brief Show the values of the most important structures.
  * @param data data structure
  */
 void	debug(t_data *data);
@@ -247,22 +238,35 @@ void	set_player_direction(t_player *p);
 
 /**
  * @brief Identify if user move forward, back, left, right or rotation.
- * Call the
  * @hint: Effect to 'keep going' and 'turn fluid' is able keeping 'if'
  * condition. else if will exclusive direction
- * @param data
- * @return int
+ * @param data Data structure
+ * @return int Value of 'has_moved' player
  */
 int		move_player(t_data *data);
-int		rotate_player(t_data *data, double rotdir);
+
+/**
+ * @brief Will start the rotation user process. Will call another method to
+ * finalize the process.
+ * @param data Data structure
+ * @param rot_dir Rotation direction
+ * @return int
+ */
+int		rotate_player(t_data *data, double rot_dir);
+
+/**
+ * @brief Responsible to initialize the 'init_texture_pixels' variable, to
+ * draw pixel by pixel of texture
+ * @param data Data structure
+ */
 void	init_texture_pixels(t_data *data);
 
 /**
  * @brief Handle all the calc to update the texture of a pixel.
- * @int: North and East texture will received a effect of grey. If you
+ * @hint: North and East texture will received a effect of grey. If you
  * run a map with the same texture in all dir, North and East will got this
  * effect
- * Will draw to start ray until the draw end ray.
+ * @hint: Will draw to start ray until the draw end ray.
  * @param data Data structure
  * @param tex Texture details structure
  * @param ray Ray structure
@@ -286,16 +290,31 @@ void	render_images(t_data *data);
 void	setup_textures(t_data *data);
 
 /**
- * @brief Validate the move. If is a invalid move (out of window game)
+ * @brief Validate the move. If is a invalid move (out of window game) just
+ * return a value to output message error.
  * If it's a valid move, change the player position
  * @param data Data structure
  * @param new_x New PosX to player
  * @param new_y new PosY to player
- * @return int
+ * @return int indicating success or not
  */
 int		validate_move(t_data *data, double new_x, double new_y);
 
+/**
+ * @brief Initialize images, base on Textures (Wall textures) passed by param
+ * @param data Data Structure
+ * @param image Img structure
+ * @param path Path of wall textures
+ */
 void	init_texture_img(t_data *data, t_img *image, char *path);
+
+/**
+ * @brief Initialize Img and Address from Image structure
+ * @param data Data Structure
+ * @param i Image structure
+ * @param width Size of screen
+ * @param height Size of screen
+ */
 void	init_img(t_data *data, t_img *i, int width, int height);
 
 /**
@@ -319,6 +338,7 @@ int		pos_is_valid(t_data *data, char **map);
  * would give fisheye effect!)
  * @hint: line_height: Calculate height of line to draw on screen
  * @hint: Calculate lowest and highest pixel to fill in current stripe
+ * @hint: negative draw start will seg fault.
  * @param ray Ray Structure
  * @param data Data Structure
  * @param player Player Structure

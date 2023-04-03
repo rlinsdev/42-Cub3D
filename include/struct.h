@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 18:16:12 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 09:47:15 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ typedef struct s_map_detail
 
 /**
  * @brief Player structure.
- * @param dir: Player Direction (NEWS), Position (x/y)
+ * @param dir: Player Direction (NEWS)
+ * 
  * @param rotate: Indicate the side of rotation
+ * @param has_moved -Player moving.
  * @hint: dir an plane just change when in rotation.
  */
 typedef struct s_player
@@ -126,7 +128,8 @@ typedef struct s_view
 	t_img			screen;
 }					t_view;
 /**
- * @brief Data Structure. Principal Structure in project
+ * @brief Data Structure. Principal Structure in project. Will content all the
+ * other  structures in project
  * @param texture_pixels: Pixel by pixel to draw the texture
  * @param textures: The 4 side array of integer, represented by enum (NSWE).
  * 4 side of textures
