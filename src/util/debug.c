@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:20:05 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 12:04:01 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 16:47:48 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,15 @@ static void	debug_ray(t_ray *r)
 	printf("map_y: %d\n", r->map_y);
 	printf("step_x: %d\n", r->step_x);
 	printf("step_y: %d\n", r->step_y);
-	printf("HitSide: %d\n", r->hit_side);
+	printf("side_dist_x:%f\nside_dist_y:%f\n", r->side_dist_x, r->side_dist_y);
+	printf("delta_dist_x: %f\n", r->delta_dist_x);
+	printf("delta_dist_y: %f\n", r->delta_dist_y);
+	printf("wall_dist: %f\n", r->wall_dist);
+	printf("wall_x: %f\n", r->wall_x);
+	printf("hit_side: %d\n", r->hit_side);
+	printf("line_height: %d\n", r->line_height);
+	printf("draw_start: %d\n", r->draw_start);
+	printf("draw_end: %d\n", r->draw_end);
 }
 
 static void	debug_text(t_texture_det *t)
@@ -71,6 +79,6 @@ static void	debug_text(t_texture_det *t)
 void	debug(t_data *data)
 {
 	debug_text(&data->texture_det);
-	debug_ray(&data->ray);
 	debug_player(&data->player);
+	debug_ray(&data->ray);
 }
