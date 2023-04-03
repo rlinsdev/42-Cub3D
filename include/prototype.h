@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 10:17:08 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 10:45:35 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,11 +209,10 @@ void	perform_dda(t_data *data, t_ray *ray);
 
 /**
  * @brief Validate Textures. Check if it is following the pattern
- * @param data Data Structure
  * @param text Texture Structure
  * @return int. 0 if It's OK. Otherwise: Error
  */
-int		valid_texture(t_data *data, t_texture_det *text);
+int		valid_texture(t_texture_det *text);
 
 /**
  * @brief Validate path of program. Initially, will validate the path of
@@ -340,10 +339,9 @@ int		pos_is_valid(t_data *data, char **map);
  * @hint: Calculate lowest and highest pixel to fill in current stripe
  * @hint: negative draw start will seg fault.
  * @param ray Ray Structure
- * @param data Data Structure
  * @param player Player Structure
  */
-void	calculate_line_height(t_ray *ray, t_data *data, t_player *player);
+void	calculate_line_height(t_ray *ray, t_player *player);
 
 /**
  * @brief Responsible put the color in exact pixel. Each pixel will pass here
