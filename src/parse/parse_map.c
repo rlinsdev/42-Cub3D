@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:46:34 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/01 12:00:53 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 09:06:42 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,12 @@ static int	get_map_width(t_map_det *map_det)
 static void	get_map_height(t_data *data)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = data->map_det.start_i_map;
 	while (data->map_det.file[i])
 	{
 		j = 0;
-
 		while (is_white_space(data->map_det.file[i][j]))
 			j++;
 		if (data->map_det.file[i][j] != C_WALL)
