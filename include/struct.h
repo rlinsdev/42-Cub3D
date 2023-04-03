@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 09:47:15 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 12:03:46 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 /**
  * @brief Texture structure. First: all variables captured by files. Then,
  * variables to handle the texture wall
+ * @param north, south, west, east: Path of textures
+ * @param ceiling, floor - array[3] integer representation of RGB color
+ * @param hex_floor, hex_ceiling - Representation in int of RGB Color
+ * @param size - Fixed in 64. Check details in define.h file
+ * @param index - Work with Enum texture. Identify what texture is (NSWE)
+ * @param step - Each step took, is a step based on the height of the line
+ * @param pos - Texture position that changes, with each step that is taken
+ * @param x -//TODO:L
+ * @param y - //TODO:L
  */
 typedef struct s_texture
 {
@@ -50,7 +59,7 @@ typedef struct s_map_detail
 /**
  * @brief Player structure.
  * @param dir: Player Direction (NEWS)
- * 
+ *
  * @param rotate: Indicate the side of rotation
  * @param has_moved -Player moving.
  * @hint: dir an plane just change when in rotation.
