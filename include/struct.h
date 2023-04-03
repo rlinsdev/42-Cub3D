@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 12:03:46 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 12:17:31 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,15 @@ typedef struct s_texture
 	int				x;
 	int				y;
 }					t_texture_det;
-
+/**
+ * @brief Map Structure. Centralize all infos of Mas
+ * @param fd: File descriptor
+ * @param lines_file: Lines of file
+ * @param path: path of .cub file
+ * @param **file: all file passed by param in this variable
+ * @param height, width - Size of window
+ * @param start_i_map, end_i_map: Start/end index of map
+ */
 typedef struct s_map_detail
 {
 	int				fd;
