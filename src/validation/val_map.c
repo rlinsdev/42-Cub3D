@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/01 12:01:45 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 08:40:57 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,12 +116,12 @@ static bool	is_map_sur_walls(t_data *data)
 	int	j;
 	int	col_size;
 
-	i = 0;
-	while (data->map[i])
+	i = -1;
+	while (data->map[++i])
 	{
-		j = 0;
+		j = -1;
 		col_size = ft_strlen(data->map[i]);
-		while (data->map[i][j])
+		while (data->map[i][++j])
 		{
 			while (is_white_space(data->map[i][j]))
 				j++;
@@ -133,9 +133,7 @@ static bool	is_map_sur_walls(t_data *data)
 				return (false);
 			else if (j == (col_size - 1) && data->map[i][j] != C_WALL)
 				return (false);
-			j++;
 		}
-		i++;
 	}
 	return (true);
 }
@@ -170,7 +168,7 @@ static bool	check_player_position(t_data *data, char **map)
 		}
 		i++;
 	}
-	if (check_position_is_valid(data, map) == FAILURE)
+	if (data->player.dir == C_BACK_G || pos_is_valid(data, map) == FAILURE)
 	{
 		error_msg(ERR_PLA_POS, 1);
 		return (false);

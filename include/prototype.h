@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 18:44:57 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 08:49:00 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -314,13 +314,13 @@ void	init_img(t_data *data, t_img *i, int width, int height);
 void	exit_and_free(t_data *data, int s_code);
 
 /**
- * @brief //TODO:L
- *
- * @param data
- * @param map
- * @return int
+ * @brief Validate if player is in a valid position. Check if he is inside the
+ * map, not out of range
+ * @param data Data structure
+ * @param map pointer to pointer - map
+ * @return int - valid or not valid
  */
-int		check_position_is_valid(t_data *data, char **map);
+int		pos_is_valid(t_data *data, char **map);
 
 /**
  * @brief Calculate distance projected on camera direction (Euclidean distance

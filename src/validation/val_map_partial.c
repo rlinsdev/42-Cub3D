@@ -6,13 +6,13 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:38:36 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 17:43:42 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 08:29:30 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	check_position_is_valid(t_data *data, char **map)
+int	pos_is_valid(t_data *data, char **map)
 {
 	int	i;
 	int	j;

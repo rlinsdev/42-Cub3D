@@ -93,7 +93,7 @@ norma:
 
 
 run:
-	./cub3D ./maps/1.cub
+	./cub3D ./maps/fail/20-hole_in_wall.cub
 #	./cub3D ./maps/4.cub
 
 valgrind:
