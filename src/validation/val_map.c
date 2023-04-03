@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 08:40:57 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 09:35:06 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	valid_map(t_data *data)
 		return (error_msg(ERR_MAP_LAST, 16));
 	if (check_player_position(data, data->map) == false)
 		return (FAILURE);
-	if (data->player.dir == '0')
+	if (data->player.dir == C_BACK_G)
 		return (error_msg(ERR_MAP_DIR, 17));
 	return (0);
 }
@@ -79,7 +79,7 @@ static int	is_valid_char_in_map(t_data *data, char **map)
 	int	j;
 
 	i = -1;
-	data->player.dir = '0';
+	data->player.dir = C_BACK_G;
 	while (map[++i])
 	{
 		j = -1;

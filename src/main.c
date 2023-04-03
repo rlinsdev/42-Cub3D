@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/21 00:22:52 by lucas            ###   ########.fr       */
+/*   Updated: 2023/04/03 10:44:26 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ static int	args_handler(t_data *data, char **argv)
 		return (free_data(data));
 	if (valid_map(data) != 0)
 		return (free_data(data));
-	if (valid_texture(data, &data->texture_det) != 0)
+	if (valid_texture(&data->texture_det) != 0)
 		return (free_data(data));
+	return (0);
 }
 
 int	main(int argc, char **argv)

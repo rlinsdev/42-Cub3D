@@ -25,7 +25,7 @@ MLXFLAGS 		= -lmlx -lXext -lX11 -lm
 
 # Compilation
 CC = cc -g
-FLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 #Chedk Leak memory
 LEAK = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s

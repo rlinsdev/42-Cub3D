@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:04:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 18:35:54 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 10:45:42 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	calc_raycast(t_data *data)
 		setup_raycast_info(pixel, &data->ray, &data->player);
 		calc_dda(&data->ray, &data->player);
 		perform_dda(data, &data->ray);
-		calculate_line_height(&data->ray, data, &data->player);
+		calculate_line_height(&data->ray, &data->player);
 		update_text_pixels(data, &data->texture_det, &data->ray, pixel);
 		pixel++;
 	}

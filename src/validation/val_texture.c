@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 09:28:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 17:36:48 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 10:45:06 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static bool				valid_rgb(int *rgv_val);
 static unsigned long	rgb_to_hex(int *rgb);
 
-int	valid_texture(t_data *data, t_texture_det *text)
+int	valid_texture(t_texture_det *text)
 {
 	if (!text->north || !text->south || !text->east || !text->west)
 		return (error_msg(ERR_TEXT_MAP, 12));
@@ -58,10 +58,9 @@ static bool	valid_rgb(int *rgb_val)
  */
 static unsigned long	rgb_to_hex(int *rgb)
 {
-	unsigned long	result;
-	int				r;
-	int				g;
-	int				b;
+	int	r;
+	int	g;
+	int	b;
 
 	r = rgb[0];
 	g = rgb[1];

@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:34:05 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 09:04:25 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 11:42:28 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@
 # define Y 1
 
 /**
- * @brief In this project,was used bitmaps that have the size of 64 by 64 pixels
+ * @brief In this project, was used bitmaps that have the size of 64 by 64 pixels
  * This size is chosen because 64 by 64 is also the size of the cube facets that
  * we are using in our world
  */

@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 18:16:12 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 16:52:11 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 /**
  * @brief Texture structure. First: all variables captured by files. Then,
  * variables to handle the texture wall
+ * @param north, south, west, east: Path of textures
+ * @param ceiling, floor - array[3] integer representation of RGB color
+ * @param hex_floor, hex_ceiling - Representation in int of RGB Color
+ * @param size - Fixed in 64. Check details in define.h file
+ * @param index - Work with Enum texture. Identify what texture is (NSWE)
+ * @param step - Each step took, is a step based on the height of the line
+ * @param pos - Texture position that changes, with each step that is taken
+ * @param x -//TODO:L
+ * @param y - //TODO:L
  */
 typedef struct s_texture
 {
@@ -34,7 +43,15 @@ typedef struct s_texture
 	int				x;
 	int				y;
 }					t_texture_det;
-
+/**
+ * @brief Map Structure. Centralize all infos of Mas
+ * @param fd: File descriptor
+ * @param lines_file: Lines of file
+ * @param path: path of .cub file
+ * @param file: all file passed by param in this variable
+ * @param height, width - Size of window
+ * @param start_i_map, end_i_map: Start/end index of map
+ */
 typedef struct s_map_detail
 {
 	int				fd;
@@ -49,8 +66,15 @@ typedef struct s_map_detail
 
 /**
  * @brief Player structure.
- * @param dir: Player Direction (NEWS), Position (x/y)
- * @param rotate: Indicate the side of rotation
+ * @param dir: Player Direction (NEWS)
+ * @param pos_x, pos_y: Position of player
+ * @param dir_x, dir_y: Player direction
+ * @param plane_x, plane_y: The 2d ray-caste version of camera plane
+ * @param has_moved -Player moving. Will be always incremented when clicked
+ * @param move_x -1 when 'A' clicked +1 when 'D' clicked
+ * @param move_y -1 when 'W' clicked +1 when 'S' clicked
+ * @param rotate: -1 when 'left arrow' clicked. +1 when 'right arrow' clicked
+ *
  * @hint: dir an plane just change when in rotation.
  */
 typedef struct s_player
@@ -70,18 +94,22 @@ typedef struct s_player
 
 /**
  * @brief Ray Structure
- * @param mapX and mapY represent the current square of the map the ray is in.
- * @param sideDistX and sideDistY get incremented with deltaDistX with every
- * jump in their direction, and mapX and mapY get incremented with stepX e stepY
- * respectively. Later in the code they will be incremented while steps was did.
- * @param deltaDistX and deltaDistY are the distance the ray has to travel to go
- * from 1 x-side to the next x-side, or from 1 y-side to the next y-side.
- * deltaDistX = abs(|rayDir| / rayDirX)
- * @param line_height height of line to draw on screen
- * @param multiplier -> Where is the camera (-1 = left, 0 = center, 1 = right)
+ * @param multiplier: Formula to get all the pixels in the all width, range
+ * from -1 until 1 (range of POV)
  * @param dir_x/y = direction of the ray. Ray from the Player until the small
  * peace of plane
- * @param map_x/y = current square of the ray
+ * @param map_x and map_y represent the current square of the map the ray is in.
+ * @param side_dist_x and side_dist_y get incremented with deltaDistX with every
+ * jump in their direction, and mapX and mapY get incremented with stepX e stepY
+ * respectively. Later in the code they will be incremented while steps was did.
+ * @param delta_dist_x and delta_dist_y are the distance the ray has to travel
+ * to go from 1 x-side to the next x-side, or from 1 y-side to the next y-side.
+ * deltaDistX = abs(|rayDir| / rayDirX)
+ * @param wall_dist: //TODO:L
+ * @param wall_x: //TODO:L
+ * @param hit_side Indicated if the ray hit a side
+ * @param line_height height of line to draw on screen
+ * @param draw_start/draw_end: //TODO:L
  * */
 typedef struct s_ray
 {
@@ -106,9 +134,9 @@ typedef struct s_ray
 
 /**
  * @brief Img Structure
- * @param pixel_bits, size_line, endian: Used in MLX commands. Passed b y param.
- * @param addr: Address of memory in MLX to handle pixel (Used in texture)
  * @param img: Used to get information from MLX (handle images)
+ * @param addr: Address of memory in MLX to handle pixel (Used in texture)
+ * @param pixel_bits, size_line, endian: Used in MLX commands. Passed b y param.
  */
 typedef struct s_img
 {
@@ -119,6 +147,11 @@ typedef struct s_img
 	int		endian;
 }					t_img;
 
+/**
+ * @brief Structure View
+ * @param: mlx to MLX initialization
+ * @param: win to work with MLX
+ */
 typedef struct s_view
 {
 	void			*mlx;
@@ -126,7 +159,8 @@ typedef struct s_view
 	t_img			screen;
 }					t_view;
 /**
- * @brief Data Structure. Principal Structure in project
+ * @brief Data Structure. Principal Structure in project. Will content all the
+ * other  structures in project
  * @param texture_pixels: Pixel by pixel to draw the texture
  * @param textures: The 4 side array of integer, represented by enum (NSWE).
  * 4 side of textures

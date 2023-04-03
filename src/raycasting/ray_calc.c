@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:58:12 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/31 18:36:33 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 10:45:25 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	perform_dda(t_data *data, t_ray *ray)
 	}
 }
 
-void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
+void	calculate_line_height(t_ray *ray, t_player *player)
 {
 	if (ray->hit_side == false)
 		ray->wall_dist = (ray->side_dist_x - ray->delta_dist_x);
