@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 18:44:57 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 08:37:01 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -320,7 +320,7 @@ void	exit_and_free(t_data *data, int s_code);
  * @param map
  * @return int
  */
-int		check_position_is_valid(t_data *data, char **map);
+int		pos_is_valid(t_data *data, char **map);
 
 /**
  * @brief Calculate distance projected on camera direction (Euclidean distance

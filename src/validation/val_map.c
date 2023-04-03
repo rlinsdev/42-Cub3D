@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/01 12:01:45 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 08:32:17 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ static bool	check_player_position(t_data *data, char **map)
 		}
 		i++;
 	}
-	if (check_position_is_valid(data, map) == FAILURE)
+	if (data->player.dir == C_BACK_G || pos_is_valid(data, map) == FAILURE)
 	{
 		error_msg(ERR_PLA_POS, 1);
 		return (false);

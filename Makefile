@@ -93,7 +93,7 @@ norma:
 
 
 run:
-	./cub3D ./maps/3-simple-map_new_line.cub
+	./cub3D ./maps/fail/16-no-player.cub
 #	./cub3D ./maps/4.cub
 
 valgrind:
