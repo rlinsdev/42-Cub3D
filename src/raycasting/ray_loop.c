@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ray_loop.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:04:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 10:45:42 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 01:12:17 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y);
+static void	set_frame_image_pixel(t_data *data,  int x, int y);
 
 void	calc_raycast(t_data *data)
 {
@@ -43,14 +43,14 @@ void	calc_raycast(t_data *data)
  * @param x x coordinate in map array
  * @param y y coordinate in map array
  */
-static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y)
+static void	set_frame_image_pixel(t_data *data, int x, int y)
 {
 	if (data->texture_pixels[y][x] > 0)
-		set_image_pixel(image, x, y, data->texture_pixels[y][x]);
+		set_image_pixel(&data->view.screen , x, y, data->texture_pixels[y][x]);
 	else if (y < HEIGHT / 2)
-		set_image_pixel(image, x, y, data->texture_det.hex_ceiling);
+		set_image_pixel(&data->view.screen, x, y, data->texture_det.hex_ceiling);
 	else if (y < HEIGHT -1)
-		set_image_pixel(image, x, y, data->texture_det.hex_floor);
+		set_image_pixel(&data->view.screen, x, y, data->texture_det.hex_floor);
 }
 
 /**
@@ -63,39 +63,30 @@ static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y)
  */
 static void	render_frame(t_data *data)
 {
-	t_img	image;
 	int		x;
 	int		y;
 
-	image.img = NULL;
-	init_img(data, &image, WIDTH, HEIGHT);
 	y = 0;
 	while (y < HEIGHT)
 	{
 		x = 0;
 		while (x < WIDTH)
 		{
-			set_frame_image_pixel(data, &image, x, y);
+			set_frame_image_pixel(data, x, y);
 			x++;
 		}
 		y++;
 	}
-	mlx_put_image_to_window(data->view.mlx, data->view.win, image.img, 0, 0);
-	mlx_destroy_image(data->view.mlx, image.img);
+	mlx_put_image_to_window(data->view.mlx, data->view.win, data->view.screen.img, 0, 0);
 }
 
-void	render_images(t_data *data)
+int render_images(t_data *data)
 {
+	printf("rendering images \n");
 	init_texture_pixels(data);
 	calc_raycast(data);
 	render_frame(data);
+
+	return (0);
 }
 
-int	ray_loop(t_data *data)
-{
-	data->player.has_moved += move_player(data);
-	if (data->player.has_moved == 0)
-		return (0);
-	render_images(data);
-	return (SUCCESS);
-}

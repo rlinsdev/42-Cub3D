@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   val_move.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 16:14:16 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 11:36:52 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 00:37:29 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "cub3d.h"
 
 static bool	is_valid_pos_in_map(t_data *data, double x, double y);
 
