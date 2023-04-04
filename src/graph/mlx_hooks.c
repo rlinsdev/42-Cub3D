@@ -6,7 +6,7 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:14 by lucas             #+#    #+#             */
-/*   Updated: 2023/04/04 01:22:01 by lucas            ###   ########.fr       */
+/*   Updated: 2023/04/04 01:57:39 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,29 @@ int handle_hook_key_press(int key, t_data *data)
 	return (0);
 }
 
+int handle_hook_mouse_move(int x, int y, t_data *d)
+{
+	(void)y;
+	double	rot_speed;
+	int nomalize_size;
+
+
+	nomalize_size = WIDTH / 2;
+	rot_speed = ROTSPEED;
+	if (nomalize_size > 0)
+		rot_speed = ROTSPEED * (x - nomalize_size) / nomalize_size;
+	else
+		rot_speed = ROTSPEED * (x - nomalize_size - 1) / nomalize_size;
+	rotate(&d->player.dir_x, &d->player.dir_y, rot_speed);
+	rotate(&d->player.plane_x, &d->player.plane_y, rot_speed);
+
+	return (0);
+}
+
 void	handles_all_hooks(t_data *data)
 {
 	mlx_hook(data->view.win, 17, 1L << 17, handle_hook_close, data);
 	mlx_hook(data->view.win, 2, 1L << 0, handle_hook_key_press, data);
+	mlx_hook(data->view.win, 6, 1L << 6, handle_hook_mouse_move, data);
 	mlx_loop_hook(data->view.mlx, render_images, data);
 }

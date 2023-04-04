@@ -6,19 +6,21 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 08:47:01 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/04 01:31:27 by lucas            ###   ########.fr       */
+/*   Updated: 2023/04/04 01:42:19 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	rotate(double *x, double *y, double angle)
+int	rotate(double *x, double *y, double angle)
 {
 	double	old_x;
 
 	old_x = *x;
 	*x = old_x * cos(angle) - *y * sin(angle);
 	*y = old_x * sin(angle) + *y * cos(angle);
+
+	return (EXIT_SUCCESS);
 }
 
 int	rotate_player_rigth(t_data *d)

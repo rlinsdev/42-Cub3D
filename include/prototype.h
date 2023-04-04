@@ -6,7 +6,7 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/04 01:21:57 by lucas            ###   ########.fr       */
+/*   Updated: 2023/04/04 01:41:10 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -372,5 +372,5 @@ int	move_player_right(t_data *data);
 
 int rotate_player_left(t_data *data);
 int rotate_player_rigth(t_data *data);
-
+int	rotate(double *x, double *y, double angle);
 #endif
