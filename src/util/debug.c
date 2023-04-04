@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 10:20:05 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/04 09:30:00 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 10:08:38 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	debug_text(t_texture_det *t);
 static void	debug_player(t_player *p)
 {
 	printf("\n****Player****\n");
-	printf("dir: %d\n", p->dir);
+	printf("dir: %c\n", p->dir);
 	printf("pos_x: %f\n", p->pos_x);
 	printf("pos_y: %f\n", p->pos_y);
 	printf("dir_x: %f\n", p->dir_x);
