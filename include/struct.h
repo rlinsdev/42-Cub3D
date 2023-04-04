@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/04 09:30:00 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 09:38:43 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@
  * @param index - Work with Enum texture. Identify what texture is (NSWE)
  * @param step - Each step took, is a step based on the height of the line
  * @param pos - Texture position that changes, with each step that is taken
- * @param x -//TODO:L
- * @param y - //TODO:L
+ * @param x, y: - Texture X and Y coordinate
  */
 typedef struct s_texture
 {
@@ -109,7 +108,8 @@ typedef struct s_player
  * @param wall_x: Point where the lightning hit the wall
  * @param hit_side Indicated if the ray hit a side
  * @param line_height height of line to draw on screen
- * @param draw_start/draw_end: //TODO:L
+ * @param draw_start/draw_end: Calculate lowest and highest pixel to fill in
+ * current stripe
  * */
 typedef struct s_ray
 {
