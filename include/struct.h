@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 18:43:31 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 09:30:00 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ typedef struct s_player
  * @param delta_dist_x and delta_dist_y are the distance the ray has to travel
  * to go from 1 x-side to the next x-side, or from 1 y-side to the next y-side.
  * deltaDistX = abs(|rayDir| / rayDirX)
- * @param wall_dist: //TODO:L
- * @param wall_x: //TODO:L
+ * @param perp_dist: // PerpendicularDist
+ * @param wall_x: Point where the lightning hit the wall
  * @param hit_side Indicated if the ray hit a side
  * @param line_height height of line to draw on screen
  * @param draw_start/draw_end: //TODO:L
@@ -124,7 +124,7 @@ typedef struct s_ray
 	double	side_dist_y;
 	double	delta_dist_x;
 	double	delta_dist_y;
-	double	wall_dist;
+	double	perp_dist;
 	double	wall_x;
 	bool	hit_side;
 	int		line_height;

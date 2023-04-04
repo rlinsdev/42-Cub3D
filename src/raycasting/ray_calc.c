@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:58:12 by lucas             #+#    #+#             */
-/*   Updated: 2023/04/03 10:45:25 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 09:30:00 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void	perform_dda(t_data *data, t_ray *ray)
 void	calculate_line_height(t_ray *ray, t_player *player)
 {
 	if (ray->hit_side == false)
-		ray->wall_dist = (ray->side_dist_x - ray->delta_dist_x);
+		ray->perp_dist = (ray->side_dist_x - ray->delta_dist_x);
 	else
-		ray->wall_dist = (ray->side_dist_y - ray->delta_dist_y);
-	ray->line_height = (int)(HEIGHT / ray->wall_dist);
+		ray->perp_dist = (ray->side_dist_y - ray->delta_dist_y);
+	ray->line_height = (int)(HEIGHT / ray->perp_dist);
 	ray->draw_start = -(ray->line_height) / 2 + HEIGHT / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
@@ -79,9 +79,9 @@ void	calculate_line_height(t_ray *ray, t_player *player)
 	if (ray->draw_end >= HEIGHT)
 		ray->draw_end = HEIGHT - 1;
 	if (ray->hit_side == false)
-		ray->wall_x = player->pos_y + ray->wall_dist * ray->dir_y;
+		ray->wall_x = player->pos_y + ray->perp_dist * ray->dir_y;
 	else
-		ray->wall_x = player->pos_x + ray->wall_dist * ray->dir_x;
+		ray->wall_x = player->pos_x + ray->perp_dist * ray->dir_x;
 	ray->wall_x -= floor(ray->wall_x);
 }
 
