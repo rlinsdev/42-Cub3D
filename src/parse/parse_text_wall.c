@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 09:23:30 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 18:42:43 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 08:44:55 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,9 @@ void	setup_textures(t_data *data)
 	data->textures = ft_calloc(5, sizeof * data->textures);
 	if (!data->textures)
 		exit_and_free(data, error_msg(ERR_MALC, 26));
+	data->texture_det.size = TEX_SIZE;
 	data->textures[NORTH] = xpm_to_img(data, data->texture_det.north);
 	data->textures[SOUTH] = xpm_to_img(data, data->texture_det.south);
 	data->textures[EAST] = xpm_to_img(data, data->texture_det.east);
 	data->textures[WEST] = xpm_to_img(data, data->texture_det.west);
-	data->texture_det.size = TEX_SIZE;
 }

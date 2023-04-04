@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 08:47:01 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 18:40:08 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 07:51:13 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	set_player_direction(t_player *p)
 		p->dir_y = -1;
 		p->plane_x = 0.66;
 	}
-	if (p->dir == 'W')
+	else if (p->dir == 'W')
 	{
 		p->dir_x = -1;
 		p->plane_y = -0.66;

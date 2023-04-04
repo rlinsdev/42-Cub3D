@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 09:35:06 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 18:47:57 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ static bool	is_map_sur_walls(t_data *data)
 /**
  * @brief Update player position (Pos_X Pos_Y). The old space will received
  * 'empty' in map
- * Important: Put plus 0.5 to get a better angles. Without, the idea of 3D will
+ * @hint: Put plus 0.5 to get a better angles. Without, the idea of 3D will
  * be worst. Test without to verify
  * @param data Data Struct
  * @param map Map - Array representation
