@@ -6,13 +6,13 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:04:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/04 02:03:15 by lucas            ###   ########.fr       */
+/*   Updated: 2023/04/04 02:12:10 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	set_frame_image_pixel(t_data *data,  int x, int y);
+static void	set_frame_image_pixel(t_data *data, int x, int y);
 
 void	calc_raycast(t_data *data)
 {
@@ -28,8 +28,7 @@ void	calc_raycast(t_data *data)
 		update_text_pixels(data, &data->texture_det, &data->ray, pixel);
 		pixel++;
 	}
-	if (DEBUG_INFO)
-		debug(data);
+
 }
 
 /**
@@ -46,10 +45,11 @@ void	calc_raycast(t_data *data)
 static void	set_frame_image_pixel(t_data *data, int x, int y)
 {
 	if (data->texture_pixels[y][x] > 0)
-		set_image_pixel(&data->view.screen , x, y, data->texture_pixels[y][x]);
+		set_image_pixel(&data->view.screen, x, y, data->texture_pixels[y][x]);
 	else if (y < HEIGHT / 2)
-		set_image_pixel(&data->view.screen, x, y, data->texture_det.hex_ceiling);
-	else if (y < HEIGHT -1)
+		set_image_pixel(&data->view.screen, x, y,
+				data->texture_det.hex_ceiling);
+	else if (y < HEIGHT - 1)
 		set_image_pixel(&data->view.screen, x, y, data->texture_det.hex_floor);
 }
 
@@ -63,8 +63,8 @@ static void	set_frame_image_pixel(t_data *data, int x, int y)
  */
 static void	render_frame(t_data *data)
 {
-	int		x;
-	int		y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < HEIGHT)
@@ -77,14 +77,14 @@ static void	render_frame(t_data *data)
 		}
 		y++;
 	}
-	mlx_put_image_to_window(data->view.mlx, data->view.win, data->view.screen.img, 0, 0);
+	mlx_put_image_to_window(data->view.mlx, data->view.win,
+			data->view.screen.img, 0, 0);
 }
 
-int render_images(t_data *data)
+int	render_images(t_data *data)
 {
 	init_texture_pixels(data);
 	calc_raycast(data);
 	render_frame(data);
 	return (0);
 }
-

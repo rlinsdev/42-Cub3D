@@ -6,12 +6,11 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:14 by lucas             #+#    #+#             */
-/*   Updated: 2023/04/04 01:57:39 by lucas            ###   ########.fr       */
+/*   Updated: 2023/04/04 02:33:50 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 int	handle_hook_close(t_data *data)
 {
@@ -23,7 +22,7 @@ int	handle_hook_close(t_data *data)
 	exit(SUCCESS);
 }
 
-int handle_hook_key_press(int key, t_data *data)
+int	handle_hook_key_press(int key, t_data *data)
 {
 	if (key == XK_Escape)
 		handle_hook_close(data);
@@ -35,7 +34,6 @@ int handle_hook_key_press(int key, t_data *data)
 		move_player_left(data);
 	if (key == XK_d)
 		move_player_right(data);
-
 	if (key == XK_Left)
 		rotate_player_left(data);
 	if (key == XK_Right)
@@ -43,22 +41,25 @@ int handle_hook_key_press(int key, t_data *data)
 	return (0);
 }
 
-int handle_hook_mouse_move(int x, int y, t_data *d)
+int	handle_hook_mouse_move(int x, int y, t_data *d)
 {
+	int	pos_mouse[2];
+
 	(void)y;
-	double	rot_speed;
-	int nomalize_size;
-
-
-	nomalize_size = WIDTH / 2;
-	rot_speed = ROTSPEED;
-	if (nomalize_size > 0)
-		rot_speed = ROTSPEED * (x - nomalize_size) / nomalize_size;
-	else
-		rot_speed = ROTSPEED * (x - nomalize_size - 1) / nomalize_size;
-	rotate(&d->player.dir_x, &d->player.dir_y, rot_speed);
-	rotate(&d->player.plane_x, &d->player.plane_y, rot_speed);
-
+	(void)x;
+	mlx_mouse_get_pos(d->view.mlx, d->view.win, &pos_mouse[0], &pos_mouse[1]);
+	if (pos_mouse[0] < WIDTH / 2)
+	{
+		rotate(&d->player.dir_x, &d->player.dir_y, -0.02);
+		rotate(&d->player.plane_x, &d->player.plane_y, -0.02);
+		mlx_mouse_move(d->view.mlx, d->view.win, WIDTH / 2, HEIGHT / 2);
+	}
+	else if (pos_mouse[0] > WIDTH / 2)
+	{
+		rotate(&d->player.dir_x, &d->player.dir_y, 0.02);
+		rotate(&d->player.plane_x, &d->player.plane_y, 0.02);
+		mlx_mouse_move(d->view.mlx, d->view.win, WIDTH / 2, HEIGHT / 2);
+	}
 	return (0);
 }
 
