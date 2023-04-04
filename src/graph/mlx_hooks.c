@@ -6,11 +6,14 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:14 by lucas             #+#    #+#             */
-/*   Updated: 2023/03/31 18:46:38 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 14:11:14 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	handle_hook_key_press(int keycode, t_data *data);
+static int	key_release_handler(int key, t_data *data);
 
 int	handle_hook_close(t_data *data)
 {
@@ -28,7 +31,7 @@ int	handle_hook_close(t_data *data)
  * @param data Data structure
  * @return int
  */
-int	handle_hook_key_press(int keycode, t_data *data)
+static int	handle_hook_key_press(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
 		handle_hook_close(data);
