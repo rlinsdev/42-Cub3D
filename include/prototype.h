@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/04 10:05:25 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 10:15:44 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,6 +268,8 @@ void	init_texture_pixels(t_data *data);
  * run a map with the same texture in all dir, North and East will got this
  * effect
  * @hint: Will draw to start ray until the draw end ray.
+ * @hint: https://lodev.org/: 'make color darker for y-sides: R, G and B byte
+ * each divided through two with a "shift" and an "and"
  * @param data Data structure
  * @param tex Texture details structure
  * @param ray Ray structure
