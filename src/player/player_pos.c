@@ -6,38 +6,34 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 08:47:01 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/04 01:23:53 by lucas            ###   ########.fr       */
+/*   Updated: 2023/04/04 01:31:27 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int rotate_player_left (t_data *d)
+static void	rotate(double *x, double *y, double angle)
 {
-	double old;
+	double	old_x;
 
-	old = d->player.dir_x;
-	d->player.dir_x = d->player.dir_x * cos(-ROTSPEED) - d->player.dir_y * sin(-ROTSPEED);
-	d->player.dir_y = old * sin(-ROTSPEED) + d->player.dir_y * cos(-ROTSPEED);
-	old = d->player.plane_x;
-	d->player.plane_x = d->player.plane_x * cos(-ROTSPEED) - d->player.plane_y * sin(-ROTSPEED);
-	d->player.plane_y = old * sin(-ROTSPEED) + d->player.plane_y * cos(-ROTSPEED);
-	return (1);
+	old_x = *x;
+	*x = old_x * cos(angle) - *y * sin(angle);
+	*y = old_x * sin(angle) + *y * cos(angle);
 }
 
-int rotate_player_rigth(t_data *d)
+int	rotate_player_rigth(t_data *d)
 {
-	double old;
-
-	old = d->player.dir_x;
-	d->player.dir_x = d->player.dir_x * cos(ROTSPEED) - d->player.dir_y * sin(ROTSPEED);
-	d->player.dir_y = old * sin(ROTSPEED) + d->player.dir_y * cos(ROTSPEED);
-	old = d->player.plane_x;
-	d->player.plane_x = d->player.plane_x * cos(ROTSPEED) - d->player.plane_y * sin(ROTSPEED);
-	d->player.plane_y = old * sin(ROTSPEED) + d->player.plane_y * cos(ROTSPEED);
-	return (1);
+	rotate(&d->player.dir_x, &d->player.dir_y, ROTSPEED);
+	rotate(&d->player.plane_x, &d->player.plane_y, ROTSPEED);
+	return (EXIT_SUCCESS);
 }
 
+int	rotate_player_left(t_data *d)
+{
+	rotate(&d->player.dir_x, &d->player.dir_y, -ROTSPEED);
+	rotate(&d->player.plane_x, &d->player.plane_y, -ROTSPEED);
+	return (EXIT_SUCCESS);
+}
 
 void	set_player_direction(t_player *p)
 {

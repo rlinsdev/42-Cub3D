@@ -6,7 +6,7 @@
 /*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:04:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/04 01:12:17 by lucas            ###   ########.fr       */
+/*   Updated: 2023/04/04 01:31:55 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ static void	render_frame(t_data *data)
 
 int render_images(t_data *data)
 {
-	printf("rendering images \n");
 	init_texture_pixels(data);
 	calc_raycast(data);
 	render_frame(data);
