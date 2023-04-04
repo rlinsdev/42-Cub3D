@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/04 08:39:57 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 10:05:25 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,8 @@ void	calc_dda(t_ray *ray, t_player *player);
  * In first 'if', jump to next map square, either in x-direction, or in
  * y-direction.
  * Handle which side of the wall the ray strikes
- * @hint: Validations 0.25 avoid seg fault
+ * @hint: Validations 0.25 avoid seg fault. Must to do this because the speed
+ * is a variable defined previous.
  * @param data Data Structure
  * @param ray Ray Structure
  */
