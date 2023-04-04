@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 16:52:11 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/03 18:43:31 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ typedef struct s_view
 /**
  * @brief Data Structure. Principal Structure in project. Will content all the
  * other  structures in project
+ * @param: map: Map of project
  * @param texture_pixels: Pixel by pixel to draw the texture
  * @param textures: The 4 side array of integer, represented by enum (NSWE).
  * 4 side of textures
