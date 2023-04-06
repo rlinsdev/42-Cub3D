@@ -6,29 +6,40 @@
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:04:51 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/06 17:16:58 by lpires-n         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:45:07 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	calc_raycast(t_data *data)
+/**
+ * @brief calculate the raycast for each pixel
+ *
+ * @param d data struct
+ * @return int
+ */
+static int	calc_raycast(t_data *d)
 {
-	int	pixel;
-
-	pixel = 0;
-	while (pixel < WIDTH)
+	d->view.x = 0;
+	while (d->view.x < WIDTH)
 	{
-		setup_raycast_info(pixel, &data->ray, &data->player);
-		calc_dda(&data->ray, &data->player);
-		perform_dda(data, &data->ray);
-		calculate_line_height(&data->ray, &data->player);
-		update_text_pixels(data, &data->texture_det, &data->ray, pixel);
-		pixel++;
+		setup_raycast_info(d->view.x, &d->ray, &d->player);
+		calc_dda(&d->ray, &d->player);
+		perform_dda(d, &d->ray);
+		calculate_line_height(&d->ray, &d->player);
+		update_text_pixels(d, &d->texture_det, &d->ray, d->view.x);
+		d->view.x++;
 	}
+	return (SUCCESS);
 }
 
-static void	render_frame(t_data *d)
+/**
+ * @brief render the frame with the texture pixels
+ *
+ * @param d data struct
+ * @return int
+ */
+static int	render_frame(t_data *d)
 {
 	d->view.y = 0;
 	while (d->view.y < HEIGHT)
@@ -48,6 +59,7 @@ static void	render_frame(t_data *d)
 		}
 		d->view.y++;
 	}
+	return (SUCCESS);
 }
 
 int	render_images(t_data *data)

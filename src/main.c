@@ -6,7 +6,7 @@
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/06 17:15:18 by lpires-n         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:34:15 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,27 @@ static int	args_handler(t_data *data, char **argv)
 	return (0);
 }
 
-void	starting_view(t_data *data)
+/**
+ * @brief Will initialize the mlx and window
+ * @param data Data structure
+ */
+static void	starting_view(t_data *data)
 {
 	data->view.mlx = mlx_init();
+	if (data->view.mlx == NULL)
+	{
+		error_msg(ERR_MLX_INIT, 5);
+		exit(EXIT_FAILURE);
+	}
 	setup_textures(data);
 	set_player_direction(&data->player);
 	data->view.win = mlx_new_window(data->view.mlx, WIDTH, HEIGHT, TITLE);
-	data->view.screen.img = mlx_new_image(data->view.mlx, WIDTH, HEIGHT);
-	data->view.screen.addr = (int *)mlx_get_data_addr(data->view.screen.img, \
-	&data->view.screen.pixel_bits, \
-	&data->view.screen.size_line, \
-	&data->view.screen.endian);
+	if (data->view.win == NULL)
+	{
+		error_msg(ERR_MLX_WIN, 5);
+		exit(EXIT_FAILURE);
+	}
+	init_img(data, &data->view.screen, WIDTH, HEIGHT);
 }
 
 int	main(int argc, char **argv)

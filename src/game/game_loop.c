@@ -6,12 +6,17 @@
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:14 by lucas             #+#    #+#             */
-/*   Updated: 2023/04/06 17:09:33 by lpires-n         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:38:34 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/**
+ * @brief Will destroy all mlx windows and free all data.
+ * @param data Data structure
+ * @return int
+ */
 int	handle_hook_close(t_data *d)
 {
 	mlx_destroy_image(d->view.mlx, d->view.screen.img);
@@ -53,6 +58,12 @@ int	handle_hook_key_press(int key, t_data *d)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Handle mouse move to rotate player.
+ * @param x Mouse x position
+ * @param y Mouse y position
+ * @return int
+ */
 int	handle_hook_mouse_move(int x, int y, t_data *d)
 {
 	(void)y;
