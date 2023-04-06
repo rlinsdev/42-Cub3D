@@ -6,7 +6,7 @@
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/06 17:34:15 by lpires-n         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:57:36 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static int	args_handler(t_data *data, char **argv)
 
 /**
  * @brief Will initialize the mlx and window
+ * structures and will call the setup_textures function
+ * to load all textures.
  * @param data Data structure
  */
 static void	starting_view(t_data *data)

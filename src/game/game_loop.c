@@ -6,7 +6,7 @@
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:14 by lucas             #+#    #+#             */
-/*   Updated: 2023/04/06 17:38:34 by lpires-n         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:56:46 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * @param data Data structure
  * @return int
  */
-int	handle_hook_close(t_data *d)
+int	close_hook(t_data *d)
 {
 	mlx_destroy_image(d->view.mlx, d->view.screen.img);
 	mlx_destroy_window(d->view.mlx, d->view.win);
@@ -33,10 +33,10 @@ int	handle_hook_close(t_data *d)
  * @param data Data structure
  * @return int
  */
-int	handle_hook_key_press(int key, t_data *d)
+int	key_hook(int key, t_data *d)
 {
 	if (key == XK_Escape)
-		handle_hook_close(d);
+		close_hook(d);
 	if (key == XK_w)
 		move(d, d->player.dir_x, d->player.dir_y);
 	if (key == XK_s)
@@ -64,7 +64,7 @@ int	handle_hook_key_press(int key, t_data *d)
  * @param y Mouse y position
  * @return int
  */
-int	handle_hook_mouse_move(int x, int y, t_data *d)
+int	mouse_hook(int x, int y, t_data *d)
 {
 	(void)y;
 	if (x < WIDTH / 2)
@@ -84,9 +84,9 @@ int	handle_hook_mouse_move(int x, int y, t_data *d)
 
 int	starting_game(t_data *d)
 {
-	mlx_hook(d->view.win, 17, 1L << 17, handle_hook_close, d);
-	mlx_hook(d->view.win, 2, 1L << 0, handle_hook_key_press, d);
-	mlx_hook(d->view.win, 6, 1L << 6, handle_hook_mouse_move, d);
+	mlx_hook(d->view.win, DestroyNotify, StructureNotifyMask, close_hook, d);
+	mlx_hook(d->view.win, KeyPress, KeyPressMask, key_hook, d);
+	mlx_hook(d->view.win, MotionNotify, PointerMotionMask, mouse_hook, d);
 	mlx_loop_hook(d->view.mlx, render_images, d);
 	return (SUCCESS);
 }
