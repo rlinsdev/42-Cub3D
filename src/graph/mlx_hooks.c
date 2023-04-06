@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:14 by lucas             #+#    #+#             */
-/*   Updated: 2023/04/04 14:11:14 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 02:33:50 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,54 +25,53 @@ int	handle_hook_close(t_data *data)
 	exit(SUCCESS);
 }
 
+
+
+
 /**
  * @brief Handle all key press used in game.
  * @param keycode Key code pressed
  * @param data Data structure
  * @return int
  */
-static int	handle_hook_key_press(int keycode, t_data *data)
-{
-	if (keycode == XK_Escape)
-		handle_hook_close(data);
-	if (keycode == XK_Left)
-		data->player.rotate -= 1;
-	if (keycode == XK_Right)
-		data->player.rotate += 1;
-	if (keycode == XK_w)
-		data->player.move_y = 1;
-	if (keycode == XK_a)
-		data->player.move_x = -1;
-	if (keycode == XK_s)
-		data->player.move_y = -1;
-	if (keycode == XK_d)
-		data->player.move_x = 1;
-	return (0);
-}
-
-/**
- * @brief Handle the Key Up / key release action. When activated, the player
- * stop to move. Without this, the player keep going
- * @param key Key released
- * @param data Data Structure
- * @return int
- */
-static int	key_release_handler(int key, t_data *data)
+int	handle_hook_key_press(int key, t_data *data)
 {
 	if (key == XK_Escape)
 		handle_hook_close(data);
-	if (key == XK_w && data->player.move_y == 1)
-		data->player.move_y = 0;
-	if (key == XK_s && data->player.move_y == -1)
-		data->player.move_y = 0;
-	if (key == XK_a && data->player.move_x == -1)
-		data->player.move_x += 1;
-	if (key == XK_d && data->player.move_x == 1)
-		data->player.move_x -= 1;
-	if (key == XK_Left && data->player.rotate <= 1)
-		data->player.rotate = 0;
-	if (key == XK_Right && data->player.rotate >= -1)
-		data->player.rotate = 0;
+	if (key == XK_w)
+		move_player_forward(data);
+	if (key == XK_s)
+		move_player_backward(data);
+	if (key == XK_a)
+		move_player_left(data);
+	if (key == XK_d)
+		move_player_right(data);
+	if (key == XK_Left)
+		rotate_player_left(data);
+	if (key == XK_Right)
+		rotate_player_rigth(data);
+	return (0);
+}
+
+int	handle_hook_mouse_move(int x, int y, t_data *d)
+{
+	int	pos_mouse[2];
+
+	(void)y;
+	(void)x;
+	mlx_mouse_get_pos(d->view.mlx, d->view.win, &pos_mouse[0], &pos_mouse[1]);
+	if (pos_mouse[0] < WIDTH / 2)
+	{
+		rotate(&d->player.dir_x, &d->player.dir_y, -0.02);
+		rotate(&d->player.plane_x, &d->player.plane_y, -0.02);
+		mlx_mouse_move(d->view.mlx, d->view.win, WIDTH / 2, HEIGHT / 2);
+	}
+	else if (pos_mouse[0] > WIDTH / 2)
+	{
+		rotate(&d->player.dir_x, &d->player.dir_y, 0.02);
+		rotate(&d->player.plane_x, &d->player.plane_y, 0.02);
+		mlx_mouse_move(d->view.mlx, d->view.win, WIDTH / 2, HEIGHT / 2);
+	}
 	return (0);
 }
 
@@ -80,6 +79,6 @@ void	handles_all_hooks(t_data *data)
 {
 	mlx_hook(data->view.win, 17, 1L << 17, handle_hook_close, data);
 	mlx_hook(data->view.win, 2, 1L << 0, handle_hook_key_press, data);
-	mlx_hook(data->view.win, 3, KeyReleaseMask, key_release_handler, data);
-	mlx_loop_hook(data->view.mlx, ray_loop, data);
+	mlx_hook(data->view.win, 6, 1L << 6, handle_hook_mouse_move, data);
+	mlx_loop_hook(data->view.mlx, render_images, data);
 }

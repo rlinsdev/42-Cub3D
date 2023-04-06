@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:34:05 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 11:42:28 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 01:22:49 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@
 # define COLOR_BORDER_MINIMAP 0xFFFFFF
 # define COLOR_PLAYER 0x0000FF
 
-# define MOVE_SPEED 0.0125
-# define ROTSPEED 0.015
+# define MOVE_SPEED 0.05
+# define ROTSPEED 0.05
 
 # ifndef DEBUG_INFO
 #  define DEBUG_INFO 1

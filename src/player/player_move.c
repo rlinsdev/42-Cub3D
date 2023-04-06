@@ -3,93 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 08:37:54 by rlins             #+#    #+#             */
-/*   Updated: 2023/03/31 11:34:46 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 01:19:22 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/**
- * @brief Responsible to move forward the player. Will calculate the new
- * position of player
- * @param data Structure
- * @return int
- */
-static int	move_player_forward(t_data *data)
+int	move_player_forward(t_data *data)
 {
 	double	new_x;
 	double	new_y;
 
 	new_x = data->player.pos_x + data->player.dir_x * MOVE_SPEED;
 	new_y = data->player.pos_y + data->player.dir_y * MOVE_SPEED;
-	return (validate_move(data, new_x, new_y));
+
+	if (data->map[(int)new_y][(int)new_x] == '1')
+		return (0);
+
+	data->player.pos_x = new_x;
+	data->player.pos_y = new_y;
+
+	return (1);
 }
 
-/**
- * @brief Responsible to move backward the player. Will calculate the new
- * position of player
- * @param data Structure
- * @return int
- */
-static int	move_player_backward(t_data *data)
+int	move_player_backward(t_data *data)
 {
 	double	new_x;
 	double	new_y;
 
 	new_x = data->player.pos_x - data->player.dir_x * MOVE_SPEED;
 	new_y = data->player.pos_y - data->player.dir_y * MOVE_SPEED;
-	return (validate_move(data, new_x, new_y));
+
+	if (data->map[(int)new_y][(int)new_x] == '1')
+		return (0);
+
+	data->player.pos_x = new_x;
+	data->player.pos_y = new_y;
+
+	return (1);
 }
 
-/**
- * @brief Responsible to move left the player. Will calculate the new
- * position of player
- * @param data Structure
- * @return int
- */
-static int	move_player_left(t_data *data)
+int	move_player_left(t_data *data)
 {
 	double	new_x;
 	double	new_y;
 
 	new_x = data->player.pos_x + data->player.dir_y * MOVE_SPEED;
 	new_y = data->player.pos_y - data->player.dir_x * MOVE_SPEED;
-	return (validate_move(data, new_x, new_y));
+	if (data->map[(int)new_y][(int)new_x] == '1')
+		return (0);
+	data->player.pos_x = new_x;
+	data->player.pos_y = new_y;
+
+	return (1);
 }
 
-/**
- * @brief Responsible to move right the player. Will calculate the new
- * position of player
- * @param data Structure
- * @return int
- */
-static int	move_player_right(t_data *data)
+int	move_player_right(t_data *data)
 {
 	double	new_x;
 	double	new_y;
 
 	new_x = data->player.pos_x - data->player.dir_y * MOVE_SPEED;
 	new_y = data->player.pos_y + data->player.dir_x * MOVE_SPEED;
-	return (validate_move(data, new_x, new_y));
-}
-
-int	move_player(t_data *data)
-{
-	int	moved;
-
-	moved = 0;
-	if (data->player.move_y == 1)
-		moved += move_player_forward(data);
-	if (data->player.move_y == -1)
-		moved += move_player_backward(data);
-	if (data->player.move_x == -1)
-		moved += move_player_left(data);
-	if (data->player.move_x == 1)
-		moved += move_player_right(data);
-	if (data->player.rotate != 0)
-		moved += rotate_player(data, data->player.rotate);
-	return (moved);
+	if (data->map[(int)new_y][(int)new_x] == '1')
+		return (0);
+	data->player.pos_x = new_x;
+	data->player.pos_y = new_y;
+	return (1);
 }

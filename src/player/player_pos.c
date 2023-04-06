@@ -3,48 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   player_pos.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 08:47:01 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/04 07:51:13 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 01:42:19 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	rotation(t_data *data, double rot_speed);
-
-int	rotate_player(t_data *data, double rot_dir)
+int	rotate(double *x, double *y, double angle)
 {
-	int		moved;
-	double	rot_speed;
+	double	old_x;
 
-	moved = 0;
-	rot_speed = ROTSPEED * rot_dir;
-	moved += rotation(data, rot_speed);
-	return (moved);
+	old_x = *x;
+	*x = old_x * cos(angle) - *y * sin(angle);
+	*y = old_x * sin(angle) + *y * cos(angle);
+
+	return (EXIT_SUCCESS);
 }
 
-/**
- * @brief This method will handle the rotation event. If player rotate to
- * right or left, this method will handle the calculation
- * @param data Data structure
- * @param rot_speed Speed to rotate
- * @return int. If player move or no
- */
-static int	rotation(t_data *data, double rot_speed)
+int	rotate_player_rigth(t_data *d)
 {
-	t_player	*p;
-	double		tmp_x;
+	rotate(&d->player.dir_x, &d->player.dir_y, ROTSPEED);
+	rotate(&d->player.plane_x, &d->player.plane_y, ROTSPEED);
+	return (EXIT_SUCCESS);
+}
 
-	p = &data->player;
-	tmp_x = p->dir_x;
-	p->dir_x = p->dir_x * cos(rot_speed) - p->dir_y * sin(rot_speed);
-	p->dir_y = tmp_x * sin(rot_speed) + p->dir_y * cos(rot_speed);
-	tmp_x = p->plane_x;
-	p->plane_x = p->plane_x * cos(rot_speed) - p->plane_y * sin(rot_speed);
-	p->plane_y = tmp_x * sin(rot_speed) + p->plane_y * cos(rot_speed);
-	return (1);
+int	rotate_player_left(t_data *d)
+{
+	rotate(&d->player.dir_x, &d->player.dir_y, -ROTSPEED);
+	rotate(&d->player.plane_x, &d->player.plane_y, -ROTSPEED);
+	return (EXIT_SUCCESS);
 }
 
 void	set_player_direction(t_player *p)

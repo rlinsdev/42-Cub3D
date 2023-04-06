@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototype.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/04 10:15:44 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 01:41:10 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,7 +283,7 @@ void	update_text_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x);
  * called any time the player move.
  * @param data Data Structure
  */
-void	render_images(t_data *data);
+int	render_images(t_data *data);
 
 /**
  * @brief Initialize each texture. North South East West.
@@ -369,4 +369,13 @@ void	set_image_pixel(t_img *image, int x, int y, int color);
  */
 void	setup_raycast_info(int x, t_ray *ray, t_player *player);
 
+
+int	move_player_forward(t_data *data);
+int	move_player_backward(t_data *data);
+int	move_player_left(t_data *data);
+int	move_player_right(t_data *data);
+
+int rotate_player_left(t_data *data);
+int rotate_player_rigth(t_data *data);
+int	rotate(double *x, double *y, double angle);
 #endif

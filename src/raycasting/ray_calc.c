@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_calc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:58:12 by lucas             #+#    #+#             */
-/*   Updated: 2023/04/04 09:30:00 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 00:33:36 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,7 @@ void	perform_dda(t_data *data, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->hit_side = true;
 		}
-		if (ray->map_y < 0.25
-			|| ray->map_x < 0.25
-			|| ray->map_y > data->map_det.height - 0.25
-			|| ray->map_x > data->map_det.width - 1.25)
-			break ;
-		else if (data->map[ray->map_y][ray->map_x] > C_BACK_G)
+		 if (data->map[ray->map_y][ray->map_x] > C_BACK_G)
 			hit = 1;
 	}
 }
