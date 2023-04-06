@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:34:05 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/04 01:22:49 by lucas            ###   ########.fr       */
+/*   Updated: 2023/04/06 17:33:15 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@
 # define ERR_SING_PLAYER "Map error. Just one player allowed."
 
 # define ERR_MLX_IMG "MLX new Image error. Check the framework"
+# define ERR_MLX_WIN "MLX new Window error. Check the framework"
+# define ERR_MLX_INIT "MLX init error. Check the framework"
 
 # define WIDTH 640
 # define HEIGHT 480

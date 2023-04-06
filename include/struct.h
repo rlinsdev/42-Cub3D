@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/04 14:54:42 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/06 17:09:49 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,18 +79,18 @@ typedef struct s_map_detail
  */
 typedef struct s_player
 {
-	char	dir;
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	int		has_moved;
-	int		move_x;
-	int		move_y;
-	int		rotate;
-}	t_player;
+	char			dir;
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	int				has_moved;
+	int				move_x;
+	int				move_y;
+	int				rotate;
+}					t_player;
 
 /**
  * @brief Ray Structure
@@ -117,23 +117,23 @@ typedef struct s_player
  * */
 typedef struct s_ray
 {
-	double	multiplier;
-	double	dir_x;
-	double	dir_y;
-	int		map_x;
-	int		map_y;
-	int		step_x;
-	int		step_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	perp_dist;
-	double	wall_x;
-	bool	hit_side;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
+	double			multiplier;
+	double			dir_x;
+	double			dir_y;
+	int				map_x;
+	int				map_y;
+	int				step_x;
+	int				step_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_dist;
+	double			wall_x;
+	bool			hit_side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
 }					t_ray;
 
 /**
@@ -144,11 +144,11 @@ typedef struct s_ray
  */
 typedef struct s_img
 {
-	void	*img;
-	int		*addr;
-	int		pixel_bits;
-	int		size_line;
-	int		endian;
+	void			*img;
+	int				*addr;
+	int				pixel_bits;
+	int				size_line;
+	int				endian;
 }					t_img;
 
 /**
@@ -158,6 +158,9 @@ typedef struct s_img
  */
 typedef struct s_view
 {
+	int				x;
+	int				y;
+	int				color;
 	void			*mlx;
 	void			*win;
 	t_img			screen;

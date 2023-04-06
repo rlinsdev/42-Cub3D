@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototype.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/04 01:41:10 by lucas            ###   ########.fr       */
+/*   Updated: 2023/04/06 17:39:51 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@
  * @return int
  */
 int		error_msg(char *msg, int status_code);
-
-/**
- * @brief Initialize all variables in data structure
- * @param data Data structure passed by param
- */
-void	init_data(t_data *data);
 
 /**
  * @brief Initialize map Detail structure
@@ -73,53 +67,11 @@ int		file_to_variable(t_data *data);
 bool	create_map(t_data *data);
 
 /**
- * @brief Initialize the mlx and create the window
- * @param data Data structure
- */
-void	ft_mlx_init(t_data *data);
-
-/**
- * @brief Put a pixel on the screen
- *
- * @param img The image to draw on
- * @param x The x coordinate of the pixel
- * @param y The y coordinate of the pixel
- * @param color The color of the pixel
- */
-void	ft_mlx_pixel_put(t_img *img, int x, int y, int color);
-
-/**
- * @brief Alias to mlx_get_data_addr
- *
- * @param img The image to get the address from
- * @return char* The address of the image
- */
-char	*ft_mlx_get_addr(t_img *img);
-
-/**
- * @brief Alias to mlx_put_image_to_window
- *
- * @param view The structure containing the window and the image
- * @param img The image to draw on the window
- * @param x The x coordinate of the image
- * @param y The y coordinate of the image
- */
-void	ft_mlx_put_img(t_view *view, t_img *img, int x, int y);
-
-/**
  * @brief Close the window and free all memory (esc or 'X' in window will call
  * it)
  * @param data Data structure
  */
 int		handle_hook_close(t_data *data);
-
-/**
- * @brief Handle the key pressed
- * @param keycode Key pressed
- * @param data Data structure
- * @return int
- */
-int		handle_hook_key(int keycode, t_data *data);
 
 /**
  * @brief Responsible to validate the map loaded by param
@@ -171,21 +123,6 @@ int		parse_tex_color(t_texture_det *text_det, char *row, int i);
 void	spaces_to_wall(t_data *data);
 
 /**
- * @brief This is the MLX loop method called. Any game must be a while (true)
- * code to render the screen. MLX have your call to do this. And, this was the
- * method called to do this work
- * @param data Data Structure
- * @return int
- */
-int		ray_loop(t_data *data);
-
-/**
- * @brief Responsible to handle all the hooks: Key press / loops
- * @param data Data STructure
- */
-void	handles_all_hooks(t_data *data);
-
-/**
  * @brief calculate step and initial sideDist.
  * Will apply the DDA calculation
  * if x or y < 0 go the next x or y to the left
@@ -235,25 +172,7 @@ void	debug(t_data *data);
  * point the camera to some side
  * @param p player structure
  */
-void	set_player_direction(t_player *p);
-
-/**
- * @brief Identify if user move forward, back, left, right or rotation.
- * @hint: Effect to 'keep going' and 'turn fluid' is able keeping 'if'
- * condition. else if will exclusive direction
- * @param data Data structure
- * @return int Value of 'has_moved' player
- */
-int		move_player(t_data *data);
-
-/**
- * @brief Will start the rotation user process. Will call another method to
- * finalize the process.
- * @param data Data structure
- * @param rot_dir Rotation direction
- * @return int
- */
-int		rotate_player(t_data *data, double rot_dir);
+int	set_player_direction(t_player *p);
 
 /**
  * @brief Responsible to initialize the 'init_texture_pixels' variable, to
@@ -370,12 +289,9 @@ void	set_image_pixel(t_img *image, int x, int y, int color);
 void	setup_raycast_info(int x, t_ray *ray, t_player *player);
 
 
-int	move_player_forward(t_data *data);
-int	move_player_backward(t_data *data);
-int	move_player_left(t_data *data);
-int	move_player_right(t_data *data);
+int	move(t_data *d, double dx, double dy);
 
-int rotate_player_left(t_data *data);
-int rotate_player_rigth(t_data *data);
 int	rotate(double *x, double *y, double angle);
+
+int	starting_game(t_data *data);
 #endif

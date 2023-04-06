@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 10:44:26 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/06 17:57:36 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-static int	args_handler(t_data *data, char **argv);
 
 /**
  * @brief Will validate the inputs of program.
@@ -35,16 +33,42 @@ static int	args_handler(t_data *data, char **argv)
 	return (0);
 }
 
+/**
+ * @brief Will initialize the mlx and window
+ * structures and will call the setup_textures function
+ * to load all textures.
+ * @param data Data structure
+ */
+static void	starting_view(t_data *data)
+{
+	data->view.mlx = mlx_init();
+	if (data->view.mlx == NULL)
+	{
+		error_msg(ERR_MLX_INIT, 5);
+		exit(EXIT_FAILURE);
+	}
+	setup_textures(data);
+	set_player_direction(&data->player);
+	data->view.win = mlx_new_window(data->view.mlx, WIDTH, HEIGHT, TITLE);
+	if (data->view.win == NULL)
+	{
+		error_msg(ERR_MLX_WIN, 5);
+		exit(EXIT_FAILURE);
+	}
+	init_img(data, &data->view.screen, WIDTH, HEIGHT);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
 
 	if (argc != 2)
 		return (error_msg(ERR_ARGS, 1));
-	init_data(&data);
+	ft_bzero(&data, sizeof(t_data));
 	if (args_handler(&data, argv) != 0)
 		return (EXIT_FAILURE);
-	ft_mlx_init(&data);
+	starting_view(&data);
+	starting_game(&data);
 	mlx_loop(data.view.mlx);
 	return (EXIT_SUCCESS);
 }
