@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototype.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/04 01:41:10 by lucas            ###   ########.fr       */
+/*   Updated: 2023/04/06 16:51:38 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,7 @@ void	debug(t_data *data);
  * point the camera to some side
  * @param p player structure
  */
-void	set_player_direction(t_player *p);
+int	set_player_direction(t_player *p);
 
 /**
  * @brief Identify if user move forward, back, left, right or rotation.
@@ -370,12 +370,7 @@ void	set_image_pixel(t_img *image, int x, int y, int color);
 void	setup_raycast_info(int x, t_ray *ray, t_player *player);
 
 
-int	move_player_forward(t_data *data);
-int	move_player_backward(t_data *data);
-int	move_player_left(t_data *data);
-int	move_player_right(t_data *data);
-
-int rotate_player_left(t_data *data);
-int rotate_player_rigth(t_data *data);
+int	move(t_data *d, double dx, double dy);
 int	rotate(double *x, double *y, double angle);
+int	starting_game(t_data *data);
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_calc.c                                         :+:      :+:    :+:   */
+/*   game_engine.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas <lucas@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:58:12 by lucas             #+#    #+#             */
-/*   Updated: 2023/04/04 00:33:36 by lucas            ###   ########.fr       */
+/*   Updated: 2023/04/06 17:15:51 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ void	calc_dda(t_ray *ray, t_player *p)
 
 void	perform_dda(t_data *data, t_ray *ray)
 {
-	int	hit;
-
-	hit = 0;
-	while (hit == 0)
+	while (true)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
@@ -55,8 +52,8 @@ void	perform_dda(t_data *data, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->hit_side = true;
 		}
-		 if (data->map[ray->map_y][ray->map_x] > C_BACK_G)
-			hit = 1;
+		if (data->map[ray->map_y][ray->map_x] == C_WALL)
+			break ;
 	}
 }
 

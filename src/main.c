@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 10:44:26 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/06 17:15:18 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
-
-static int	args_handler(t_data *data, char **argv);
 
 /**
  * @brief Will validate the inputs of program.
@@ -35,16 +33,30 @@ static int	args_handler(t_data *data, char **argv)
 	return (0);
 }
 
+void	starting_view(t_data *data)
+{
+	data->view.mlx = mlx_init();
+	setup_textures(data);
+	set_player_direction(&data->player);
+	data->view.win = mlx_new_window(data->view.mlx, WIDTH, HEIGHT, TITLE);
+	data->view.screen.img = mlx_new_image(data->view.mlx, WIDTH, HEIGHT);
+	data->view.screen.addr = (int *)mlx_get_data_addr(data->view.screen.img, \
+	&data->view.screen.pixel_bits, \
+	&data->view.screen.size_line, \
+	&data->view.screen.endian);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
 
 	if (argc != 2)
 		return (error_msg(ERR_ARGS, 1));
-	init_data(&data);
+	ft_bzero(&data, sizeof(t_data));
 	if (args_handler(&data, argv) != 0)
 		return (EXIT_FAILURE);
-	ft_mlx_init(&data);
+	starting_view(&data);
+	starting_game(&data);
 	mlx_loop(data.view.mlx);
 	return (EXIT_SUCCESS);
 }

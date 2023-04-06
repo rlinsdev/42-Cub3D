@@ -39,13 +39,12 @@ INCLUDE = -I $(INC_PATH) -I $(LIBFT_PATH)
 
 SRCS +=		main.c val_files.c \
 			parse_file.c parse_map.c \
-			init_map.c init_data.c \
-			mlx_img.c mlx_init.c mlx_hooks.c \
+			game_control.c game_draw.c game_engine.c game_loop.c \
+			init_map.c \
 			error_handler.c sanitization.c \
 			val_map.c parse_texture.c exit.c val_texture.c \
 			parse_map_partial.c parse_texture_partial.c \
-			ray_calc.c ray_loop.c \
-			debug.c player_move.c player_pos.c parse_text_wall.c \
+			debug.c parse_text_wall.c \
 			val_move.c parse_img.c val_map_partial.c
 
 OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.c=.o))
