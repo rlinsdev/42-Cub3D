@@ -35,7 +35,9 @@ int	validate_move(t_data *data, double new_x, double new_y)
 /**
  * @brief This method will calculate if the axis X and Y keep inside the
  * map width and height. Will return true if is inside. false if is outside.
- * It will handle the limits player in map surrounded by '1's
+ * It will handle the limits player in map surrounded by '1's.
+ * @hint: We must to check with fractions (0.25 and 1.25 for the speed mult.)
+ * Without this, the player 'keep going' until fuck with map (explode hit wall)
  * @param data Data Structure
  * @param x axis X
  * @param y axis Y
@@ -45,7 +47,7 @@ static bool	is_valid_pos_in_map(t_data *data, double x, double y)
 {
 	if (x < 0.25 || x >= data->map_det.width - 1.25)
 		return (false);
-	if (y < 0.25 || y >= data->map_det.height -0.25)
+	if (y < 0.25 || y >= data->map_det.height - 0.25)
 		return (false);
 	return (true);
 }

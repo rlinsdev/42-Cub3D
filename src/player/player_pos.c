@@ -49,7 +49,7 @@ void	set_player_direction(t_player *p)
 		p->dir_y = -1;
 		p->plane_x = 0.66;
 	}
-	if (p->dir == 'W')
+	else if (p->dir == 'W')
 	{
 		p->dir_x = -1;
 		p->plane_y = -0.66;

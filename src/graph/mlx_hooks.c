@@ -12,6 +12,9 @@
 
 #include "cub3d.h"
 
+static int	handle_hook_key_press(int keycode, t_data *data);
+static int	key_release_handler(int key, t_data *data);
+
 int	handle_hook_close(t_data *data)
 {
 	mlx_destroy_image(data->view.mlx, data->view.screen.img);
@@ -22,6 +25,15 @@ int	handle_hook_close(t_data *data)
 	exit(SUCCESS);
 }
 
+
+
+
+/**
+ * @brief Handle all key press used in game.
+ * @param keycode Key code pressed
+ * @param data Data structure
+ * @return int
+ */
 int	handle_hook_key_press(int key, t_data *data)
 {
 	if (key == XK_Escape)

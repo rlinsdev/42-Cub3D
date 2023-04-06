@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 16:52:11 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/04 14:54:42 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
  * @param index - Work with Enum texture. Identify what texture is (NSWE)
  * @param step - Each step took, is a step based on the height of the line
  * @param pos - Texture position that changes, with each step that is taken
- * @param x -//TODO:L
- * @param y - //TODO:L
+ * [texPos]
+ * @param x, y: - Texture X and Y coordinate [texX]
  */
 typedef struct s_texture
 {
@@ -97,19 +97,23 @@ typedef struct s_player
  * @param multiplier: Formula to get all the pixels in the all width, range
  * from -1 until 1 (range of POV)
  * @param dir_x/y = direction of the ray. Ray from the Player until the small
- * peace of plane
+ * peace of plane [rayDirX]
  * @param map_x and map_y represent the current square of the map the ray is in.
+ * @param stepX and stepY: //what direction to step in x or y-direction
+ * (either +1 or -1)
  * @param side_dist_x and side_dist_y get incremented with deltaDistX with every
  * jump in their direction, and mapX and mapY get incremented with stepX e stepY
  * respectively. Later in the code they will be incremented while steps was did.
+ * [sideDistX]
  * @param delta_dist_x and delta_dist_y are the distance the ray has to travel
  * to go from 1 x-side to the next x-side, or from 1 y-side to the next y-side.
- * deltaDistX = abs(|rayDir| / rayDirX)
- * @param wall_dist: //TODO:L
- * @param wall_x: //TODO:L
+ * deltaDistX = abs(|rayDir| / rayDirX) [deltaDistX]
+ * @param perp_dist: Calculate to avoid fisheye effect!
+ * @param wall_x: Point where the lightning hit the wall
  * @param hit_side Indicated if the ray hit a side
  * @param line_height height of line to draw on screen
- * @param draw_start/draw_end: //TODO:L
+ * @param draw_start/draw_end: Calculate lowest and highest pixel to fill in
+ * current stripe
  * */
 typedef struct s_ray
 {
@@ -124,7 +128,7 @@ typedef struct s_ray
 	double	side_dist_y;
 	double	delta_dist_x;
 	double	delta_dist_y;
-	double	wall_dist;
+	double	perp_dist;
 	double	wall_x;
 	bool	hit_side;
 	int		line_height;
@@ -161,6 +165,7 @@ typedef struct s_view
 /**
  * @brief Data Structure. Principal Structure in project. Will content all the
  * other  structures in project
+ * @param: map: Map of project
  * @param texture_pixels: Pixel by pixel to draw the texture
  * @param textures: The 4 side array of integer, represented by enum (NSWE).
  * 4 side of textures

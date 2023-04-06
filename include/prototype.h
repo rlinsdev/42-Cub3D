@@ -196,12 +196,14 @@ void	handles_all_hooks(t_data *data);
 void	calc_dda(t_ray *ray, t_player *player);
 
 /**
- * @brief Implement the DDA algorithm -> the loop will increment 1 square
- * until we hit a wall
+ * @brief Here is the implementation of DDA algorithm:
+ * The loop will increment 1 square until we hit a wall
  * If the side_dist_x < side_dist_y, x is the closest point from the ray
  * In first 'if', jump to next map square, either in x-direction, or in
  * y-direction.
  * Handle which side of the wall the ray strikes
+ * @hint: Validations 0.25 avoid seg fault. Must to do this because the speed
+ * is a variable defined previous.
  * @param data Data Structure
  * @param ray Ray Structure
  */
@@ -266,6 +268,8 @@ void	init_texture_pixels(t_data *data);
  * run a map with the same texture in all dir, North and East will got this
  * effect
  * @hint: Will draw to start ray until the draw end ray.
+ * @hint: https://lodev.org/: 'make color darker for y-sides: R, G and B byte
+ * each divided through two with a "shift" and an "and"
  * @param data Data structure
  * @param tex Texture details structure
  * @param ray Ray structure
@@ -355,8 +359,9 @@ void	calculate_line_height(t_ray *ray, t_player *player);
 void	set_image_pixel(t_img *image, int x, int y, int color);
 
 /**
- * @brief Formula to get all the pixels in the all width, range from -1 until 1
- * range of POV)
+ * @brief Initialize Setup for the rays.
+ * Apply the formula to get all the pixels in the all width, range from -1
+ * until 1 range of POV)
  * @hint: fabs: This function returns the absolute value in double.
  * @param x pixel
  * @param ray Ray structure
