@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototype.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/06 17:39:51 by lpires-n         ###   ########.fr       */
+/*   Updated: 2023/04/07 08:18:20 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ void	debug(t_data *data);
  * point the camera to some side
  * @param p player structure
  */
-int	set_player_direction(t_player *p);
+int		set_player_direction(t_player *p);
 
 /**
  * @brief Responsible to initialize the 'init_texture_pixels' variable, to
@@ -202,7 +202,7 @@ void	update_text_pixels(t_data *data, t_texture_det *tex, t_ray *ray, int x);
  * called any time the player move.
  * @param data Data Structure
  */
-int	render_images(t_data *data);
+int		render_images(t_data *data);
 
 /**
  * @brief Initialize each texture. North South East West.
@@ -288,10 +288,9 @@ void	set_image_pixel(t_img *image, int x, int y, int color);
  */
 void	setup_raycast_info(int x, t_ray *ray, t_player *player);
 
+int		move(t_data *d, double dx, double dy);
 
-int	move(t_data *d, double dx, double dy);
+int		rotate(double *x, double *y, double angle);
 
-int	rotate(double *x, double *y, double angle);
-
-int	starting_game(t_data *data);
+int		starting_game(t_data *data);
 #endif
