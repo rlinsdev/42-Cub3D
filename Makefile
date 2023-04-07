@@ -92,8 +92,7 @@ norma:
 
 
 run:
-	./cub3D ./maps/1.cub
-#	./cub3D ./maps/4.cub
+	./cub3D ./maps/2.cub
 
 valgrind:
 	$(LEAK) ./cub3D ./maps/1-simple-map.cub
