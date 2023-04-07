@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/07 08:18:20 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/07 08:19:00 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,4 +293,5 @@ int		move(t_data *d, double dx, double dy);
 int		rotate(double *x, double *y, double angle);
 
 int		starting_game(t_data *data);
+
 #endif
