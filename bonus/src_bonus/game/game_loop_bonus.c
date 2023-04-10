@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_loop.c                                        :+:      :+:    :+:   */
+/*   game_loop_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 12:24:14 by lpires-n          #+#    #+#             */
-/*   Updated: 2023/04/10 14:54:54 by rlins            ###   ########.fr       */
+/*   Created: 2023/03/11 12:24:14 by lucas             #+#    #+#             */
+/*   Updated: 2023/04/07 20:46:51 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 /**
  * @brief Will destroy all mlx windows and free all data.
@@ -58,10 +58,35 @@ int	key_hook(int key, t_data *d)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Handle mouse move to rotate player.
+ * @param x Mouse x position
+ * @param y Mouse y position
+ * @return int
+ */
+int	mouse_hook(int x, int y, t_data *d)
+{
+	(void)y;
+	if (x < WIDTH / 2)
+	{
+		rotate(&d->player.dir_x, &d->player.dir_y, -ROTSPEED);
+		rotate(&d->player.plane_x, &d->player.plane_y, -ROTSPEED);
+		mlx_mouse_move(d->view.mlx, d->view.win, WIDTH / 2, HEIGHT / 2);
+	}
+	else if (x > WIDTH / 2)
+	{
+		rotate(&d->player.dir_x, &d->player.dir_y, ROTSPEED);
+		rotate(&d->player.plane_x, &d->player.plane_y, ROTSPEED);
+		mlx_mouse_move(d->view.mlx, d->view.win, WIDTH / 2, HEIGHT / 2);
+	}
+	return (SUCCESS);
+}
+
 int	starting_game(t_data *d)
 {
 	mlx_hook(d->view.win, DestroyNotify, StructureNotifyMask, close_hook, d);
 	mlx_hook(d->view.win, KeyPress, KeyPressMask, key_hook, d);
+	mlx_hook(d->view.win, MotionNotify, PointerMotionMask, mouse_hook, d);
 	mlx_loop_hook(d->view.mlx, render_images, d);
 	return (SUCCESS);
 }
