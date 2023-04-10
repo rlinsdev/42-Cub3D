@@ -6,7 +6,7 @@
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:10:21 by lpires-n          #+#    #+#             */
-/*   Updated: 2023/04/10 14:14:33 by lpires-n         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:24:26 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ int	move(t_data *d, double dx, double dy)
 
 	new_pos_x = d->player.pos_x + dx * MOVE_SPEED;
 	new_pos_y = d->player.pos_y + dy * MOVE_SPEED;
-	if (new_pos_x < 0 || new_pos_x >= d->map_det.width || \
-		new_pos_y < 0 || new_pos_y >= d->map_det.height || \
-		d->map[(int)new_pos_y][(int)new_pos_x] == C_WALL)
+	if (d->map[(int)(new_pos_y + dy * MOVE_SPEED)] \
+	[(int)(new_pos_x + dx * MOVE_SPEED)] == C_WALL)
 	{
 		return (EXIT_FAILURE);
 	}

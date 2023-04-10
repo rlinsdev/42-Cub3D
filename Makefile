@@ -101,7 +101,7 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(BONUS)
+bonus: $(LIBFT) $(BONUS)
 
 rebonus: fclean bonus
 
