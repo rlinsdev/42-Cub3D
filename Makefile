@@ -1,4 +1,5 @@
 NAME = cub3D
+BONUS = cub3D_bonus
 
 # Collors
 RESET 	= \033[0m
@@ -11,6 +12,11 @@ PATH_OBJS 		= ./objs/
 INC_PATH 		= ./include/
 VPATH 			= $(shell find $(PATH_SRC) -type d)
 
+
+PATH_SRC_BONUS 	= ./bonus/src_bonus/
+PATH_OBJS_BONUS = ./bonus/objs_bonus/
+INC_PATH_BONUS 	= ./bonus/include_bonus/
+VPATH 			+= $(shell find $(PATH_SRC_BONUS) -type d)
 
 # Libft files and directories
 LIBFT_PATH 		= ./lib/libft/
@@ -36,8 +42,9 @@ RM			= rm -rf
 NO_PRINT	= --no-print-directory
 
 INCLUDE = -I $(INC_PATH) -I $(LIBFT_PATH)
+INCLUDE_BONUS = -I $(INC_PATH_BONUS) -I $(LIBFT_PATH)
 
-SRCS +=		main.c val_files.c \
+SRCS 	=	main.c val_files.c \
 			parse_file.c parse_map.c \
 			game_control.c game_draw.c game_engine.c game_loop.c \
 			init_map.c \
@@ -47,17 +54,38 @@ SRCS +=		main.c val_files.c \
 			debug.c parse_text_wall.c \
 			val_move.c parse_img.c val_map_partial.c
 
+SRCS_BONUS = main_bonus.c val_files_bonus.c \
+			parse_file_bonus.c parse_map_bonus.c \
+			game_control_bonus.c game_draw_bonus.c game_engine_bonus.c game_loop_bonus.c \
+			init_map_bonus.c \
+			error_handler_bonus.c sanitization_bonus.c \
+			val_map_bonus.c parse_texture_bonus.c exit_bonus.c val_texture_bonus.c \
+			parse_map_partial_bonus.c parse_texture_partial_bonus.c \
+			debug_bonus.c parse_text_wall_bonus.c \
+			val_move_bonus.c parse_img_bonus.c val_map_partial_bonus.c
+
+
 OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.c=.o))
+OBJS_BONUS = $(addprefix $(PATH_OBJS_BONUS), $(SRCS_BONUS:.c=.o))
+
 
 all: $(MLX) $(LIBFT) $(NAME)
 
-$(NAME): $(OBJS) $(INC_PATH)cub3d.h
+$(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(LIBFT) $(MLX) $(MLXFLAGS) -o $(NAME)
+	@echo "$(GREEN)Build Successful$(RESET)"
+
+$(BONUS): $(OBJS_BONUS)
+	@$(CC) $(CFLAGS) $(INCLUDE_BONUS)  $(OBJS_BONUS) $(LIBFT) $(MLX) $(MLXFLAGS) -o $(BONUS)
 	@echo "$(GREEN)Build Successful$(RESET)"
 
 $(PATH_OBJS)%.o: %.c
 	@mkdir -p $(PATH_OBJS)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+
+$(PATH_OBJS_BONUS)%.o: %.c
+	@mkdir -p $(PATH_OBJS_BONUS)
+	@$(CC) $(CFLAGS) $(INCLUDE_BONUS) -c $< -o $@
 
 # Libft rule
 $(LIBFT):
@@ -70,6 +98,7 @@ $(MLX):
 clean:
 	@echo "$(RED)Cleaning objects...$(RESET)"
 	@$(RM) $(PATH_OBJS)
+	@$(RM) $(PATH_OBJS_BONUS)
 	@make -C $(LIBFT_PATH) clean $(NO_PRINT)
 	@make -C $(MLX_PATH) clean $(NO_PRINT)
 	@echo "$(GREEN)Done!$(RESET)"
@@ -77,15 +106,16 @@ clean:
 fclean: clean
 	@echo  "$(RED)Cleaning all...$(RESET)"
 	@$(RM) $(NAME)
+	@$(RM) $(BONUS)
 	@make -C $(LIBFT_PATH) fclean $(NO_PRINT)
 	@echo "$(RED)Cleaning binaries...$(RESET)"
 	@echo "$(GREEN)Done!$(RESET)"
 
 re: fclean all
 
-bonus: all
+bonus: $(BONUS)
 
-rebonus: fclean all
+rebonus: fclean bonus
 
 norma:
 	norminette $(PATH_SRC) $(LIBFT_PATH) $(INC_PATH)
