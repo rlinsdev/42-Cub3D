@@ -22,11 +22,6 @@ VPATH 			+= $(shell find $(PATH_SRC_BONUS) -type d)
 LIBFT_PATH 		= ./lib/libft/
 LIBFT 			= $(LIBFT_PATH)/libft.a
 
-# Minilibx
-MLX_PATH	= ./lib/minilibx-linux/
-MLX_NAME	= libmlx.a
-MLX			= $(MLX_PATH)$(MLX_NAME)
-
 MLXFLAGS 		= -lmlx -lXext -lX11 -lm
 
 # Compilation
@@ -44,20 +39,18 @@ NO_PRINT	= --no-print-directory
 INCLUDE = -I $(INC_PATH) -I $(LIBFT_PATH)
 INCLUDE_BONUS = -I $(INC_PATH_BONUS) -I $(LIBFT_PATH)
 
-SRCS 	=	main.c val_files.c \
+SRCS 	=	main.c val_files.c init_map.c \
 			parse_file.c parse_map.c \
 			game_control.c game_draw.c game_engine.c game_loop.c \
-			init_map.c \
 			error_handler.c sanitization.c \
 			val_map.c parse_texture.c exit.c val_texture.c \
 			parse_map_partial.c parse_texture_partial.c \
 			debug.c parse_text_wall.c \
 			val_move.c parse_img.c val_map_partial.c
 
-SRCS_BONUS = main_bonus.c val_files_bonus.c \
+SRCS_BONUS = main_bonus.c val_files_bonus.c init_map_bonus.c \
 			parse_file_bonus.c parse_map_bonus.c \
 			game_control_bonus.c game_draw_bonus.c game_engine_bonus.c game_loop_bonus.c \
-			init_map_bonus.c \
 			error_handler_bonus.c sanitization_bonus.c \
 			val_map_bonus.c parse_texture_bonus.c exit_bonus.c val_texture_bonus.c \
 			parse_map_partial_bonus.c parse_texture_partial_bonus.c \
@@ -69,14 +62,14 @@ OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.c=.o))
 OBJS_BONUS = $(addprefix $(PATH_OBJS_BONUS), $(SRCS_BONUS:.c=.o))
 
 
-all: $(MLX) $(LIBFT) $(NAME)
+all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(LIBFT) $(MLX) $(MLXFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) $(LIBFT) $(MLXFLAGS) -o $(NAME)
 	@echo "$(GREEN)Build Successful$(RESET)"
 
 $(BONUS): $(OBJS_BONUS)
-	@$(CC) $(CFLAGS) $(INCLUDE_BONUS)  $(OBJS_BONUS) $(LIBFT) $(MLX) $(MLXFLAGS) -o $(BONUS)
+	@$(CC) $(CFLAGS) $(INCLUDE_BONUS)  $(OBJS_BONUS) $(LIBFT) $(MLXFLAGS) -o $(BONUS)
 	@echo "$(GREEN)Build Successful$(RESET)"
 
 $(PATH_OBJS)%.o: %.c
@@ -91,16 +84,11 @@ $(PATH_OBJS_BONUS)%.o: %.c
 $(LIBFT):
 	@make -C $(LIBFT_PATH) $(NO_PRINT)
 
-# MLX rule
-$(MLX):
-	make -sC $(MLX_PATH)
-
 clean:
 	@echo "$(RED)Cleaning objects...$(RESET)"
 	@$(RM) $(PATH_OBJS)
 	@$(RM) $(PATH_OBJS_BONUS)
 	@make -C $(LIBFT_PATH) clean $(NO_PRINT)
-	@make -C $(MLX_PATH) clean $(NO_PRINT)
 	@echo "$(GREEN)Done!$(RESET)"
 
 fclean: clean
