@@ -1,5 +1,0 @@
-*.o
-/objs/
-cub3D
-libft.a
-.vscode
