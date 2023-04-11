@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 12:27:45 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/07 08:17:41 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/11 11:25:58 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_texture
  * @param lines_file: Lines of file
  * @param path: path of .cub file
  * @param file: all file passed by param in this variable
- * @param height, width - Size of window
+ * @param height, width - Size of map
  * @param start_i_map, end_i_map: Start/end index of map
  */
 typedef struct s_map_detail
