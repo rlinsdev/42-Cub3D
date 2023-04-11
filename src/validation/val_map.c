@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 18:47:57 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/11 11:58:23 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ static bool	check_player_position(t_data *data, char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (ft_strchr("NSEW", map[i][j]))
+			if (ft_strchr(VALID_PLAYER_POS, map[i][j]))
 			{
 				data->player.pos_x = (double)j + 0.5;
 				data->player.pos_y = (double)i + 0.5;

@@ -3,25 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:34:05 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/06 17:33:15 by lpires-n         ###   ########.fr       */
+/*   Updated: 2023/04/11 11:59:10 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_H
 # define DEFINE_H
-
-# define A_KEY_CONST 'a'
-# define S_KEY_CONST 's'
-# define D_KEY_CONST 'd'
-# define W_KEY_CONST 'w'
-# define RIGHT_KEY_CONST 65361
-# define LEFT_KEY_CONST 65363
-# define R_KEY_CONST 114
-
-# define ESC_KEY_CONST 65307
 
 # define C_WALL '1'
 # define C_BACK_G '0'
