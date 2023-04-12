@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:34:05 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/10 17:19:02 by lpires-n         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:01:29 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define ERR_MAP_DIR "Map with no player direction set."
 # define ERR_RGB  "Invalid RGB color format to Floor/Ceiling"
 # define ERR_MAP9 "Map with invalid character. Check Subject for more details."
-# define ERR_TEXT "Texture out of pattern. Check Subject for more details."
+# define ERR_TEXT "Texture/map out of pattern. Check Subject for more details."
 # define ERR_TEXT_MAP "Texture not found in file."
 # define ERR_TEXT_COL "Color not found in file."
 # define ERR_TEXT_PATH "Error in Texture. Invalid path."
