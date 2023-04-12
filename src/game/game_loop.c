@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:24:14 by lpires-n          #+#    #+#             */
-/*   Updated: 2023/04/10 14:54:54 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/11 11:35:46 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	key_hook(int key, t_data *d)
 		rotate(&d->player.dir_x, &d->player.dir_y, ROTSPEED);
 		rotate(&d->player.plane_x, &d->player.plane_y, ROTSPEED);
 	}
+	debug(d);
 	return (SUCCESS);
 }
 

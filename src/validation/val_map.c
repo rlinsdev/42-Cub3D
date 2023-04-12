@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/03 18:47:57 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/11 23:35:15 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	valid_map(t_data *data)
 	data->player.dir = C_BACK_G;
 	if (!data->map)
 		return (error_msg(ERR_MAP7, 7));
-	if (is_map_sur_walls(data) == false)
+	if (is_map_sur_walls(data) == false || is_map_sur_walls2(data) == false)
 		return (error_msg(ERR_MAP8, 8));
 	valid_char_map = is_valid_char_in_map(data, data->map);
 	if (valid_char_map != 0)
@@ -124,7 +124,7 @@ static bool	is_map_sur_walls(t_data *data)
 		while (data->map[i][++j])
 		{
 			while (is_white_space(data->map[i][j]))
-				j++;
+				data->map[i][j++] = C_WALL;
 			if (i == 0 && data->map[i][j] != C_WALL)
 				return (false);
 			else if (i == data->map_det.height -1 && data->map[i][j] != C_WALL)
@@ -158,7 +158,7 @@ static bool	check_player_position(t_data *data, char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (ft_strchr("NSEW", map[i][j]))
+			if (ft_strchr(VALID_PLAYER_POS, map[i][j]))
 			{
 				data->player.pos_x = (double)j + 0.5;
 				data->player.pos_y = (double)i + 0.5;
