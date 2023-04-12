@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/10 15:23:33 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/12 12:23:10 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -291,5 +291,6 @@ void	setup_raycast_info(int x, t_ray *ray, t_player *player);
 int		move(t_data *d, double dx, double dy);
 int		rotate(double *x, double *y, double angle);
 int		starting_game(t_data *data);
+bool	is_map_sur_walls2(t_data *data);
 
 #endif
