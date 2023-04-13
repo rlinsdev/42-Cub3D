@@ -6,7 +6,7 @@
 /*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 14:58:12 by lpires-n          #+#    #+#             */
-/*   Updated: 2023/04/12 12:28:27 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/13 14:49:19 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	perform_dda(t_data *data, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->hit_side = true;
 		}
-		if (ray->map_y < 0 || ray->map_x < 0)
+		if (ray->map_y < 0 || ray->map_x < 0 || !data->map[ray->map_y]
+			|| !data->map[ray->map_y][ray->map_x])
 			break ;
 		if (data->map[ray->map_y][ray->map_x] == C_WALL)
 			break ;
