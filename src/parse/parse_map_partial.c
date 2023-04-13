@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_partial.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 07:59:46 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/13 11:50:32 by lpires-n         ###   ########.fr       */
+/*   Updated: 2023/04/13 14:08:55 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,18 @@ static bool	space_with_wall(char **map, int i, int j)
 	return (false);
 }
 
-static bool	is_surrounded_by_spaces(char **map, int i, int j, int rows, int cols)
+static bool	is_surrounded_by_spaces(t_data *d, int i, int j)
 {
-	if (map == NULL || i < 0 || j < 0)
-	{
+	if (d->map == NULL || i < 0 || j < 0)
 		return (false);
-	}
-	if (map[i][j] != '0')
-	{
+	if (d->map[i][j] != '0')
 		return (false);
-	}
-	if (i + 1 >= rows || j + 1 >= cols || i - 1 < 0 || j - 1 < 0)
-	{
+	if (i + 1 >= d->map_det.height || j + 1 >= d->map_det.width
+		|| i - 1 < 0 || j - 1 < 0)
 		return (false);
-	}
-	if (map[i + 1][j] == ' ' || map[i][j + 1] == ' ' || map[i][j - 1] == ' '
-		|| map[i - 1][j] == ' ')
-	{
+	if (is_white_space(d->map[i + 1][j]) || is_white_space(d->map[i][j + 1])
+		|| is_white_space(d->map[i][j - 1]) || is_white_space(d->map[i - 1][j]))
 		return (true);
-	}
 	return (false);
 }
 
@@ -54,8 +47,7 @@ void	spaces_to_wall(t_data *data)
 		{
 			if (space_with_wall(data->map, i, j) == true)
 				exit_cube(data, error_msg("Map is not closed", 0));
-			if (is_surrounded_by_spaces(data->map, i, j, data->map_det.height,
-					data->map_det.width) == true)
+			if (is_surrounded_by_spaces(data, i, j) == true)
 				exit_cube(data, error_msg("Map is not closed", 0));
 			j++;
 		}
