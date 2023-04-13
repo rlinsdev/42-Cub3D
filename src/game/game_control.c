@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_control.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:10:21 by lpires-n          #+#    #+#             */
-/*   Updated: 2023/04/13 16:16:49 by lpires-n         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:55:47 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	rotate(double *x, double *y, double angle)
 
 int	check_collision(t_data *d, double x, double y)
 {
-	if (x < 0 || x >= d->map_det.width ||
-		y < 0 || y >= d->map_det.height ||
-		d->map[(int)y][(int)x] == C_WALL)
+	if (x < 0 || x >= d->map_det.width
+		|| y < 0 || y >= d->map_det.height
+		|| d->map[(int)y][(int)x] == C_WALL)
 	{
 		return (true);
 	}
@@ -65,13 +65,12 @@ int	move(t_data *d, double dx, double dy)
 
 	new_pos_x = d->player.pos_x + dx * MOVE_SPEED;
 	new_pos_y = d->player.pos_y + dy * MOVE_SPEED;
-
 	if (check_collision(d, new_pos_x, new_pos_y))
 		return (EXIT_FAILURE);
 	if (dx != 0 && dy != 0)
 	{
-		if (check_collision(d, new_pos_x + dx * 0.1 , d->player.pos_y) ||
-			check_collision(d, d->player.pos_x, new_pos_y + dy *  0.1 ))
+		if (check_collision(d, new_pos_x + dx * 0.1, d->player.pos_y)
+			|| check_collision(d, d->player.pos_x, new_pos_y + dy * 0.1))
 			return (EXIT_FAILURE);
 	}
 	d->player.pos_x = new_pos_x;
