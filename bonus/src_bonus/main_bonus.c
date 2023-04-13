@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/07 20:46:51 by lpires-n         ###   ########.fr       */
+/*   Updated: 2023/04/13 17:08:14 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
+
+void	normalize_map(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (data->map_det.file[i])
+	{
+		j = 0;
+		while (data->map_det.file[i][j])
+		{
+			if (data->map_det.file[i][j] == '\t')
+				data->map_det.file[i][j] = ' ';
+			j++;
+		}
+		i++;
+	}
+}
 
 /**
  * @brief Will validate the inputs of program.
@@ -21,9 +40,8 @@
  */
 static int	args_handler(t_data *data, char **argv)
 {
-	if (val_cub_file(argv[1]) == false)
-		return (error_msg(ERR_CUB, 4));
 	init_map_handler(data, argv[1]);
+	normalize_map(data);
 	if (file_to_variable(data) != 0)
 		return (free_data(data));
 	if (valid_map(data) != 0)
