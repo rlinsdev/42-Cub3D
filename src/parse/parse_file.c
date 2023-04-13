@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/07 08:23:27 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/13 12:48:30 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	file_to_variable(t_data *data)
 static int	handle_file_infos(t_data *data, char **file, int i, int j)
 {
 	while (is_white_space(file[i][j]) == true)
-		j++ ;
+		j++;
 	if (ft_isdigit(file[i][j]) == false)
 	{
 		if (file[i][j + 1] != C_WHITE_S && file[i][j + 1])

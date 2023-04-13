@@ -6,7 +6,7 @@
 /*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 07:59:46 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/13 11:04:25 by lpires-n         ###   ########.fr       */
+/*   Updated: 2023/04/13 11:50:32 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ static bool	space_with_wall(char **map, int i, int j)
 	return (false);
 }
 
-static bool	is_surrounded_by_spaces(char **map, int i, int j, int rows,
-		int cols)
+static bool	is_surrounded_by_spaces(char **map, int i, int j, int rows, int cols)
 {
 	if (map == NULL || i < 0 || j < 0)
 	{
