@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   val_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 07:54:08 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/12 12:18:50 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/13 08:54:45 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ static bool	is_map_sur_walls(t_data *data)
 		while (data->map[i][++j])
 		{
 			while (is_white_space(data->map[i][j]))
-				data->map[i][j++] = C_WALL;
+				j++;
 			if (i == 0 && data->map[i][j] != C_WALL)
 				return (false);
 			else if (i == data->map_det.height -1 && data->map[i][j] != C_WALL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototype_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:32:47 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/12 12:23:10 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/12 15:39:40 by lpires-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,7 +287,6 @@ void	set_image_pixel(t_img *image, int x, int y, int color);
  * @param player Player
  */
 void	setup_raycast_info(int x, t_ray *ray, t_player *player);
-
 int		move(t_data *d, double dx, double dy);
 int		rotate(double *x, double *y, double angle);
 int		starting_game(t_data *data);
