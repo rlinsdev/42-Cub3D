@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
+/*   By: lucas <lpires-n@student.42sp.org.br>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/13 17:08:14 by rlins            ###   ########.fr       */
+/*   Updated: 2023/04/16 16:16:47 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	normalize_map(t_data *data)
  */
 static int	args_handler(t_data *data, char **argv)
 {
+	if(val_cub_file(argv[1]) != 0)
+		return (error_msg(ERR_CUB, 1));
 	init_map_handler(data, argv[1]);
 	normalize_map(data);
 	if (file_to_variable(data) != 0)

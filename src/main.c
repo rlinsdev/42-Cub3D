@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpires-n <lpires-n@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lucas <lpires-n@student.42sp.org.br>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/13 13:45:56 by lpires-n         ###   ########.fr       */
+/*   Updated: 2023/04/16 16:19:44 by lucas            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void	normalize_map(t_data *data)
+void normalize_map(t_data *data)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
 	i = 0;
 	while (data->map_det.file[i])
@@ -40,6 +40,8 @@ void	normalize_map(t_data *data)
  */
 static int	args_handler(t_data *data, char **argv)
 {
+	if (val_cub_file(argv[1]) != 0)
+		return (error_msg(ERR_CUB, 1));
 	init_map_handler(data, argv[1]);
 	normalize_map(data);
 	if (file_to_variable(data) != 0)
@@ -57,7 +59,7 @@ static int	args_handler(t_data *data, char **argv)
  * to load all textures.
  * @param data Data structure
  */
-static void	starting_view(t_data *data)
+static void starting_view(t_data *data)
 {
 	data->view.mlx = mlx_init();
 	if (data->view.mlx == NULL)
@@ -76,9 +78,9 @@ static void	starting_view(t_data *data)
 	init_img(data, &data->view.screen, WIDTH, HEIGHT);
 }
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	t_data	data;
+	t_data data;
 
 	if (argc != 2)
 		return (error_msg(ERR_ARGS, 1));
