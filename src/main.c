@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucas <lpires-n@student.42sp.org.br>       +#+  +:+       +#+        */
+/*   By: rlins <rlins@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:22:49 by rlins             #+#    #+#             */
-/*   Updated: 2023/04/16 16:19:44 by lucas            ###   ########.fr       */
+/*   Updated: 2023/04/17 07:34:27 by rlins            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-void normalize_map(t_data *data)
+void	normalize_map(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (data->map_det.file[i])
@@ -59,7 +59,7 @@ static int	args_handler(t_data *data, char **argv)
  * to load all textures.
  * @param data Data structure
  */
-static void starting_view(t_data *data)
+static void	starting_view(t_data *data)
 {
 	data->view.mlx = mlx_init();
 	if (data->view.mlx == NULL)
@@ -78,9 +78,9 @@ static void starting_view(t_data *data)
 	init_img(data, &data->view.screen, WIDTH, HEIGHT);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_data data;
+	t_data	data;
 
 	if (argc != 2)
 		return (error_msg(ERR_ARGS, 1));
